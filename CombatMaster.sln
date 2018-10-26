@@ -5,6 +5,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CombatMaster", "Assembly-CS
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CombatMaster", "Assembly-CSharp-firstpass.csproj", "{3320EB36-C0ED-64D9-3ABA-926FE92D3FD2}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CombatMaster", "Assembly-CSharp-Editor.csproj", "{EA49D122-3E40-B5CA-08BD-B5FB9ADA40E3}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -19,6 +21,10 @@ Global
 		{3320EB36-C0ED-64D9-3ABA-926FE92D3FD2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3320EB36-C0ED-64D9-3ABA-926FE92D3FD2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3320EB36-C0ED-64D9-3ABA-926FE92D3FD2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EA49D122-3E40-B5CA-08BD-B5FB9ADA40E3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EA49D122-3E40-B5CA-08BD-B5FB9ADA40E3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EA49D122-3E40-B5CA-08BD-B5FB9ADA40E3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EA49D122-3E40-B5CA-08BD-B5FB9ADA40E3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
