@@ -11,8 +11,8 @@ public class GetGameScript : MonoBehaviour {
     [SerializeField]
     private Image gameFub;
 
-    Vector3 fubTranse1 = new Vector3(-140, 110, 0);
-    Vector3 fubTranse2 = new Vector3(140, 110, 0);
+    Vector3 fubTranse1 = new Vector3(-80, 190, 0);
+    Vector3 fubTranse2 = new Vector3(80, 190, 0);
 
     //ラウンド数
     [SerializeField]
@@ -26,7 +26,7 @@ public class GetGameScript : MonoBehaviour {
 
     public static int wins1 = 0, wins2 = 0;
     [SerializeField]
-    int interval = 30;
+    int interval = 50;
 
     TextGenerator textScript;
 
