@@ -507,6 +507,44 @@ public class ColliderEvent : MonoBehaviour {
         AtkColliderActive();
     }
 
+    //--------------------------------
+    //ダッシュあたり判定
+    //
+    //使用モーション:ダッシュ
+    //--------------------------------
+    void BasicDashCollider()
+    {
+        HitColliderActive();
+        HitCollider[20].SetActive(true);
+        AtkColliderActive();
+    }
+
+    //--------------------------------
+    //くらい強あたり判定
+    //
+    //使用モーション:くらい強
+    //--------------------------------
+    void BasicLDCollider()
+    {
+        HitColliderActive();
+        HitCollider[21].SetActive(true);
+        AtkColliderActive();
+    }
+
+    //--------------------------------------
+    //しゃがみ系あたり判定
+    //
+    //使用モーション:立ち上がり、しゃがみ中
+    //--------------------------------------
+    void SitCollider()
+    {
+        HitColliderActive();
+        HitCollider[22].SetActive(true);
+        AtkColliderActive();
+    }
+
+
+
     //くらい判定初期化関数
     private void HitColliderActive()
     {
