@@ -182,6 +182,11 @@ Prefab:
       propertyPath: direction
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 95827988595180948, guid: 69b9a34dd9ad40c4d803e8bfca67230c,
+        type: 2}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 18a87bcbeed66d7428defb8fb23e7717, type: 2}
     m_RemovedComponents:
     - {fileID: 114402653714641410, guid: 69b9a34dd9ad40c4d803e8bfca67230c, type: 2}
     - {fileID: 114909209516199668, guid: 69b9a34dd9ad40c4d803e8bfca67230c, type: 2}
