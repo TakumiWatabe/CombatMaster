@@ -39,10 +39,6 @@ public class ColliderEvent : MonoBehaviour {
         PCnum = PushCollider.Count;
 	}
 
-    void Update()
-    {
-
-    }
     //-------------------------------------------------------
     //基本あたり判定
     //
@@ -581,4 +577,9 @@ public class ColliderEvent : MonoBehaviour {
         box.center = pos;
         box.size = size;
     }
+
+    //変数取得
+    public List<GameObject> HClid { get { return HitCollider; } }
+    public List<GameObject> AClid { get { return AtkCollider; } }
+    public List<GameObject> PClid { get { return PushCollider; } }
 }
