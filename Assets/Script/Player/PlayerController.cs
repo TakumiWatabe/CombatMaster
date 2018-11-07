@@ -12,7 +12,7 @@ public class PlayerController : MonoBehaviour
     //重力
     public float gravity = 0.008f;
     //状態
-    string state = "Stand";
+    public string state = "Stand";
     //必殺技の状態
     string specialState = "";
     //コマンド入力の猶予
@@ -37,7 +37,7 @@ public class PlayerController : MonoBehaviour
 
     //public Text text;
     //入力履歴
-    List<string> history = new List<string>();
+    public List<string> history = new List<string>();
     //入力履歴(画面表示用)
     List<string> inputHistory = new List<string>();
     //アニメーター
@@ -96,6 +96,9 @@ public class PlayerController : MonoBehaviour
         {
             case "Stand":
                 Stand();
+                break;
+            case "Dash":
+                Dash();
                 break;
             case "Crouch":
                 Crouch();
@@ -224,6 +227,7 @@ public class PlayerController : MonoBehaviour
         gameObject.transform.position = new Vector3(gameObject.transform.position.x, 0, 0);
 
         int move = 0;
+        speed = 0.03f;
 
         //左右移動する
         if (direction == 1)
@@ -239,7 +243,7 @@ public class PlayerController : MonoBehaviour
                 move = 1;
             }
             //右向き
-            if (!isModel) transform.localEulerAngles = new Vector3(0, 90, 0);
+            if (!isModel) transform.localScale = new Vector3(transform.localScale.x, transform.localScale.y, 1);
 
         }
         else
@@ -255,7 +259,7 @@ public class PlayerController : MonoBehaviour
                 move = -1;
             }
             //左向き
-            if(!isModel)transform.localEulerAngles = new Vector3(0, 270, 0);
+            if (!isModel) transform.localScale = new Vector3(transform.localScale.x, transform.localScale.y, -1);
         }
 
         //下が押されたらしゃがみ
@@ -293,6 +297,9 @@ public class PlayerController : MonoBehaviour
             animator.SetBool("Kick", true);
             state = "Kick";
         }
+
+        Dash();
+
     }
 
     /// <summary>
@@ -628,6 +635,128 @@ public class PlayerController : MonoBehaviour
                         break;
                     }
                 }
+            }
+        }
+    }
+
+    /// <summary>
+    /// ダッシュ
+    /// </summary>
+    void Dash()
+    {
+        //立ち状態だったらダッシュ
+        if (state == "Stand")
+        {
+            string[] dash = new string[3];
+            dash[0] = "6";
+            dash[1] = "5";
+            dash[2] = "6";
+
+            int dashCount = 0;
+
+            for (int i = commandCount/2; i < commandCount; i++)
+            {
+                if (dash[dashCount] == history[i])
+                {
+                    dashCount++;
+                    if (dashCount > 2)
+                    {
+                        //if (state != "Jump")
+                        {
+                            state = "Dash";
+                            history.Clear();
+                            for (int j = 0; j < commandCount; j++)
+                            {
+                                history.Add("");
+                            }
+
+                        }
+                        break;
+                    }
+                }
+            }
+            return;
+        }
+
+        if(state == "Dash")
+        {
+            gameObject.transform.position = new Vector3(gameObject.transform.position.x, 0, 0);
+
+            int move = 0;
+            speed = 0.08f;
+
+            //左右移動する
+            if (direction == 1)
+            {
+                if (inputDKey == 6 || inputDKey == 9) move = 1;
+                if (inputDKey == 4 || inputDKey == 7) move = -1;
+                if (Input.GetKey(KeyCode.LeftArrow))
+                {
+                    move = -1;
+                }
+                if (Input.GetKey(KeyCode.RightArrow))
+                {
+                    move = 1;
+                }
+                //右向き
+                if (!isModel) transform.localScale = new Vector3(transform.localScale.x, transform.localScale.y, 1);
+
+            }
+            else
+            {
+                if (inputDKey == 6 || inputDKey == 9) move = -1;
+                if (inputDKey == 4 || inputDKey == 7) move = 1;
+                if (Input.GetKey(KeyCode.LeftArrow))
+                {
+                    move = 1;
+                }
+                if (Input.GetKey(KeyCode.RightArrow))
+                {
+                    move = -1;
+                }
+                //左向き
+                if (!isModel) transform.localScale = new Vector3(transform.localScale.x, transform.localScale.y, -1);
+            }
+
+            //下が押されたらしゃがみ
+            if (inputDKey <= 3 || Input.GetKey(KeyCode.DownArrow))
+            {
+                state = "Crouch";
+            }
+            //上が押されたらジャンプ
+            if (inputDKey >= 7 || Input.GetKey(KeyCode.UpArrow))
+            {
+                nowGravity = 0;
+                state = "Jump";
+            }
+
+
+            // 移動する向きを求める
+            finalMove = new Vector3(move, 0, 0).normalized * speed;
+
+            if (direction == 1) animator.SetInteger("Move", move);
+            else animator.SetInteger("Move", move * -1);
+            animator.SetInteger("Special", 0);
+            animator.SetBool("Crouch", false);
+            animator.SetBool("Punch", false);
+            animator.SetBool("Kick", false);
+
+            //立ち状態時にZを押すとパンチ
+            if (Input.GetKeyDown(KeyCode.Z) || punchKey)
+            {
+                animator.SetBool("Punch", true);
+                state = "Punch";
+            }
+            //立ち状態時にXを押すとキック
+            if (Input.GetKeyDown(KeyCode.X) || kickKey)
+            {
+                animator.SetBool("Kick", true);
+                state = "Kick";
+            }
+
+            if (inputDKey == 5)
+            {
+                state = "Stand";
             }
         }
     }
