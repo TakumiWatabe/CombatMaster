@@ -4606,7 +4606,7 @@ AnimationClip:
   m_GenerateMotionCurves: 0
   m_Events:
   - time: 0
-    functionName: BasicJumpCollide1
+    functionName: HBasicJumpCollide1
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0

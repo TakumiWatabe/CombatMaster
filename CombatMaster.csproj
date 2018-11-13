@@ -418,6 +418,7 @@
     <Compile Include="Assets\Script\AI\EnemyAI.cs" />
     <Compile Include="Assets\Script\Collider\BattleDirector.cs" />
     <Compile Include="Assets\Script\Collider\ColliderEvent.cs" />
+    <Compile Include="Assets\Script\Collider\ColliderReact.cs" />
     <Compile Include="Assets\Script\Collider\ComboScript.cs" />
     <Compile Include="Assets\Script\Collider\HikariEvent.cs" />
     <Compile Include="Assets\Script\Collider\TestChar.cs" />

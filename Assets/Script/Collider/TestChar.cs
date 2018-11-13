@@ -7,41 +7,59 @@ public class TestChar : MonoBehaviour {
     //キャラクターHP
     private int hp = 10000;
 
-    //攻撃接触判定
-    private bool hit = false;
-    //攻撃判定オブジェクト
-    private GameObject collid;
-
     //バトルディレクター
     [SerializeField]
-    private GameObject dir;
-    private GameDirector GameDir;
+    GameObject dir;
+    BattleDirector BtDir;
+    //コライダーイベント
+    ColliderEvent CEvent;
 
-    //あたり判定に当たったら
-    void OnTriggerEnter(Collider other)
-    {
-        //攻撃未接触＆判定が攻撃なら
-        if (!hit && other.gameObject.tag == "Attack")
-        {
-            //攻撃がヒット
-            hit = true;
-            //攻撃判定を記憶
-            collid = other.gameObject;
-        }
-    }
+    //あたり判定群
+    List<GameObject> col = new List<GameObject>();
+    List<ColliderReact> react = new List<ColliderReact>();
 
     // Use this for initialization
     void Start ()
     {
-        GameDir = dir.GetComponent<GameDirector>();
+        //ディレクタースクリプト取得
+        BtDir = dir.GetComponent<BattleDirector>();
+        CEvent = this.GetComponent<ColliderEvent>();
+
+        //コライダーのスクリプトを取得
+        for (int i = 0; i < CEvent.HClid.Count; i++)
+        {
+            col.Add(CEvent.HClid[i]);
+            react.Add(col[i].GetComponent<ColliderReact>());
+        }
 	}
 	
 	// Update is called once per frame
 	void Update ()
     {
-		if(hit)
+        //くらい判定の数
+        for (int i = 0; i < CEvent.HClid.Count; i++)
         {
-
+            //攻撃が当たっているなら
+            if (react[i].hiting)
+            {
+                //技の数
+                for (int j = 0; j < (int)BattleDirector.AtkVal.ATK_NUM; j++)
+                {
+                    //技の攻撃判定の数
+                    for (int k = 0; k < BtDir.CCount(0, j); k++)
+                    {
+                        //攻撃の種類を判定
+                        if (react[i].CObj.name == BtDir.Fcollider(0, j, k).name)
+                        {
+                            //判定した攻撃の威力分ダメージを受ける
+                            hp -= BtDir.Fattack(0, j);
+                            Debug.Log("ダメージを与えた！！！");
+                        }
+                    }
+                }
+                Debug.Log("オーバーソウル！！");
+            }
         }
+        Debug.Log(this.gameObject.name + " HP:" + hp);
 	}
 }

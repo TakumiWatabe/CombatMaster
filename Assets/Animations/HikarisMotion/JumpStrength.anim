@@ -6184,70 +6184,70 @@ AnimationClip:
   m_GenerateMotionCurves: 0
   m_Events:
   - time: 0
-    functionName: JumpKickCollider1
+    functionName: HJumpKickCollider1
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
   - time: 0.06666667
-    functionName: JumpKickCollider2
+    functionName: HJumpKickCollider2
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
   - time: 0.11666667
-    functionName: JumpKickCollider3
+    functionName: HJumpKickCollider3
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
   - time: 0.21666667
-    functionName: JumpKickCollider4
+    functionName: HJumpKickCollider4
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
   - time: 0.25
-    functionName: JumpKickCollider5
+    functionName: HJumpKickCollider5
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
   - time: 0.9
-    functionName: JumpKickCollider6
+    functionName: HJumpKickCollider6
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
   - time: 1.0333333
-    functionName: JumpKickCollider7
+    functionName: HJumpKickCollider7
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
   - time: 1.1333333
-    functionName: JumpKickCollider8
+    functionName: HJumpKickCollider8
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
   - time: 1.2166667
-    functionName: JumpKickCollider9
+    functionName: HJumpKickCollider9
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
   - time: 1.3833333
-    functionName: JumpKickCollider10
+    functionName: HJumpKickCollider10
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0

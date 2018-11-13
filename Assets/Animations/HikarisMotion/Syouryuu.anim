@@ -6224,63 +6224,63 @@ AnimationClip:
   m_GenerateMotionCurves: 0
   m_Events:
   - time: 0.21666667
-    functionName: BasicShoruCollider1
+    functionName: HBasicShoruCollider1
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
   - time: 0.28333333
-    functionName: BasicShoruCollider2
+    functionName: HBasicShoruCollider2
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
   - time: 0.3
-    functionName: BasicShoruCollider3
+    functionName: HBasicShoruCollider3
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
   - time: 0.33333334
-    functionName: BasicShoruCollider4
+    functionName: HBasicShoruCollider4
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
   - time: 0.36666667
-    functionName: BasicShoruCollider5
+    functionName: HBasicShoruCollider5
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
   - time: 0.41666666
-    functionName: BasicShoruCollider6
+    functionName: HBasicShoruCollider6
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
   - time: 0.46666667
-    functionName: BasicShoruCollider7
+    functionName: HBasicShoruCollider7
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
   - time: 0.51666665
-    functionName: BasicShoruCollider8
+    functionName: HBasicShoruCollider8
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
   - time: 0.55
-    functionName: BasicShoruCollider9
+    functionName: HBasicShoruCollider9
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
