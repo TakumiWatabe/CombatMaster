@@ -2125,12 +2125,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 0.1
   gravity: 0.1
-  commandCount: 10
+  state: Stand
+  specialState: 
+  commandCount: 20
   numInputHistory: 10
   controller: 1
   damage: 0
   enemy: {fileID: 0}
+  distanceToGuard: 0.7
   isModel: 1
+  history: []
 --- !u!114 &114304377591616492
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2161,12 +2165,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 0.03
   gravity: 0.008
+  state: Stand
+  specialState: 
   commandCount: 20
   numInputHistory: 10
   controller: 1
   damage: 0
   enemy: {fileID: 0}
+  distanceToGuard: 0.7
   isModel: 0
+  history: []
 --- !u!114 &114886257188789592
 MonoBehaviour:
   m_ObjectHideFlags: 1

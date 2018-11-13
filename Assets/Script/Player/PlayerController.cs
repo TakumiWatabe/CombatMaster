@@ -14,7 +14,7 @@ public class PlayerController : MonoBehaviour
     //状態
     public string state = "Stand";
     //必殺技の状態
-    string specialState = "";
+    public string specialState = "";
     //コマンド入力の猶予
     public int commandCount = 20;
     //入力履歴の数
@@ -27,6 +27,12 @@ public class PlayerController : MonoBehaviour
     int direction = 1;
     //相手
     public GameObject enemy;
+    //相手スクリプト
+    PlayerController enemyScript;
+
+    //ガードする距離
+    public float distanceToGuard = 0.7f;
+
     //方向キー
     int inputDKey;
     int inputDKeyOld;
@@ -62,6 +68,9 @@ public class PlayerController : MonoBehaviour
     // Use this for initialization
     void Start()
     {
+
+        enemyScript = enemy.GetComponent<PlayerController>();
+
         animator = GetComponent<Animator>();
 
         //入力履歴の設定
@@ -98,13 +107,20 @@ public class PlayerController : MonoBehaviour
                 Stand();
                 break;
             case "Dash":
-                Dash();
+                Dashing();
                 break;
-            case "Crouch":
-                Crouch();
+            case "Sit":
+                Sit();
                 break;
             case "Jump":
                 Jump();
+                Jumping();
+                break;
+            case "StandGuard":
+                StandGuard();
+                break;
+            case "SitGuard":
+                SitGuard();
                 break;
             case "Punch":
                 Punch();
@@ -112,13 +128,19 @@ public class PlayerController : MonoBehaviour
             case "Kick":
                 Kick();
                 break;
+            case "SitPunch":
+                SitPunch();
+                break;
+            case "SitKick":
+                SitKick();
+                break;
             case "Special":
                 Special();
                 break;
 
         }
 
-        Jumping();
+        
 
         FinallyMove();
 
@@ -129,6 +151,8 @@ public class PlayerController : MonoBehaviour
         SyoryukenCommand();
 
         HadokenCommand();
+
+        CheckGuard();
 
         inputDKeyOld = inputDKey;
 
@@ -191,6 +215,33 @@ public class PlayerController : MonoBehaviour
             //キック
             kickKey = GamePad.GetButtonDown(GamePad.Button.X, GamePad.Index.Two);
         }
+        else
+        {
+            // 右・左
+            if (Input.GetKey(KeyCode.LeftArrow))
+            {
+                x = -1;
+            }
+            else if (Input.GetKey(KeyCode.RightArrow))
+            {
+                x = 1;
+            }
+
+            // 上・下
+            if (Input.GetKey(KeyCode.DownArrow))
+            {
+                y = -1;
+            }
+            else if (Input.GetKey(KeyCode.UpArrow))
+            {
+                y = 1;
+            }
+
+            //パンチ
+            punchKey = Input.GetKeyDown(KeyCode.Z);
+            //キック
+            kickKey = Input.GetKeyDown(KeyCode.X);
+        }
 
         //取得
         if (direction == 1)
@@ -234,14 +285,6 @@ public class PlayerController : MonoBehaviour
         {
             if (inputDKey == 6 || inputDKey == 9) move = 1;
             if (inputDKey == 4 || inputDKey == 7) move = -1;
-            if (Input.GetKey(KeyCode.LeftArrow))
-            {
-                move = -1;
-            }
-            if (Input.GetKey(KeyCode.RightArrow))
-            {
-                move = 1;
-            }
             //右向き
             if (!isModel) transform.localScale = new Vector3(transform.localScale.x, transform.localScale.y, 1);
 
@@ -250,25 +293,18 @@ public class PlayerController : MonoBehaviour
         {
             if (inputDKey == 6 || inputDKey == 9) move = -1;
             if (inputDKey == 4 || inputDKey == 7) move = 1;
-            if (Input.GetKey(KeyCode.LeftArrow))
-            {
-                move = 1;
-            }
-            if (Input.GetKey(KeyCode.RightArrow))
-            {
-                move = -1;
-            }
+
             //左向き
             if (!isModel) transform.localScale = new Vector3(transform.localScale.x, transform.localScale.y, -1);
         }
 
         //下が押されたらしゃがみ
-        if (inputDKey <= 3 || Input.GetKey(KeyCode.DownArrow))
+        if (inputDKey <= 3)
         {
-            state = "Crouch";
+            state = "Sit";
         }
         //上が押されたらジャンプ
-        if (inputDKey >= 7 || Input.GetKey(KeyCode.UpArrow))
+        if (inputDKey >= 7)
         {
             nowGravity = 0;
             state = "Jump";
@@ -281,18 +317,19 @@ public class PlayerController : MonoBehaviour
         if (direction == 1) animator.SetInteger("Move", move);
         else animator.SetInteger("Move", move * -1);
         animator.SetInteger("Special", 0);
-        animator.SetBool("Crouch", false);
+        animator.SetBool("Guard", false);
+        animator.SetBool("Sit", false);
         animator.SetBool("Punch", false);
         animator.SetBool("Kick", false);
 
         //立ち状態時にZを押すとパンチ
-        if (Input.GetKeyDown(KeyCode.Z) || punchKey)
+        if (punchKey)
         {
             animator.SetBool("Punch", true);
             state = "Punch";
         }
         //立ち状態時にXを押すとキック
-        if (Input.GetKeyDown(KeyCode.X) || kickKey)
+        if (kickKey)
         {
             animator.SetBool("Kick", true);
             state = "Kick";
@@ -305,39 +342,53 @@ public class PlayerController : MonoBehaviour
     /// <summary>
     /// しゃがみ
     /// </summary>
-    void Crouch()
+    void Sit()
     {
-        animator.SetBool("Crouch", true);
+        animator.SetBool("Sit", true);
+        animator.SetBool("Punch", false);
+        animator.SetBool("Kick", false);
         gameObject.transform.position = new Vector3(gameObject.transform.position.x, 0, 0);
         finalMove = new Vector3(0, 0, 0);
-        //下が離されたら立つ
-        if (!Input.GetKey(KeyCode.DownArrow))
-        {
-            state = "Stand";
-        }
 
         //下が離されたら立つ
         if (inputDKey <= 3)
         {
-            state = "Crouch";
+            state = "Sit";
         }
         else
         {
             state = "Stand";
         }
 
-        //しゃがみ状態時にZを押すとキック
-        if (Input.GetKeyDown(KeyCode.Z) || punchKey)
+        //しゃがみ状態時にZを押すとパンチ
+        if (punchKey)
         {
             animator.SetBool("Punch", true);
-            state = "Punch";
+            state = "SitPunch";
         }
         //しゃがみ状態時にXを押すとキック
-        if (Input.GetKeyDown(KeyCode.X) || kickKey)
+        if (kickKey)
         {
             animator.SetBool("Kick", true);
-            state = "Kick";
+            state = "SitKick";
         }
+    }
+
+    /// <summary>
+    /// しゃがみキック
+    /// </summary>
+    void SitKick()
+    {
+        gameObject.transform.position = new Vector3(gameObject.transform.position.x, 0, 0);
+        //キックしているアニメーションで終わったら戻す
+        if (animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1 && animator.GetBool("Kick"))
+        {
+            animator.SetBool("Kick", false);
+            state = "Sit";
+        }
+        damage = 600;
+        animator.SetBool("Kick", true);
+        finalMove = new Vector3(0, 0, 0);
     }
 
     /// <summary>
@@ -360,7 +411,7 @@ public class PlayerController : MonoBehaviour
         finalMove = new Vector3(0, 0, 0);
 
         //立ち状態時にZを押すとパンチ
-        if (animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 0.5f && (Input.GetKeyDown(KeyCode.Z) || punchKey))
+        if (animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 0.5f && (punchKey))
         {
             animator.SetBool("Punch", true);
             state = "Punch";
@@ -368,7 +419,7 @@ public class PlayerController : MonoBehaviour
         }
 
         //立ち状態時にXを押すとキック
-        if (Input.GetKeyDown(KeyCode.X) || kickKey)
+        if (kickKey)
         {
             animator.SetBool("Kick", true);
             state = "Kick";
@@ -379,6 +430,42 @@ public class PlayerController : MonoBehaviour
         {
             animator.SetBool("Punch", false);
             state = "Stand";
+        }
+
+
+    }
+
+    /// <summary>
+    /// しゃがみパンチ
+    /// </summary>
+    void SitPunch()
+    {
+        gameObject.transform.position = new Vector3(gameObject.transform.position.x, 0, 0);
+
+        damage = 300;
+        animator.SetBool("Punch", true);
+        finalMove = new Vector3(0, 0, 0);
+
+        //しゃがみ状態時にZを押すとパンチ
+        if (animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 0.5f && (punchKey))
+        {
+            animator.SetBool("Punch", true);
+            state = "SitPunch";
+            animator.Play(animator.GetCurrentAnimatorStateInfo(0).shortNameHash, -1, 0.0f);
+        }
+
+        //しゃがみ状態時にXを押すとキック
+        if (kickKey)
+        {
+            animator.SetBool("Kick", true);
+            state = "SitKick";
+        }
+
+        //キックしているアニメーションで終わったら戻す
+        if (animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1 && animator.GetBool("Punch"))
+        {
+            animator.SetBool("Punch", false);
+            state = "Sit";
         }
 
 
@@ -410,19 +497,20 @@ public class PlayerController : MonoBehaviour
         {
             //必殺
             case "Hadoken":
-                //Debug.Log("波動拳");
+               
                 finalMove = new Vector3(0, 0, 0);
                 animator.SetInteger("Special", 1);
                 break;
             //必殺
             case "Syoryuken":
-                //Debug.Log("昇龍拳");
+                
                 finalMove = new Vector3(0, 0, 0);
                 animator.SetInteger("Special", 2);
                 break;
         }
         //アニメ終了でもどる
         if (animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1 && animator.GetInteger("Special") != 0)
+        //if (animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1 && animator.GetInteger("Special") == 1)
         {
             animator.SetInteger("Special", 0);
             state = "Stand";
@@ -437,7 +525,7 @@ public class PlayerController : MonoBehaviour
     {
 
         //ジャンプしているときに地面に触っておらず一定時間経過していたら終了
-        bool jumpEnd = gameObject.transform.position.y <= 0 && state == "Jump" && jumpCount > jumpTime;
+        bool jumpEnd = gameObject.transform.position.y <= 0 && jumpCount > jumpTime;
         if (jumpEnd)
         {
             jumpCount = 0;
@@ -456,14 +544,14 @@ public class PlayerController : MonoBehaviour
             ySpeed = 0.15f;
 
             //ジャンプキック
-            if (Input.GetKeyDown(KeyCode.Z) || punchKey && !animator.GetBool("Punch") && !animator.GetBool("Kick"))
+            if (punchKey && !animator.GetBool("Punch") && !animator.GetBool("Kick"))
             {
                 //animator.SetBool("Punch", true);
                 animator.SetBool("Punch", true);
-                damage = 500;
+                damage = 300;
             }
             //ジャンプキック
-            if (Input.GetKeyDown(KeyCode.X) || kickKey && !animator.GetBool("Punch") && !animator.GetBool("Kick"))
+            if (kickKey && !animator.GetBool("Punch") && !animator.GetBool("Kick"))
             {
                 animator.SetBool("Kick", true);
                 damage = 500;
@@ -580,7 +668,7 @@ public class PlayerController : MonoBehaviour
                     hadokenCount++;
                     if (hadokenCount > 3)
                     {
-                        if (state != "Jump")
+                        if (state != "Jump" && state != "Special")
                         {
                             specialState = "Hadoken";
                             state = "Special";
@@ -589,9 +677,10 @@ public class PlayerController : MonoBehaviour
                             {
                                 history.Add("");
                             }
-                            
+                            Debug.Log("波動拳");
+
                         }
-                        break;
+                        return;
                     }
                 }
             }
@@ -621,7 +710,7 @@ public class PlayerController : MonoBehaviour
                     syoryuCount++;
                     if (syoryuCount > 3)
                     {
-                        if (state != "Jump")
+                        if (state != "Jump" && state != "Special")
                         {
                             specialState = "Syoryuken";
                             state = "Special";
@@ -630,9 +719,10 @@ public class PlayerController : MonoBehaviour
                             {
                                 history.Add("");
                             }
+                            Debug.Log("昇龍拳");
                             //break;
                         }
-                        break;
+                        return;
                     }
                 }
             }
@@ -677,88 +767,123 @@ public class PlayerController : MonoBehaviour
             }
             return;
         }
+    }
 
-        if(state == "Dash")
+    /// <summary>
+    /// ダッシュ中
+    /// </summary>
+    void Dashing()
+    {
+        gameObject.transform.position = new Vector3(gameObject.transform.position.x, 0, 0);
+
+        int move = 0;
+        speed = 0.08f;
+
+        //左右移動する
+        if (direction == 1)
         {
-            gameObject.transform.position = new Vector3(gameObject.transform.position.x, 0, 0);
+            if (inputDKey == 6 || inputDKey == 9) move = 1;
+            if (inputDKey == 4 || inputDKey == 7) move = -1;
 
-            int move = 0;
-            speed = 0.08f;
+            //右向き
+            if (!isModel) transform.localScale = new Vector3(transform.localScale.x, transform.localScale.y, 1);
 
-            //左右移動する
-            if (direction == 1)
-            {
-                if (inputDKey == 6 || inputDKey == 9) move = 1;
-                if (inputDKey == 4 || inputDKey == 7) move = -1;
-                if (Input.GetKey(KeyCode.LeftArrow))
-                {
-                    move = -1;
-                }
-                if (Input.GetKey(KeyCode.RightArrow))
-                {
-                    move = 1;
-                }
-                //右向き
-                if (!isModel) transform.localScale = new Vector3(transform.localScale.x, transform.localScale.y, 1);
-
-            }
-            else
-            {
-                if (inputDKey == 6 || inputDKey == 9) move = -1;
-                if (inputDKey == 4 || inputDKey == 7) move = 1;
-                if (Input.GetKey(KeyCode.LeftArrow))
-                {
-                    move = 1;
-                }
-                if (Input.GetKey(KeyCode.RightArrow))
-                {
-                    move = -1;
-                }
-                //左向き
-                if (!isModel) transform.localScale = new Vector3(transform.localScale.x, transform.localScale.y, -1);
-            }
-
-            //下が押されたらしゃがみ
-            if (inputDKey <= 3 || Input.GetKey(KeyCode.DownArrow))
-            {
-                state = "Crouch";
-            }
-            //上が押されたらジャンプ
-            if (inputDKey >= 7 || Input.GetKey(KeyCode.UpArrow))
-            {
-                nowGravity = 0;
-                state = "Jump";
-            }
-
-
-            // 移動する向きを求める
-            finalMove = new Vector3(move, 0, 0).normalized * speed;
-
-            if (direction == 1) animator.SetInteger("Move", move);
-            else animator.SetInteger("Move", move * -1);
-            animator.SetInteger("Special", 0);
-            animator.SetBool("Crouch", false);
-            animator.SetBool("Punch", false);
-            animator.SetBool("Kick", false);
-
-            //立ち状態時にZを押すとパンチ
-            if (Input.GetKeyDown(KeyCode.Z) || punchKey)
-            {
-                animator.SetBool("Punch", true);
-                state = "Punch";
-            }
-            //立ち状態時にXを押すとキック
-            if (Input.GetKeyDown(KeyCode.X) || kickKey)
-            {
-                animator.SetBool("Kick", true);
-                state = "Kick";
-            }
-
-            if (inputDKey == 5)
-            {
-                state = "Stand";
-            }
         }
+        else
+        {
+            if (inputDKey == 6 || inputDKey == 9) move = -1;
+            if (inputDKey == 4 || inputDKey == 7) move = 1;
+
+            //左向き
+            if (!isModel) transform.localScale = new Vector3(transform.localScale.x, transform.localScale.y, -1);
+        }
+
+        //下が押されたらしゃがみ
+        if (inputDKey <= 3)
+        {
+            state = "Sit";
+        }
+        //上が押されたらジャンプ
+        if (inputDKey >= 7)
+        {
+            nowGravity = 0;
+            state = "Jump";
+        }
+
+        // 移動する向きを求める
+        finalMove = new Vector3(move, 0, 0).normalized * speed;
+
+        if (direction == 1) animator.SetInteger("Move", move);
+        else animator.SetInteger("Move", move * -1);
+        animator.SetInteger("Special", 0);
+        animator.SetBool("Sit", false);
+        animator.SetBool("Punch", false);
+        animator.SetBool("Kick", false);
+
+        //立ち状態時にZを押すとパンチ
+        if (punchKey)
+        {
+            animator.SetBool("Punch", true);
+            state = "Punch";
+        }
+        //立ち状態時にXを押すとキック
+        if (kickKey)
+        {
+            animator.SetBool("Kick", true);
+            state = "Kick";
+        }
+
+        if (inputDKey == 5)
+        {
+            state = "Stand";
+        }
+    }
+
+    /// <summary>
+    /// ガードできるかチェック
+    /// </summary>
+    void CheckGuard()
+    {
+        //敵との距離
+        float distanceToEnemy = enemy.transform.position.x - transform.position.x;
+
+        //立ちガード
+        if ((enemyScript.state == "Punch" || enemyScript.state == "Kick") && distanceToGuard > Mathf.Abs(distanceToEnemy) && inputDKey == 4 && (state == "Stand" || state == "Sit"))
+        {
+            animator.SetBool("Guard", true);
+            state = "StandGuard";
+        }
+        //しゃがみガード
+        if ((enemyScript.state == "Punch" || enemyScript.state == "Kick") && distanceToGuard > Mathf.Abs(distanceToEnemy) && inputDKey == 1 && (state == "Stand" || state == "Sit"))
+        {
+            animator.SetBool("Guard", true);
+            state = "SitGuard";
+        }
+    }
+
+    /// <summary>
+    /// 立ちガードする
+    /// </summary>
+    void StandGuard()
+    {
+        gameObject.transform.position = new Vector3(gameObject.transform.position.x, 0, 0);
+        finalMove = new Vector3(0, 0, 0);
+        animator.SetBool("StandGuard", true);
+        if (enemyScript.state != "Punch" || enemyScript.state != "Kick") state = "Stand";
+        if (inputDKey != 4) state = "Stand";
+    }
+
+    /// <summary>
+    /// しゃがみガードする
+    /// </summary>
+    void SitGuard()
+    {
+        
+        gameObject.transform.position = new Vector3(gameObject.transform.position.x, 0, 0);
+        finalMove = new Vector3(0, 0, 0);
+        animator.SetBool("StandGuard", false);
+        if (enemyScript.state != "Punch" || enemyScript.state != "Kick") state = "Stand";
+        if (inputDKey != 1) state = "Stand";
     }
 
     /// <summary>
