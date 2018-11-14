@@ -276,6 +276,7 @@
      <Compile Include="Assets\Prefab\Effect\PostProcessing\Runtime\Utils\MaterialFactory.cs" />
      <Compile Include="Assets\Prefab\Effect\PostProcessing\Runtime\Utils\RenderTextureFactory.cs" />
      <Compile Include="Assets\Prefab\Effect\PostProcessing\Utilities\CustomMotionTexture\ExampleWheelController.cs" />
+     <Compile Include="Assets\Script\AI\EnemyAI.cs" />
      <Compile Include="Assets\Script\Collider\ColliderEvent.cs" />
      <Compile Include="Assets\Script\Collider\ComboScript.cs" />
      <Compile Include="Assets\Script\EffectManager.cs" />
