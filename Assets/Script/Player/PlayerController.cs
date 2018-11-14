@@ -239,7 +239,7 @@ public class PlayerController : MonoBehaviour
                 move = 1;
             }
             //右向き
-            if (!isModel) transform.localEulerAngles = new Vector3(0, 90, 0);
+            if (isModel) transform.localScale = new Vector3(transform.localScale.x, transform.localScale.y, 1);
 
         }
         else
@@ -255,7 +255,7 @@ public class PlayerController : MonoBehaviour
                 move = -1;
             }
             //左向き
-            if(!isModel)transform.localEulerAngles = new Vector3(0, 270, 0);
+            if(isModel)transform.localScale = new Vector3(transform.localScale.x, transform.localScale.y, -1);
         }
 
         //下が押されたらしゃがみ

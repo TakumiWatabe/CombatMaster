@@ -415,6 +415,7 @@
     <Compile Include="Assets\Model\VRM\UniGLTF\UniJSON\Scripts\SimpleJSON.cs" />
     <Compile Include="Assets\Model\VRM\UniGLTF\UniJSON\Scripts\StringSegment.cs" />
     <Compile Include="Assets\NumberText.cs" />
+    <Compile Include="Assets\Script\AI\EnemyAI.cs" />
     <Compile Include="Assets\Script\Collider\ColliderEvent.cs" />
     <Compile Include="Assets\Script\Collider\ComboScript.cs" />
     <Compile Include="Assets\Script\NumberImageRenderer.cs" />

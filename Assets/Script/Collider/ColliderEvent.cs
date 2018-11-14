@@ -14,10 +14,21 @@ public class ColliderEvent : MonoBehaviour {
     //攻撃判定
     [SerializeField]
     private List<GameObject> AtkCollider;
+    //押し合い判定
+    [SerializeField]
+    private List<GameObject> PushCollider;
+
+    //コライダー
+    BoxCollider HitBox;
+    BoxCollider AtkBox;
+    BoxCollider PushBox;
 
     //あたり判定の数
     int HCnum;
     int ACnum;
+    int PCnum;
+
+    private const float CSizeZ = 0.25f;
 
     // Use this for initialization
     void Start ()
@@ -25,590 +36,549 @@ public class ColliderEvent : MonoBehaviour {
         //あたり判定の数
         HCnum = HitCollider.Count;
         ACnum = AtkCollider.Count;
+        PCnum = PushCollider.Count;
 	}
-	
-    //---------------------
-    //立ち状態あたり判定
-    //---------------------
-    void StandCollider()
+
+    void Update()
     {
-        //くらい判定
+
+    }
+    //-------------------------------------------------------
+    //基本あたり判定
+    //
+    //使用モーション:立ち、前進、後進、ジャンプ、立ちガード、ダメージ
+    //-------------------------------------------------------
+    void BasicCollide()
+    {
+        //くらい判定初期化
         HitColliderActive();
 
-        //立ち状態くらい判定
+        //基本くらい判定
         HitCollider[0].SetActive(true);
+
+        //攻撃判定初期化
+        AtkColliderActive();
+    }
+
+    //-----------------------------------------
+    //基本しゃがみあたり判定
+    //
+    //使用モーション:しゃがみ、しゃがみガード
+    //-----------------------------------------
+    void BasicSitCollide()
+    {
+        //くらい判定初期化
+        HitColliderActive();
+
+        //基本しゃがみ判定
         HitCollider[1].SetActive(true);
 
-        //攻撃判定
+        //攻撃判定初期化
         AtkColliderActive();
     }
 
-    //-------------------------
-    //しゃがみ状態あたり判定
-    //-------------------------
-    void CrouchCollider()
+    //------------------
+    //パンチあたり判定
+    //
+    //使用モーション:立ちパンチ　フレーム数:15
+    //------------------
+    void BasePunchCollider()
     {
-        //くらい判定
-        HitColliderActive();
 
-        //しゃがみ状態くらい判定
         HitCollider[2].SetActive(true);
-        HitCollider[3].SetActive(true);
-
-        //攻撃判定
-        AtkColliderActive();
-    }
-
-    //--------------------------------
-    //しゃがみパンチ状態あたり判定1
-    //--------------------------------
-    void CrouchPunch_C1()
-    {
-        //くらい判定
-        HitColliderActive();
-
-        //しゃがみパンチくらい判定
-        HitCollider[4].SetActive(true);
-        HitCollider[5].SetActive(true);
-
-        //攻撃判定
-        AtkColliderActive();
-    }
-
-    //--------------------------------
-    //しゃがみパンチ状態あたり判定2
-    //--------------------------------
-    void CrouchPunch_C2()
-    {
-        //くらい判定
-        HitColliderActive();
-
-        //しゃがみパンチくらい判定
-        HitCollider[6].SetActive(true);
-        HitCollider[7].SetActive(true);
-        HitCollider[8].SetActive(true);
-
-        //攻撃判定
-        AtkColliderActive();
-    }
-
-    //--------------------------------
-    //しゃがみパンチ状態あたり判定3
-    //--------------------------------
-    void CrouchPunch_C3()
-    {
-        //くらい判定
-        HitColliderActive();
-
-        //しゃがみパンチくらい判定
-        HitCollider[6].SetActive(true);
-        HitCollider[7].SetActive(true);
-        HitCollider[9].SetActive(true);
-
-        //攻撃判定
-        AtkColliderActive();
-
-        //しゃがみパンチ攻撃判定
         AtkCollider[0].SetActive(true);
+
+        HitBox = HitCollider[2].GetComponent<BoxCollider>();
+
+        //コライダー設定
+        SetBoxState(
+            HitBox,
+            new Vector3(0, 1.2f, 0.25f),
+            new Vector3(0.25f, 0.3f, 0.35f));
+    }
+    void SetPunchCollider_1()
+    {
+        //コライダー設定
+        SetBoxState(
+            HitBox,
+            new Vector3(0, 1, 0.38f),
+            new Vector3(0.25f, 0.35f, 0.55f));
+    }
+    void SetPunchCollider_2()
+    {
+        //コライダー設定
+        SetBoxState(
+            HitBox,
+            new Vector3(0, 1, 0.25f),
+            new Vector3(0.25f, 0.5f, 0.25f));
     }
 
-    //--------------------------------
-    //しゃがみパンチ状態あたり判定4
-    //--------------------------------
-    void CrouchPunch_C4()
-    {        
-        //くらい判定
-        HitColliderActive();
+    //------------------
+    //キックあたり判定
+    //
+    //使用モーション:立ちキック フレーム数:5
+    //------------------
+    void BaseKickColliderAtk()
+    {
 
-        //しゃがみパンチくらい判定
-        HitCollider[6].SetActive(true);
-        HitCollider[7].SetActive(true);
-        HitCollider[10].SetActive(true);
-
-        //攻撃判定
-        AtkColliderActive();
-
-        //攻撃判定
+        HitCollider[3].SetActive(true);
         AtkCollider[1].SetActive(true);
+
+        HitBox = HitCollider[3].GetComponent<BoxCollider>();
+        AtkBox = AtkCollider[1].GetComponent<BoxCollider>();
+
+        SetBoxState(
+            HitBox,
+            new Vector3(0, 0.78f, 0.4f),
+            new Vector3(0.25f, 0.3f, 0.55f));
+        SetBoxState(
+            AtkBox,
+            new Vector3(0, 0.78f, 0.38f),
+            new Vector3(0.25f, 0.25f, 0.55f));
+    }
+    void SetKickCollider_1()
+    {
+        SetBoxState(
+            HitBox,
+            new Vector3(0, 0.78f, 0.4f),
+            new Vector3(0.25f, 0.3f, 0.55f));
+        SetBoxState(
+            AtkBox,
+            new Vector3(0, 0.78f, 0.38f),
+            new Vector3(0.25f, 0.25f, 0.55f));
+    }
+    void SetKickCollider_2()
+    {
+        SetBoxState(
+            HitBox,
+            new Vector3(0, 0.85f, 0.5f),
+            new Vector3(0.25f, 0.3f, 0.95f));
+        SetBoxState(
+            AtkBox,
+            new Vector3(0, 0.9f, 0.48f),
+            new Vector3(0.25f, 0.25f, 0.95f));
     }
 
     //--------------------------------
-    //しゃがみパンチ状態あたり判定5
+    //ダウンあたり判定
+    //
+    //使用モーション:ダウン
     //--------------------------------
-    void CrouchPunch_C5()
+    void BasicDownCollider()
     {
-        //くらい判定
+        HitCollider[4].SetActive(true);
+    }
+
+    //--------------------------------
+    //受け身あたり判定
+    //
+    //使用モーション:受け身
+    //--------------------------------
+    void BasicPassiveCollider()
+    {
+        HitCollider[5].SetActive(true);
+    }
+
+    //--------------------------------
+    //昇竜コマンドあたり判定
+    //
+    //使用モーション:昇竜
+    //--------------------------------
+    void BasicShoruCollider1()
+    {
         HitColliderActive();
 
-        //しゃがみパンチくらい判定
         HitCollider[6].SetActive(true);
         HitCollider[7].SetActive(true);
+        HitBox = HitCollider[6].GetComponent<BoxCollider>();
 
-        //攻撃判定
+        SetBoxState(
+            HitBox,
+            new Vector3(0, 1.1f, 0.2f),
+            new Vector3(0.25f, 0.8f, 0.65f));
+
+        HitBox = HitCollider[7].GetComponent<BoxCollider>();
+
+        SetBoxState(
+            HitBox,
+            new Vector3(0, 0.47f, -0.1f),
+            new Vector3(0.25f, 0.65f, 0.9f));
+
         AtkColliderActive();
     }
-
-    //--------------------------------
-    //しゃがみキック状態あたり判定1
-    //--------------------------------
-    void CrouchKick_C1()
+    void BasicShoruCollider2()
     {
-        //くらい判定
         HitColliderActive();
 
-        //しゃがみキックくらい判定
-        HitCollider[11].SetActive(true);
-        HitCollider[12].SetActive(true);
+        HitCollider[6].SetActive(true);
+        HitBox = HitCollider[6].GetComponent<BoxCollider>();
 
-        //攻撃判定
-        AtkColliderActive();
+        SetBoxState(
+            HitBox,
+            new Vector3(0, 0.85f, 0.1f),
+            new Vector3(0.25f, 1.4f, 0.7f));
     }
-
-    //--------------------------------
-    //しゃがみキック状態あたり判定2
-    //--------------------------------
-    void CrouchKick_C2()
+    void BasicShoruCollider3()
     {
-        //くらい判定
-        HitColliderActive();
+        SetBoxState(
+            HitBox,
+            new Vector3(0, 1.15f, 0.1f),
+            new Vector3(0.25f, 0.9f, 0.65f));
 
-        //しゃがみキックくらい判定
-        HitCollider[13].SetActive(true);
-        HitCollider[14].SetActive(true);
+        HitCollider[7].SetActive(true);
+        HitBox = HitCollider[7].GetComponent<BoxCollider>();
 
-        //攻撃判定
-        AtkColliderActive();
+        SetBoxState(
+            HitBox,
+            new Vector3(0, 0.47f, 0),
+            new Vector3(0.25f, 0.75f, 0.9f));
+
+        HitCollider[8].SetActive(true);
+        HitBox = HitCollider[8].GetComponent<BoxCollider>();
+
+        SetBoxState(
+            HitBox,
+            new Vector3(0, 1.15f, 0.55f),
+            new Vector3(0.25f, 0.25f, 0.55f));
+
     }
-
-    //--------------------------------
-    //しゃがみキック状態あたり判定3
-    //--------------------------------
-    void CrouchKick_C3()
+    void BasicShoruCollider4()
     {
-        //くらい判定
-        HitColliderActive();
+        SetBoxState(
+            HitBox,
+            new Vector3(0, 1.3f, 0.45f),
+            new Vector3(0.25f, 0.25f, 0.55f));
 
-        //しゃがみキックくらい判定
-        HitCollider[15].SetActive(true);
-        HitCollider[16].SetActive(true);
-        HitCollider[17].SetActive(true);
-
-        //攻撃判定
-        AtkColliderActive();
-
-        //攻撃判定
         AtkCollider[2].SetActive(true);
     }
-
-    //--------------------------------
-    //しゃがみキック状態あたり判定4
-    //--------------------------------
-    void CrouchKick_C4()
+    void BasicShoruCollider5()
     {
-        //くらい判定
+        SetBoxState(
+            HitBox,
+            new Vector3(0, 1.4f, 0.3f),
+            new Vector3(0.25f, 0.3f, 0.55f));
+    }
+    void BasicShoruCollider6()
+    {
         HitColliderActive();
+        HitCollider[6].SetActive(true);
+        HitCollider[7].SetActive(true);
 
-        //しゃがみキックくらい判定
-        HitCollider[18].SetActive(true);
-        HitCollider[19].SetActive(true);
-        HitCollider[20].SetActive(true);
+        AtkColliderActive();
+    }
 
-        //攻撃判定
+    //--------------------------------
+    //波動コマンドあたり判定
+    //
+    //使用モーション:波動
+    //--------------------------------
+    void BasicHadouCollider1()
+    {
+        HitColliderActive();
+        HitCollider[9].SetActive(true);
+        HitCollider[10].SetActive(true);
+
+        HitBox = HitCollider[9].GetComponent<BoxCollider>();
+        SetBoxState(
+            HitBox,
+            new Vector3(0, 0.87f, 0),
+            new Vector3(0.25f, 1.45f, 0.7f));
+
+        HitBox = HitCollider[10].GetComponent<BoxCollider>();
+        SetBoxState(
+            HitBox,
+            new Vector3(0, 1.3f, 0.35f),
+            new Vector3(0.25f, 0.25f, 0.5f));
+
         AtkColliderActive();
 
-        //攻撃判定
+    }
+
+    void BasicHadouCollider2()
+    {
+        HitCollider[11].SetActive(true);
+
+        HitBox = HitCollider[9].GetComponent<BoxCollider>();
+        SetBoxState(
+            HitBox,
+            new Vector3(0, 0.93f, 0),
+            new Vector3(0.25f, 1.6f, 0.7f));
+
+        HitBox = HitCollider[10].GetComponent<BoxCollider>();
+        SetBoxState(
+            HitBox,
+            new Vector3(0, 0.38f, 0.35f),
+            new Vector3(0.25f, 0.5f, 0.3f));
+
+        HitBox = HitCollider[11].GetComponent<BoxCollider>();
+        SetBoxState(
+            HitBox,
+            new Vector3(0, 0.26f, 0.45f),
+            new Vector3(0.25f, 0.25f, 0.25f));
+    }
+    void BasicHadouCollider3()
+    {
+        HitBox = HitCollider[9].GetComponent<BoxCollider>();
+        SetBoxState(
+            HitBox,
+            new Vector3(0, 0.9f, 0),
+            new Vector3(0.25f, 1.5f, 0.6f));
+
         AtkCollider[3].SetActive(true);
-    }
-
-    //--------------------------------
-    //しゃがみキック状態あたり判定5
-    //--------------------------------
-    void CrouchKick_C5()
-    {
-        //くらい判定
-        HitColliderActive();
-
-        //しゃがみキックくらい判定
-        HitCollider[21].SetActive(true);
-        HitCollider[22].SetActive(true);
-        HitCollider[23].SetActive(true);
-
-        //攻撃判定
-        AtkColliderActive();
-    }
-
-    //--------------------------------
-    //前移動状態あたり判定
-    //--------------------------------
-    void MoveFrontCollider()
-    {
-        //くらい判定
-        HitColliderActive();
-
-        //前移動くらい判定
-        HitCollider[24].SetActive(true);
-        HitCollider[25].SetActive(true);
-
-        //攻撃判定
-        AtkColliderActive();
-    }
-
-    //--------------------------------
-    //後移動状態あたり判定
-    //--------------------------------
-    void MoveBackCollider()
-    {
-        //くらい判定
-        HitColliderActive();
-
-       //前移動くらい判定
-        HitCollider[26].SetActive(true);
-        HitCollider[27].SetActive(true);
-
-        //攻撃判定
-        AtkColliderActive();
-    }
-
-    //--------------------------------
-    //パンチ状態あたり判定1
-    //--------------------------------
-    void PunchCollider1()
-    {
-        //くらい判定
-        HitColliderActive();
-
-        //前移動くらい判定
-        HitCollider[28].SetActive(true);
-        HitCollider[29].SetActive(true);
-
-        //攻撃判定
-        AtkColliderActive();
-    }
-
-    //--------------------------------
-    //パンチ状態あたり判定2
-    //--------------------------------
-    void PunchCollider2()
-    {
-        //くらい判定
-        HitColliderActive();
-
-        //前移動くらい判定
-        HitCollider[30].SetActive(true);
-        HitCollider[31].SetActive(true);
-
-        //攻撃判定
-        AtkColliderActive();
-    }
-
-    //--------------------------------
-    //パンチ状態あたり判定3
-    //--------------------------------
-    void PunchCollider3()
-    {
-        //くらい判定
-        HitColliderActive();
-
-        //前移動くらい判定
-        HitCollider[32].SetActive(true);
-        HitCollider[33].SetActive(true);
-
-        //攻撃判定
-        AtkColliderActive();
-
-        //攻撃判定
         AtkCollider[4].SetActive(true);
-    }
-
-    //--------------------------------
-    //パンチ状態あたり判定4
-    //--------------------------------
-    void PunchCollider4()
-    {
-        //くらい判定
-        HitColliderActive();
-
-        //前移動くらい判定
-        HitCollider[34].SetActive(true);
-        HitCollider[35].SetActive(true);
-
-        //攻撃判定
-        AtkColliderActive();
-
-        //攻撃判定
         AtkCollider[5].SetActive(true);
-    }
-
-    //--------------------------------
-    //パンチ状態あたり判定5
-    //--------------------------------
-    void PunchCollider5()
-    {
-        //くらい判定
-        HitColliderActive();
-
-        //前移動くらい判定
-        HitCollider[36].SetActive(true);
-        HitCollider[37].SetActive(true);
-
-        //攻撃判定
-        AtkColliderActive();
-
-        //攻撃判定
         AtkCollider[6].SetActive(true);
     }
 
     //--------------------------------
-    //パンチ状態あたり判定6
+    //しゃがみパンチあたり判定
+    //
+    //使用モーション:しゃがみパンチ
     //--------------------------------
-    void PunchCollider6()
+    void SitPunchCollider()
     {
-        //くらい判定
-        HitColliderActive();
+        HitCollider[12].SetActive(true);
 
-        //前移動くらい判定
-        HitCollider[38].SetActive(true);
-        HitCollider[39].SetActive(true);
-
-        //攻撃判定
-        AtkColliderActive();
-    }
-
-    //--------------------------------
-    //パンチ状態あたり判定7
-    //--------------------------------
-    void PunchCollider7()
-    {
-        //くらい判定
-        HitColliderActive();
-
-        //前移動くらい判定
-        HitCollider[40].SetActive(true);
-        HitCollider[41].SetActive(true);
-
-        //攻撃判定
-        AtkColliderActive();
-    }
-
-    //--------------------------------
-    //パンチ状態あたり判定8
-    //--------------------------------
-    void PunchCollider8()
-    {
-        //くらい判定
-        HitColliderActive();
-
-        //前移動くらい判定
-        HitCollider[42].SetActive(true);
-        HitCollider[43].SetActive(true);
-
-        //攻撃判定
-        AtkColliderActive();
-    }
-
-    //--------------------------------
-    //キック状態あたり判定1
-    //--------------------------------
-    void KickCollider1()
-    {
-        //くらい判定
-        HitColliderActive();
-
-        //キック状態くらい判定
-        HitCollider[44].SetActive(true);
-        HitCollider[45].SetActive(true);
-        HitCollider[46].SetActive(true);
-
-        //攻撃判定
-        AtkColliderActive();
-    }
-
-    //--------------------------------
-    //キック状態あたり判定2
-    //--------------------------------
-    void KickCollider2()
-    {
-        //くらい判定
-        HitColliderActive();
-
-        //キック状態くらい判定
-        HitCollider[47].SetActive(true);
-        HitCollider[48].SetActive(true);
-        HitCollider[49].SetActive(true);
-
-        //攻撃判定
-        AtkColliderActive();
-    }
-
-    //--------------------------------
-    //キック状態あたり判定3
-    //--------------------------------
-    void KickCollider3()
-    {
-        //くらい判定
-        HitColliderActive();
-
-        //キック状態くらい判定
-        HitCollider[50].SetActive(true);
-        HitCollider[51].SetActive(true);
-        HitCollider[52].SetActive(true);
-
-        //攻撃判定
-        AtkColliderActive();
-    }
-
-    //--------------------------------
-    //キック状態あたり判定4
-    //--------------------------------
-    void KickCollider4()
-    {
-        //くらい判定
-        HitColliderActive();
-
-        //キック状態くらい判定
-        HitCollider[53].SetActive(true);
-        HitCollider[54].SetActive(true);
-
-        //攻撃判定
-        AtkColliderActive();
-    }
-
-    //--------------------------------
-    //キック状態あたり判定5
-    //--------------------------------
-    void KickCollider5()
-    {
-        //くらい判定
-        HitColliderActive();
-
-        //キック状態くらい判定
-        HitCollider[55].SetActive(true);
-        HitCollider[56].SetActive(true);
-        HitCollider[57].SetActive(true);
-
-        //攻撃判定
-        AtkColliderActive();
-
-        //攻撃判定
         AtkCollider[7].SetActive(true);
     }
 
     //--------------------------------
-    //キック状態あたり判定6
+    //しゃがみキックあたり判定
+    //
+    //使用モーション:しゃがみキック
     //--------------------------------
-    void KickCollider6()
+    void SitKickCollider1()
     {
-        //くらい判定
         HitColliderActive();
 
-        //キック状態くらい判定
-        HitCollider[58].SetActive(true);
-        HitCollider[59].SetActive(true);
-        HitCollider[60].SetActive(true);
+        HitCollider[13].SetActive(true);
+        HitBox = HitCollider[13].GetComponent<BoxCollider>();
 
-        //攻撃判定
+        SetBoxState(
+            HitBox,
+            new Vector3(0, 1.08f, 0.08f),
+            new Vector3(0.25f, 1.1f, 0.5f));
+
         AtkColliderActive();
+    }
+    void SitKickCollider2()
+    {
+        HitCollider[14].SetActive(true);
+
+        SetBoxState(
+            HitBox,
+            new Vector3(0, 0.95f, -0.15f),
+            new Vector3(0.25f, 0.75f, 0.85f));
+
+        AtkCollider[8].SetActive(true);
+    }
+    void SitKickCollider3()
+    {
+        HitColliderActive();
+
+        HitCollider[13].SetActive(true);
+
+        SetBoxState(
+            HitBox,
+            new Vector3(0, 0.95f, -0.1f),
+            new Vector3(0.25f, 0.75f, 0.8f));
+
+        AtkColliderActive();
+    }
+    void SitKickCollider4()
+    {
+        SetBoxState(
+            HitBox,
+            new Vector3(0, 1, 0),
+            new Vector3(0.25f, 0.85f, 0.7f));
+    }
+    void SitKickCollider5()
+    {
+        SetBoxState(
+            HitBox,
+            new Vector3(0, 1.08f, 0),
+            new Vector3(0.25f, 1, 0.65f));
+    }
+    void SitKickCollider6()
+    {
+        SetBoxState(
+            HitBox,
+            new Vector3(0, 1.08f, -0.15f),
+            new Vector3(0.25f, 1, 0.8f));
+
     }
 
     //--------------------------------
-    //キック状態あたり判定7
+    //ジャンプパンチあたり判定
+    //
+    //使用モーション:ジャンプパンチ
     //--------------------------------
-    void KickCollider7()
+    void JumpPunchCollider1()
     {
-        //くらい判定
         HitColliderActive();
 
-        //キック状態くらい判定
-        HitCollider[61].SetActive(true);
-        HitCollider[62].SetActive(true);
+        HitCollider[15].SetActive(true);
+        HitCollider[16].SetActive(true);
 
-        //攻撃判定
+        HitBox = HitCollider[15].GetComponent<BoxCollider>();
+
+        SetBoxState(
+            HitBox,
+            new Vector3(0, 0.9f, 0.1f),
+            new Vector3(0.25f, 1.4f, 0.5f));
+
+        HitBox = HitCollider[16].GetComponent<BoxCollider>();
+
+        SetBoxState(
+            HitBox,
+            new Vector3(0, 0.5f, -0.25f),
+            new Vector3(0.25f, 0.8f, 0.4f));
+
         AtkColliderActive();
+    }
+    void JumpPunchCollider2()
+    {
+        HitCollider[17].SetActive(true);
+        HitBox = HitCollider[15].GetComponent<BoxCollider>();
+
+        SetBoxState(
+            HitBox,
+            new Vector3(0, 0.9f, 0),
+            new Vector3(0.25f, 1.4f, 0.5f));
+
+        HitBox = HitCollider[16].GetComponent<BoxCollider>();
+
+        SetBoxState(
+            HitBox,
+            new Vector3(0, 0.5f, -0.35f),
+            new Vector3(0.25f, 0.8f, 0.4f));
+    }
+    void JumpPunchCollider3()
+    {
+        AtkCollider[9].SetActive(true);
+        AtkCollider[10].SetActive(true);
     }
 
     //--------------------------------
-    //ジャンプキック状態あたり判定1
+    //ジャンプパンチあたり判定
+    //
+    //使用モーション:ジャンプパンチ
     //--------------------------------
     void JumpKickCollider1()
     {
-        //くらい判定
         HitColliderActive();
+        HitCollider[18].SetActive(true);
+        HitBox = HitCollider[18].GetComponent<BoxCollider>();
 
-        //攻撃判定
+        SetBoxState(
+            HitBox,
+            new Vector3(0, 1f, 0),
+            new Vector3(0.25f, 1.3f, 0.5f));
+
         AtkColliderActive();
-
-        //攻撃判定
-        AtkCollider[8].SetActive(true);
-        AtkCollider[9].SetActive(true);
     }
-
-    //--------------------------------
-    //ジャンプキック状態あたり判定2
-    //--------------------------------
     void JumpKickCollider2()
     {
-        //くらい判定
-        HitColliderActive();
+        HitCollider[19].SetActive(true);
 
-        //攻撃判定
-        AtkColliderActive();
+        SetBoxState(
+            HitBox,
+            new Vector3(0, 1.05f, 0),
+            new Vector3(0.25f, 1.15f, 0.6f));
 
-        //攻撃判定
-        AtkCollider[10].SetActive(true);
-        AtkCollider[11].SetActive(true);
+        HitBox = HitCollider[19].GetComponent<BoxCollider>();
+        SetBoxState(
+            HitBox,
+            new Vector3(0, 0.7f, 0.3f),
+            new Vector3(0.25f, 0.35f, 0.6f));
     }
-
-    //--------------------------------
-    //ジャンプキック状態あたり判定3
-    //--------------------------------
     void JumpKickCollider3()
     {
-        //くらい判定
-        HitColliderActive();
+        SetBoxState(
+            HitBox,
+            new Vector3(0, 0.6f, 0.3f),
+            new Vector3(0.25f, 0.5f, 0.5f));
 
-        //攻撃判定
-        AtkColliderActive();
-
-        //攻撃判定
+        AtkCollider[11].SetActive(true);
         AtkCollider[12].SetActive(true);
-        AtkCollider[13].SetActive(true);
+    }
+    void JumpKickCollider4()
+    {
+        AtkColliderActive();
     }
 
     //--------------------------------
-    //ジャンプキック状態
+    //ダッシュあたり判定
+    //
+    //使用モーション:ダッシュ
     //--------------------------------
-    void JumpKickColliderNone()
+    void BasicDashCollider()
     {
-        //くらい判定
         HitColliderActive();
+        HitCollider[20].SetActive(true);
+        AtkColliderActive();
+    }
 
-        //攻撃判定
+    //--------------------------------
+    //くらい強あたり判定
+    //
+    //使用モーション:くらい強
+    //--------------------------------
+    void BasicLDCollider()
+    {
+        HitColliderActive();
+        HitCollider[21].SetActive(true);
+        AtkColliderActive();
+    }
+
+    //--------------------------------------
+    //しゃがみ系あたり判定
+    //
+    //使用モーション:立ち上がり、しゃがみ中
+    //--------------------------------------
+    void SitCollider()
+    {
+        HitColliderActive();
+        HitCollider[22].SetActive(true);
         AtkColliderActive();
     }
 
 
-    void JumpCollider()
-    {
 
-    }
-
-
-
-    //くらい判定管理関数
+    //くらい判定初期化関数
     private void HitColliderActive()
     {
         for (int i = 0; i < HCnum; i++)
         {
+            //判定非動作
             HitCollider[i].SetActive(false);
         }
     }
 
-    //あたり判定管理関数
+    //攻撃判定初期化関数
     private void AtkColliderActive()
     {
         for (int i = 0; i < ACnum; i++)
         {
+            //判定非動作
             AtkCollider[i].SetActive(false);
         }
+    }
+
+    //押し合い判定初期化関数
+    private void PushColliderActive()
+    {
+        for (int i = 0; i < PCnum; i++)
+        {
+            //判定非動作
+            PushCollider[i].SetActive(false);
+        }
+    }
+
+    //あたり判定設定関数
+    private void SetBoxState(BoxCollider box, Vector3 pos, Vector3 size)
+    {
+        box.center = pos;
+        box.size = size;
     }
 }
