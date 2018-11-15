@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using GamepadInput;
+using System;
 
 public class PlayerController : MonoBehaviour
 {
@@ -23,12 +24,24 @@ public class PlayerController : MonoBehaviour
     public int controller = 0;
     //ダメージ
     public int damage = 0;
+    //ダメージ受けたときに下がる距離
+    float backDistance = 0;
+    float backingDistance = 0;
+    int damageDir = 0;
+
+    int damageCount = 0;
+    int damageTime = 0;
+
     //向き
     int direction = 1;
     //相手
     public GameObject enemy;
     //相手スクリプト
     PlayerController enemyScript;
+
+    [SerializeField]
+    GameObject ogj;
+    PlayerController preScript;
 
     //ガードする距離
     public float distanceToGuard = 0.7f;
@@ -65,11 +78,16 @@ public class PlayerController : MonoBehaviour
     bool punchKey = false;
     bool kickKey = false;
 
+    ColliderEvent CEvent = null;
+    TestChar TChar = null;
+    BattleDirector battleDirector;
+
     // Use this for initialization
     void Start()
     {
 
         enemyScript = enemy.GetComponent<PlayerController>();
+
 
         animator = GetComponent<Animator>();
 
@@ -88,12 +106,19 @@ public class PlayerController : MonoBehaviour
 
         inputDKey = 5;
         inputDKeyOld = inputDKey;
+
+        if (isModel)
+        {
+            CEvent = this.GetComponent<ColliderEvent>();
+            TChar = this.GetComponent<TestChar>();
+            preScript = ogj.GetComponent<PlayerController>();
+            //battleDirector = this.GetComponent<BattleDirector>();
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
-
         //text.text = "";
 
         //gameObject.transform.position = new Vector3(gameObject.transform.position.x + speed, 0, 0);
@@ -116,6 +141,9 @@ public class PlayerController : MonoBehaviour
                 Jump();
                 Jumping();
                 break;
+            case "Guard":
+                Guard();
+                break;
             case "StandGuard":
                 StandGuard();
                 break;
@@ -137,6 +165,9 @@ public class PlayerController : MonoBehaviour
             case "Special":
                 Special();
                 break;
+            case "Damage":
+                Damage();
+                break;
 
         }
 
@@ -154,7 +185,73 @@ public class PlayerController : MonoBehaviour
 
         CheckGuard();
 
+        if(isModel) CheckDamage();
+
         inputDKeyOld = inputDKey;
+
+    }
+
+    /// <summary>
+    /// ダメージを受けている
+    /// </summary>
+    private void Damage()
+    {
+        float m = animator.GetInteger("Damage");
+        if(direction == 1)finalMove = new Vector3(-0.2f, 0, 0);
+        else finalMove = new Vector3(0.2f, 0, 0);
+
+        animator.SetInteger("Move", 0);
+        animator.SetInteger("Special", 0);
+        animator.SetBool("Guard", false);
+        animator.SetBool("Sit", false);
+        animator.SetBool("Punch", false);
+        animator.SetBool("Kick", false);
+        animator.SetBool("Dash", false);
+        animator.SetBool("Jump", false);
+
+        Debug.Log(damageTime);
+
+        if (damageCount >= damageTime)
+        {
+            damageCount = 0;
+            animator.SetInteger("Damage", 0);
+            state = "Stand";
+        }
+
+        damageCount++; 
+
+    }
+
+    /// <summary>
+    /// ガードした
+    /// </summary>
+    private void Guard()
+    {
+        float m = animator.GetInteger("Damage");
+
+        if (direction == 1) finalMove = new Vector3(-0.075f, 0, 0);
+        else finalMove = new Vector3(0.075f, 0, 0);
+
+        animator.SetInteger("Move", 0);
+        animator.SetInteger("Special", 0);
+        animator.SetBool("Guard", true);
+        animator.SetBool("Sit", false);
+        animator.SetBool("Punch", false);
+        animator.SetBool("Kick", false);
+        animator.SetBool("Dash", false);
+        animator.SetBool("Jump", false);
+        animator.SetBool("StandGuard", true);
+
+        if (inputDKey == 1) animator.SetBool("StandGuard", false);
+
+        if (damageCount >= damageTime)
+        {
+            damageCount = 0;
+            animator.SetInteger("Damage", 0);
+            state = "Stand";
+        }
+
+        damageCount++;
 
     }
 
@@ -321,6 +418,7 @@ public class PlayerController : MonoBehaviour
         animator.SetBool("Sit", false);
         animator.SetBool("Punch", false);
         animator.SetBool("Kick", false);
+        animator.SetBool("Dash", false);
 
         //立ち状態時にZを押すとパンチ
         if (punchKey)
@@ -774,6 +872,7 @@ public class PlayerController : MonoBehaviour
     /// </summary>
     void Dashing()
     {
+        animator.SetBool("Dash", true);
         gameObject.transform.position = new Vector3(gameObject.transform.position.x, 0, 0);
 
         int move = 0;
@@ -836,6 +935,7 @@ public class PlayerController : MonoBehaviour
         if (inputDKey == 5)
         {
             state = "Stand";
+            animator.SetBool("Dash", false);
         }
     }
 
@@ -896,6 +996,45 @@ public class PlayerController : MonoBehaviour
         gameObject.transform.position = finalPos;
 
         if (state != "Jump") gameObject.transform.position = new Vector3(gameObject.transform.position.x, 0, 0);
+
+    }
+
+    /// <summary>
+    /// ダメージ受けるかチェック
+    /// </summary>
+    void CheckDamage()
+    {
+        //for (int i = 0; i < CEvent.HClid.Count; i++)
+        //{
+        //    if (TChar.HCObjChe(i) != null)
+        //    {
+        //        Debug.Log("おわー！！！");
+        //        animator.SetInteger("Damage", 50);
+        //        backDistance = 50;
+        //        state = "Damage";
+        //        if (TChar.HCObjChe(i) != null) preScript.state = "Damage";
+        //    }
+        //}
+    }
+
+    public void HitDamage(int dmg)
+    {
+        if((state == "Stand" || state == "Sit") && inputDKey == 1 || inputDKey == 4)
+        {
+            animator.SetBool("Guard", true);
+            state = "Guard";
+            preScript.state = "Guard";
+            damageTime = (dmg / 500 + 15)/3;
+        }
+        else
+        {
+            animator.SetInteger("Damage", dmg);
+            state = "Damage";
+            preScript.state = "Damage";
+            backDistance = dmg;
+            damageTime = dmg / 500 + 15;
+            damageDir = direction * -1;
+        }
 
     }
 }
