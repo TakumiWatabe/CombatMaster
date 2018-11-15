@@ -115,4 +115,6 @@ public class TestChar : MonoBehaviour {
             }
         }
     }
+
+    public GameObject obj(int colNum) { return react[colNum].CObj; }
 }

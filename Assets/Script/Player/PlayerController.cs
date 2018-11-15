@@ -65,6 +65,9 @@ public class PlayerController : MonoBehaviour
     bool punchKey = false;
     bool kickKey = false;
 
+    ColliderEvent CEvent;
+    TestChar TChar;
+
     // Use this for initialization
     void Start()
     {
@@ -88,6 +91,9 @@ public class PlayerController : MonoBehaviour
 
         inputDKey = 5;
         inputDKeyOld = inputDKey;
+
+        CEvent =this.GetComponent<ColliderEvent>();
+        TChar = this.GetComponent<TestChar>();
     }
 
     // Update is called once per frame
@@ -153,6 +159,8 @@ public class PlayerController : MonoBehaviour
         HadokenCommand();
 
         CheckGuard();
+
+        CheckDamage();
 
         inputDKeyOld = inputDKey;
 
@@ -897,5 +905,19 @@ public class PlayerController : MonoBehaviour
 
         if (state != "Jump") gameObject.transform.position = new Vector3(gameObject.transform.position.x, 0, 0);
 
+    }
+
+    /// <summary>
+    /// ダメージ受けるかチェック
+    /// </summary>
+    void CheckDamage()
+    {
+        GameObject obj;
+        for (int i = 0; i < CEvent.HClid.Count; i++)
+        {
+            obj = TChar.obj(i);
+            if (obj != null) state = "Damage";
+        }
+            
     }
 }
