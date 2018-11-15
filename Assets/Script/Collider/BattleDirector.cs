@@ -31,10 +31,22 @@ public class BattleDirector : MonoBehaviour {
     //アクションステータス
     private struct FS
     {
+        //攻撃判定
         public List<GameObject> co;
+        //攻撃力
         public int ac;
 
+        //初期化関数
         public void Reset() { co = new List<GameObject>(); }
+    };
+
+    //操作キャラクター判別用
+    private struct FightPlayer
+    {
+        //操作キャラクター
+        public GameObject fightCharacter;
+        //キャラクターID
+        public int playNumber;
     };
 
     //キャラクターオブジェクト
@@ -48,6 +60,8 @@ public class BattleDirector : MonoBehaviour {
     private FS[,] f = new FS[(int)FightChar.CHARA_NUM, (int)AtkVal.ATK_NUM];
     //アクションステータス
     private int[,] atk = new int[(int)FightChar.CHARA_NUM, (int)AtkVal.ATK_NUM];
+    //キャラクターステータス
+    private FightPlayer[] fp = new FightPlayer[(int)FightChar.CHARA_NUM];
 
     // Use this for initialization
     void Start ()
@@ -87,6 +101,11 @@ public class BattleDirector : MonoBehaviour {
         Falken(f, (int)FightChar.CHARA_2, (int)AtkVal.HADOUKEN, atk, 1, 0);
         Falken(f, (int)FightChar.CHARA_2, (int)AtkVal.SYORYUKEN, atk, 7, 6);
 
+        //キャラクターセレクトからキャラクターを取得
+        fp[(int)FightChar.CHARA_1].fightCharacter = character[(int)FightChar.CHARA_1];
+        fp[(int)FightChar.CHARA_1].playNumber = (int)FightChar.CHARA_1;
+        fp[(int)FightChar.CHARA_2].fightCharacter = character[(int)FightChar.CHARA_2];
+        fp[(int)FightChar.CHARA_2].playNumber = (int)FightChar.CHARA_2; 
     }
 
     //攻撃を設定する関数
@@ -110,7 +129,7 @@ public class BattleDirector : MonoBehaviour {
     {
         for (int i = colNum; i < maxNum; i++)
         {
-            fs[(int)FightChar.CHARA_1, (int)AtkVal.PUNCH].co.Add(CEvent[(int)FightChar.CHARA_1].AClid[0]);
+            fs[chr, atkType].co.Add(CEvent[chr].AClid[i]);
         }
         fs[chr, atkType].ac = att[chr, atkType];
     }
@@ -118,4 +137,6 @@ public class BattleDirector : MonoBehaviour {
     public GameObject Fcollider(int ft, int at,int num) { return f[ft, at].co[num]; }
     public int Fattack(int ft, int at) { return f[ft, at].ac; }
     public int CCount(int ft, int at) { return f[ft, at].co.Count; }
+    public GameObject Fighter(int ft) { return fp[ft].fightCharacter; }
+    public int FNumber(int ft) { return fp[ft].playNumber; }
 }

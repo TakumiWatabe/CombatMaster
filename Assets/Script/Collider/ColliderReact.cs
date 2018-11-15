@@ -12,26 +12,24 @@ public class ColliderReact : MonoBehaviour {
     //攻撃判定オブジェクト
     private GameObject collid;
 
+    bool flag = false;
+
     //あたり判定に当たったら
     void OnTriggerEnter(Collider other)
     {
         //くらい判定なら
         if (colliderTag == "Hit")
         {
-            //攻撃未接触＆判定が攻撃なら
-            if (!hitAtk && other.gameObject.tag == "Attack")
+            //攻撃未接触＆判定が攻撃なら＆判定登録されてないなら
+            if (!hitAtk && other.gameObject.tag == "Attack" && !collid)
             {
                 //攻撃がヒット
                 hitAtk = true;
                 //攻撃判定を記憶
                 collid = other.gameObject;
+
+                Debug.Log("攻撃が当たった！！！");
             }
-        }
-        //それ以外なら
-        else
-        {
-            //処理を終了
-            return;
         }
     }
 
