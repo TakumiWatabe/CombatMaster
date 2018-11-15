@@ -50,8 +50,7 @@ public class TestChar : MonoBehaviour {
 	// Update is called once per frame
 	void Update ()
     {
-        Debug.Log(ogj.name + " HP:" + hp);
-        Debug.Log(this.gameObject.tag);
+        //Debug.Log(ogj.name + " HP:" + hp);
 
         //キャラクター番号から相手キャラクターを判別
         switch (numID)
@@ -78,13 +77,17 @@ public class TestChar : MonoBehaviour {
             if (react[i].hiting)
             {
                 Debug.Log("あたり判定はしている！！！");
-                Debug.Log(react[i].CObj.name);
+                Debug.Log("コライダー数" + react.Count);
+
                 //技の数
                 for (int j = 0; j < (int)BattleDirector.AtkVal.ATK_NUM; j++)
                 {
                     //技の攻撃判定の数
                     for (int k = 0; k < BtDir.CCount(0, j); k++)
                     {
+                        Debug.Log("照らし合わせているやつ" + BtDir.Fcollider(charNum, j, k).name);
+                        Debug.Log("今攻撃したもの" + react[i].CObj.name);
+                        Debug.Log("今の判定している番号" + i + ","+ j +","+ k);
                         //攻撃の種類を判定
                         if (react[i].CObj.name == BtDir.Fcollider(charNum, j, k).name)
                         {
@@ -92,6 +95,7 @@ public class TestChar : MonoBehaviour {
                             //判定した攻撃の威力分ダメージを受ける
                             hp -= BtDir.Fattack(0, j);
                             react[i].hiting = false;
+                            GetComponent<PlayerController>().HitDamage(BtDir.Fattack(0, j));
                         }
                     }
                 }
@@ -123,4 +127,7 @@ public class TestChar : MonoBehaviour {
             numID = (int)BattleDirector.FightChar.CHARA_2;
         }
     }
+
+
+    public GameObject HCObjChe(int colNum) { return react[colNum].CObj; }
 }
