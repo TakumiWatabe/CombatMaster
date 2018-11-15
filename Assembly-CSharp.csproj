@@ -277,8 +277,12 @@
      <Compile Include="Assets\Prefab\Effect\PostProcessing\Runtime\Utils\RenderTextureFactory.cs" />
      <Compile Include="Assets\Prefab\Effect\PostProcessing\Utilities\CustomMotionTexture\ExampleWheelController.cs" />
      <Compile Include="Assets\Script\AI\EnemyAI.cs" />
+     <Compile Include="Assets\Script\Collider\BattleDirector.cs" />
      <Compile Include="Assets\Script\Collider\ColliderEvent.cs" />
+     <Compile Include="Assets\Script\Collider\ColliderReact.cs" />
      <Compile Include="Assets\Script\Collider\ComboScript.cs" />
+     <Compile Include="Assets\Script\Collider\HikariEvent.cs" />
+     <Compile Include="Assets\Script\Collider\TestChar.cs" />
      <Compile Include="Assets\Script\EffectManager.cs" />
      <Compile Include="Assets\Script\NumberImageRenderer.cs" />
      <Compile Include="Assets\Script\Player\PlayerController.cs" />
