@@ -290,9 +290,11 @@
      <Compile Include="Assets\Script\System\PauseScript.cs" />
      <Compile Include="Assets\Script\System\SceneManagement.cs" />
      <Compile Include="Assets\Script\System\TimerScript.cs" />
+     <Compile Include="Assets\Script\UI\AlphaScript.cs" />
      <Compile Include="Assets\Script\UI\FadeScript.cs" />
      <Compile Include="Assets\Script\UI\ItweenCamera.cs" />
      <Compile Include="Assets\Script\UI\TextGenerator.cs" />
+     <Compile Include="Assets\Script\UI\UIAnime.cs" />
      <Compile Include="Assets\test.cs" />
      <None Include="Assets\Prefab\Effect\PostProcessing\Resources\Shaders\DepthOfField.shader" />
      <None Include="Assets\Model\VRM\Resources\Shaders\VRMUnlitTransparent.shader" />
