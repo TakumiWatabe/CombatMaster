@@ -89,13 +89,13 @@ public class GameDirector : MonoBehaviour {
         int setNum = NONE;
         // Player1のHPが0以下になったら
         // Player2の勝利
-        if (HP1.GetNowHP() <= 0)
+        if (HP1.NowHPState <= 0)
         {
             setNum = PLAYER2_WIN;
         }
         // Player2のHPが0以下になったら
         // Player1の勝利
-        if (HP2.GetNowHP() <= 0)
+        if (HP2.NowHPState <= 0)
         {
             setNum = PLAYER1_WIN;
         }

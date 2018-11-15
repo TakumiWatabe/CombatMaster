@@ -29,7 +29,7 @@ public class HPDirectorScript : MonoBehaviour {
         script = opponent.GetComponent<PlayerController>();
 	}
 
-    void hitDmage(int dmage)
+    public void hitDmage(int dmage)
     {
         nowHP = nowHP - dmage;
         nowHP = Mathf.Clamp(nowHP, 0, maxHP);
@@ -60,72 +60,13 @@ public class HPDirectorScript : MonoBehaviour {
         }
     }
 
-    //攻撃を食らったなら
-    void OnTriggerEnter2D(Collider2D collision)
-    {
-        //サンドバッグなら(仮※仕様によって要変更)
-        if (this.gameObject.name == "player2")
-        {
-            if (collision.gameObject.tag == "Attack1")
-            {
-                hitFlag = true;
-                hitDmage(script.damage);
-            }
-        }
-    }
-
     // Update is called once per frame
     void Update ()
     {
-        hitFlag = false;
-        if (Input.GetKeyDown(KeyCode.Alpha1))
-        {
-            hitDmage(100);
-        }
-        if (Input.GetKeyDown(KeyCode.Alpha2))
-        {
-            hitDmage(200);
-        }
-        if (Input.GetKeyDown(KeyCode.Alpha3))
-        {
-            hitDmage(300);
-        }
-        if (Input.GetKeyDown(KeyCode.Alpha4))
-        {
-            hitDmage(400);
-        }
-        if (Input.GetKeyDown(KeyCode.Alpha5))
-        {
-            hitDmage(500);
-        }
-        if (Input.GetKeyDown(KeyCode.Alpha6))
-        {
-            hitDmage(600);
-        }
-        if (Input.GetKeyDown(KeyCode.Alpha7))
-        {
-            hitDmage(700);
-        }
-        if (Input.GetKeyDown(KeyCode.Alpha8))
-        {
-            hitDmage(800);
-        }
-        if (Input.GetKeyDown(KeyCode.Alpha9))
-        {
-            hitDmage(900);
-        }
-        if (Input.GetKeyDown(KeyCode.Alpha0))
-        {
-            hitDmage(1000);
-        }
-
         moveDmage();
     }
 
-    public int GetNowHP()
-    {
-        return nowHP;
-    }
+    public int NowHPState { get { return nowHP; } }
 
     //ゲージ取得関数
     public Vector3 HPScale

@@ -117,7 +117,7 @@ public class TextGenerator : MonoBehaviour
             // プレイヤー1が勝ったら
             if (directer.GameSet() == 1)
             {
-                setRound(PLAYER1, hp1.GetNowHP());
+                setRound(PLAYER1, hp1.NowHPState);
                 winChar = 2;
                 baseTime = timer.GetTimer();
                 directer.GameState(GAME_END);
@@ -125,7 +125,7 @@ public class TextGenerator : MonoBehaviour
             // プレイヤー2が勝ったら
             if (directer.GameSet() == 2)
             {
-                setRound(PLAYER2, hp2.GetNowHP());
+                setRound(PLAYER2, hp2.NowHPState);
                 winChar = 1;
                 baseTime = timer.GetTimer();
                 directer.GameState(GAME_END);

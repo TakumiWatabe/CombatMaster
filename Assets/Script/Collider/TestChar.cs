@@ -4,8 +4,7 @@ using UnityEngine;
 
 public class TestChar : MonoBehaviour {
 
-    //キャラクターHP
-    private int hp = 10000;
+    //攻撃ヒット時処理スクリプト
 
     [SerializeField]
     GameObject ogj;
@@ -16,6 +15,8 @@ public class TestChar : MonoBehaviour {
     BattleDirector BtDir;
     //コライダーイベント
     ColliderEvent CEvent;
+    //HPディレクター
+    HPDirectorScript HPDir;
 
     //あたり判定群
     List<GameObject> col = new List<GameObject>();
@@ -36,6 +37,7 @@ public class TestChar : MonoBehaviour {
         //ディレクタースクリプト取得
         BtDir = dir.GetComponent<BattleDirector>();
         CEvent = this.GetComponent<ColliderEvent>();
+        HPDir = this.GetComponent<HPDirectorScript>();
 
         //コライダーのスクリプトを取得
         for (int i = 0; i < CEvent.HClid.Count; i++)
@@ -50,8 +52,8 @@ public class TestChar : MonoBehaviour {
 	// Update is called once per frame
 	void Update ()
     {
-        Debug.Log(ogj.name + " HP:" + hp);
-        Debug.Log(this.gameObject.tag);
+        Debug.Log(ogj.name + " HP:" + HPDir.NowHPState);
+        Debug.Log(numID);
 
         //キャラクター番号から相手キャラクターを判別
         switch (numID)
@@ -71,6 +73,41 @@ public class TestChar : MonoBehaviour {
     //攻撃ヒット判定
     private void hitJudg(int charNum)
     {
+        //デバック用(できれば消せない)
+        ////技の攻撃判定の数
+        //for (int k = 0; k < BtDir.CCount(0, 0); k++)
+        //{
+        //    Debug.Log(BtDir.Fcollider(charNum, 0, k).name);
+        //}
+        //for (int k = 0; k < BtDir.CCount(0, 1); k++)
+        //{
+        //    Debug.Log(BtDir.Fcollider(charNum, 1, k).name);
+        //}
+        //for (int k = 0; k < BtDir.CCount(0, 2); k++)
+        //{
+        //    Debug.Log(BtDir.Fcollider(charNum, 2, k).name);
+        //}
+        //for (int k = 0; k < BtDir.CCount(0, 3); k++)
+        //{
+        //    Debug.Log(BtDir.Fcollider(charNum, 3, k).name);
+        //}
+        //for (int k = 0; k < BtDir.CCount(0, 4); k++)
+        //{
+        //    Debug.Log(BtDir.Fcollider(charNum, 4, k).name);
+        //}
+        //for (int k = 0; k < BtDir.CCount(0, 5); k++)
+        //{
+        //    Debug.Log(BtDir.Fcollider(charNum, 5, k).name);
+        //}
+        //for (int k = 0; k < BtDir.CCount(0, 6); k++)
+        //{
+        //    Debug.Log(BtDir.Fcollider(charNum, 6, k).name);
+        //}
+        //for (int k = 0; k < BtDir.CCount(0, 7); k++)
+        //{
+        //    Debug.Log(BtDir.Fcollider(charNum, 7, k).name);
+        //}
+
         //くらい判定の数
         for (int i = 0; i < CEvent.HClid.Count; i++)
         {
@@ -90,7 +127,7 @@ public class TestChar : MonoBehaviour {
                         {
                             Debug.Log("ダメージを与えた！！！");
                             //判定した攻撃の威力分ダメージを受ける
-                            hp -= BtDir.Fattack(0, j);
+                            HPDir.hitDmage(BtDir.Fattack(0, j));
                             react[i].hiting = false;
                         }
                     }
