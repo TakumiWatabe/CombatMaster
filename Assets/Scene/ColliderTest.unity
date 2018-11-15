@@ -451,6 +451,14 @@ Prefab:
       propertyPath: m_IsTrigger
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1121065127237446, guid: be3f37450f691be4c9efb25f491c0a20, type: 2}
+      propertyPath: m_TagString
+      value: P2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1750890076867814, guid: be3f37450f691be4c9efb25f491c0a20, type: 2}
+      propertyPath: m_TagString
+      value: P2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: be3f37450f691be4c9efb25f491c0a20, type: 2}
   m_IsPrefabParent: 0
@@ -796,6 +804,14 @@ Prefab:
         type: 2}
       propertyPath: m_IsTrigger
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1121065127237446, guid: be3f37450f691be4c9efb25f491c0a20, type: 2}
+      propertyPath: m_TagString
+      value: P1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1750890076867814, guid: be3f37450f691be4c9efb25f491c0a20, type: 2}
+      propertyPath: m_TagString
+      value: P1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: be3f37450f691be4c9efb25f491c0a20, type: 2}
