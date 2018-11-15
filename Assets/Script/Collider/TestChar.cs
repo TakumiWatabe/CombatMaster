@@ -31,7 +31,7 @@ public class TestChar : MonoBehaviour {
     private float timecCnt = 0;
 
     // Use this for initialization
-    void Start ()
+    void Start()
     {
         //ディレクタースクリプト取得
         BtDir = dir.GetComponent<BattleDirector>();
@@ -44,23 +44,17 @@ public class TestChar : MonoBehaviour {
             react.Add(col[i].GetComponent<ColliderReact>());
         }
 
-        for (int i = 0; i < (int)BattleDirector.FightChar.CHARA_NUM; i++)
-        {
-            if (this.gameObject == BtDir.Fighter(i))
-            {
-                //操作番号決定
-                numID = BtDir.FNumber(i);
-            }
-        }
-	}
+        charcterJudg(this.gameObject.tag);
+    }
 	
 	// Update is called once per frame
 	void Update ()
     {
         Debug.Log(ogj.name + " HP:" + hp);
+        Debug.Log(this.gameObject.tag);
 
         //キャラクター番号から相手キャラクターを判別
-        switch(numID)
+        switch (numID)
         {
             case (int)BattleDirector.FightChar.CHARA_1:
                 hitJudg(1);
@@ -116,5 +110,17 @@ public class TestChar : MonoBehaviour {
         }
     }
 
-    public GameObject obj(int colNum) { return react[colNum].CObj; }
+    private void charcterJudg(string tagname)
+    {
+        if (tagname == "P1")
+        {
+            //操作番号決定
+            numID = (int)BattleDirector.FightChar.CHARA_1;
+        }
+        else if (tagname == "P2")
+        {
+            //操作番号決定
+            numID = (int)BattleDirector.FightChar.CHARA_2;
+        }
+    }
 }
