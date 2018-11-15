@@ -10,7 +10,7 @@ public class ColliderReact : MonoBehaviour {
     //攻撃接触判定
     private bool hitAtk = false;
     //攻撃判定オブジェクト
-    private GameObject collid;
+    private GameObject collid = null;
 
     bool flag = false;
 

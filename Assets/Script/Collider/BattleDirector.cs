@@ -92,14 +92,14 @@ public class BattleDirector : MonoBehaviour {
         Falken(f, (int)FightChar.CHARA_1, (int)AtkVal.HADOUKEN, atk, 7, 3);
         Falken(f, (int)FightChar.CHARA_1, (int)AtkVal.SYORYUKEN, atk, 3, 2);
 
-        Falken(f, (int)FightChar.CHARA_2, (int)AtkVal.PUNCH, atk, 8, 7);
-        Falken(f, (int)FightChar.CHARA_2, (int)AtkVal.KICK, atk, 6, 5);
-        Falken(f, (int)FightChar.CHARA_2, (int)AtkVal.PUNCH_SIT, atk, 5, 4);
-        Falken(f, (int)FightChar.CHARA_2, (int)AtkVal.KICK_SIT, atk, 4, 3);
-        Falken(f, (int)FightChar.CHARA_2, (int)AtkVal.PUNCH_JUMP, atk, 3, 2);
-        Falken(f, (int)FightChar.CHARA_2, (int)AtkVal.KICK_JUMP, atk, 2, 1);
-        Falken(f, (int)FightChar.CHARA_2, (int)AtkVal.HADOUKEN, atk, 1, 0);
-        Falken(f, (int)FightChar.CHARA_2, (int)AtkVal.SYORYUKEN, atk, 7, 6);
+        Falken(f, (int)FightChar.CHARA_2, (int)AtkVal.PUNCH, atk, 1, 0);
+        Falken(f, (int)FightChar.CHARA_2, (int)AtkVal.KICK, atk, 2, 1);
+        Falken(f, (int)FightChar.CHARA_2, (int)AtkVal.PUNCH_SIT, atk, 8, 7);
+        Falken(f, (int)FightChar.CHARA_2, (int)AtkVal.KICK_SIT, atk, 9, 8);
+        Falken(f, (int)FightChar.CHARA_2, (int)AtkVal.PUNCH_JUMP, atk, 11, 9);
+        Falken(f, (int)FightChar.CHARA_2, (int)AtkVal.KICK_JUMP, atk, 13, 11);
+        Falken(f, (int)FightChar.CHARA_2, (int)AtkVal.HADOUKEN, atk, 7, 3);
+        Falken(f, (int)FightChar.CHARA_2, (int)AtkVal.SYORYUKEN, atk, 3, 2);
 
         //キャラクターセレクトからキャラクターを取得
         fp[(int)FightChar.CHARA_1].fightCharacter = character[(int)FightChar.CHARA_1];
