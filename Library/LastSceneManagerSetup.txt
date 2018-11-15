@@ -1,4 +1,8 @@
 sceneSetups:
+<<<<<<< HEAD
 - path: Assets/Scene/EffectScene.unity
+=======
+- path: Assets/Scene/TitleScene.unity
+>>>>>>> Scene管理
   isLoaded: 1
   isActive: 1
