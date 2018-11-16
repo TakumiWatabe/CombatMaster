@@ -84,54 +84,16 @@ public class BattleDirector : MonoBehaviour {
             }
         }
 
-
-        //for (int i = 0; i < (int)FightChar.CHARA_NUM; i++)
-        //{
-        //    f[i, (int)AtkVal.PUNCH].co.Add(Falken(i, 0));
-        //    f[i, (int)AtkVal.KICK].co.Add(Falken(i, 1));
-        //    f[i, (int)AtkVal.PUNCH_SIT].co.Add(Falken(i, 7));
-        //    f[i, (int)AtkVal.KICK_SIT].co.Add(Falken(i, 8));
-        //    f[i, (int)AtkVal.PUNCH_JUMP].co.Add(Falken(i, 10));
-        //    f[i, (int)AtkVal.PUNCH_JUMP].co.Add(Falken(i, 10));
-
-        //    f[i, (int)AtkVal.KICK_JUMP].co.Add(Falken(i, 11));
-        //    f[i, (int)AtkVal.KICK_JUMP].co.Add(Falken(i, 12));
-
-        //    f[i, (int)AtkVal.HADOUKEN].co.Add(Falken(i, 3));
-        //    f[i, (int)AtkVal.KICK_JUMP].co.Add(Falken(i, 4));
-        //    f[i, (int)AtkVal.KICK_JUMP].co.Add(Falken(i, 5));
-        //    f[i, (int)AtkVal.KICK_JUMP].co.Add(Falken(i, 6));
-
-        //    f[i, (int)AtkVal.SYORYUKEN].co.Add(Falken(i, 2));
-        //}
-
-        Debug.Log(CEvent[0].AClid[0].layer);
-
+        //技ごとの攻撃判定設定
         Burger();
         for (int i=0;i<(int)FightChar.CHARA_NUM;i++)
         {
             for(int j=0;j<(int)AtkVal.ATK_NUM;j++)
             {
+                //威力設定
                 f[i, j].ac = atk[i, j];
             }
         }
-        //Falken(f, (int)FightChar.CHARA_1, (int)AtkVal.PUNCH, atk, 1, 0);
-        //Falken(f, (int)FightChar.CHARA_1, (int)AtkVal.KICK, atk, 2, 1);
-        //Falken(f, (int)FightChar.CHARA_1, (int)AtkVal.PUNCH_SIT, atk, 8, 7);
-        //Falken(f, (int)FightChar.CHARA_1, (int)AtkVal.KICK_SIT, atk, 9, 8);
-        //Falken(f, (int)FightChar.CHARA_1, (int)AtkVal.PUNCH_JUMP, atk, 11, 9);
-        //Falken(f, (int)FightChar.CHARA_1, (int)AtkVal.KICK_JUMP, atk, 13, 11);
-        //Falken(f, (int)FightChar.CHARA_1, (int)AtkVal.HADOUKEN, atk, 7, 3);
-        //Falken(f, (int)FightChar.CHARA_1, (int)AtkVal.SYORYUKEN, atk, 3, 2);
-
-        //Falken(f, (int)FightChar.CHARA_2, (int)AtkVal.PUNCH, atk, 8, 7);
-        //Falken(f, (int)FightChar.CHARA_2, (int)AtkVal.KICK, atk, 6, 5);
-        //Falken(f, (int)FightChar.CHARA_2, (int)AtkVal.PUNCH_SIT, atk, 5, 4);
-        //Falken(f, (int)FightChar.CHARA_2, (int)AtkVal.KICK_SIT, atk, 4, 3);
-        //Falken(f, (int)FightChar.CHARA_2, (int)AtkVal.PUNCH_JUMP, atk, 3, 2);
-        //Falken(f, (int)FightChar.CHARA_2, (int)AtkVal.KICK_JUMP, atk, 2, 1);
-        //Falken(f, (int)FightChar.CHARA_2, (int)AtkVal.HADOUKEN, atk, 1, 0);
-        //Falken(f, (int)FightChar.CHARA_2, (int)AtkVal.SYORYUKEN, atk, 7, 6);
 
         //キャラクターセレクトからキャラクターを取得
         fp[(int)FightChar.CHARA_1].fightCharacter = character[(int)FightChar.CHARA_1];
@@ -157,31 +119,21 @@ public class BattleDirector : MonoBehaviour {
     }
 
     //あたり判定の判別変数設定関数
-    private GameObject Falken(int chr, int colNum)
-    {
-        return CEvent[chr].AClid[colNum];
-        //fs[chr, atkType].ac = ;
-    }
-
     private void Burger()
     {
         //実験
         //キャラの数
         for (int i = 0; i < (int)FightChar.CHARA_NUM; i++)
         {
-            Debug.Log("1st");
             //攻撃技の数
             for (int j = 0; j < (int)AtkVal.ATK_NUM; j++)
             {
-                Debug.Log("2nd");
                 //全攻撃判定の数
                 for (int k = 0; k < CEvent[i].AClid.Count; k++)
                 {
-                    Debug.Log("3rd");
                     //攻撃判定のレイヤーが一致しているなら
                     if (CEvent[i].AClid[k].layer == j + act)
                     {
-                        Debug.Log("4th");
                         f[i, j].co.Add(CEvent[i].AClid[k]);
                     }
                 }

@@ -1008,7 +1008,6 @@ public class PlayerController : MonoBehaviour
         //{
         //    if (TChar.HCObjChe(i) != null)
         //    {
-        //        Debug.Log("おわー！！！");
         //        animator.SetInteger("Damage", 50);
         //        backDistance = 50;
         //        state = "Damage";
@@ -1019,7 +1018,8 @@ public class PlayerController : MonoBehaviour
 
     public void HitDamage(int dmg)
     {
-        if((state == "Stand" || state == "Sit") && inputDKey == 1 || inputDKey == 4)
+        Debug.Log("おわー！！！");
+        if ((state == "Stand" || state == "Sit") && inputDKey == 1 || inputDKey == 4)
         {
             animator.SetBool("Guard", true);
             state = "Guard";

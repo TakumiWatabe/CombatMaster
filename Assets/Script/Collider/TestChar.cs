@@ -5,7 +5,6 @@ using UnityEngine;
 public class TestChar : MonoBehaviour {
 
     //攻撃ヒット時処理スクリプト
-
     [SerializeField]
     GameObject ogj;
 
@@ -52,8 +51,8 @@ public class TestChar : MonoBehaviour {
 	// Update is called once per frame
 	void Update ()
     {
-        Debug.Log(ogj.name + " HP:" + HPDir.NowHPState);
-        Debug.Log(numID);
+        Debug.Log(this.name + " HP:" + HPDir.NowHPState);
+        Debug.Log(timecCnt);
 
         //キャラクター番号から相手キャラクターを判別
         switch (numID)
@@ -73,49 +72,12 @@ public class TestChar : MonoBehaviour {
     //攻撃ヒット判定
     private void hitJudg(int charNum)
     {
-        //デバック用(できれば消せない)
-        ////技の攻撃判定の数
-        //for (int k = 0; k < BtDir.CCount(0, 0); k++)
-        //{
-        //    Debug.Log(BtDir.Fcollider(charNum, 0, k).name);
-        //}
-        //for (int k = 0; k < BtDir.CCount(0, 1); k++)
-        //{
-        //    Debug.Log(BtDir.Fcollider(charNum, 1, k).name);
-        //}
-        //for (int k = 0; k < BtDir.CCount(0, 2); k++)
-        //{
-        //    Debug.Log(BtDir.Fcollider(charNum, 2, k).name);
-        //}
-        //for (int k = 0; k < BtDir.CCount(0, 3); k++)
-        //{
-        //    Debug.Log(BtDir.Fcollider(charNum, 3, k).name);
-        //}
-        //for (int k = 0; k < BtDir.CCount(0, 4); k++)
-        //{
-        //    Debug.Log(BtDir.Fcollider(charNum, 4, k).name);
-        //}
-        //for (int k = 0; k < BtDir.CCount(0, 5); k++)
-        //{
-        //    Debug.Log(BtDir.Fcollider(charNum, 5, k).name);
-        //}
-        //for (int k = 0; k < BtDir.CCount(0, 6); k++)
-        //{
-        //    Debug.Log(BtDir.Fcollider(charNum, 6, k).name);
-        //}
-        //for (int k = 0; k < BtDir.CCount(0, 7); k++)
-        //{
-        //    Debug.Log(BtDir.Fcollider(charNum, 7, k).name);
-        //}
-
         //くらい判定の数
         for (int i = 0; i < CEvent.HClid.Count; i++)
         {
             //攻撃が当たっているなら
             if (react[i].hiting)
             {
-                Debug.Log("あたり判定はしている！！！");
-                Debug.Log(react[i].CObj.name);
                 //技の数
                 for (int j = 0; j < (int)BattleDirector.AtkVal.ATK_NUM; j++)
                 {
@@ -129,20 +91,25 @@ public class TestChar : MonoBehaviour {
                             //判定した攻撃の威力分ダメージを受ける
                             HPDir.hitDmage(BtDir.Fattack(0, j));
                             react[i].hiting = false;
+                            GetComponent<PlayerController>().HitDamage(BtDir.Fattack(0, j));
                         }
                     }
                 }
             }
-            //のけぞり時間中ならあたり判定しない
-            if (time >= timecCnt)
+
+            if (react[i].CObj != null)
             {
-                timecCnt += Time.deltaTime;
-            }
-            else if (time < timecCnt)
-            {
-                //のけぞり時間外になったらあたり判定する
-                time = 0;
-                react[i].CObj = null;
+                //のけぞり時間中ならあたり判定しない
+                if (time >= timecCnt)
+                {
+                    timecCnt++;
+                }
+                else if (time < timecCnt)
+                {
+                    //のけぞり時間外になったらあたり判定する
+                    timecCnt = 0;
+                    react[i].CObj = null;
+                }
             }
         }
     }

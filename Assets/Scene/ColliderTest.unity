@@ -457,7 +457,7 @@ Prefab:
     - target: {fileID: 114016056705326048, guid: be3f37450f691be4c9efb25f491c0a20,
         type: 2}
       propertyPath: time
-      value: 45
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 1173684001446200, guid: be3f37450f691be4c9efb25f491c0a20, type: 2}
       propertyPath: m_Layer
@@ -1583,7 +1583,7 @@ Prefab:
     - target: {fileID: 114016056705326048, guid: be3f37450f691be4c9efb25f491c0a20,
         type: 2}
       propertyPath: time
-      value: 45
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 114421129777116824, guid: be3f37450f691be4c9efb25f491c0a20,
         type: 2}
