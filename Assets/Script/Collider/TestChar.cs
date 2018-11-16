@@ -52,8 +52,8 @@ public class TestChar : MonoBehaviour {
 	// Update is called once per frame
 	void Update ()
     {
-        Debug.Log(ogj.name + " HP:" + HPDir.NowHPState);
-        Debug.Log(numID);
+        //Debug.Log(ogj.name + " HP:" + HPDir.NowHPState);
+        //Debug.Log(numID);
 
         //キャラクター番号から相手キャラクターを判別
         switch (numID)
@@ -129,6 +129,7 @@ public class TestChar : MonoBehaviour {
                             //判定した攻撃の威力分ダメージを受ける
                             HPDir.hitDmage(BtDir.Fattack(0, j));
                             react[i].hiting = false;
+                            GetComponent<PlayerController>().HitDamage(BtDir.Fattack(0, j));
                         }
                     }
                 }
