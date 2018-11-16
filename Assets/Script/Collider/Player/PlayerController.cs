@@ -39,10 +39,6 @@ public class PlayerController : MonoBehaviour
     //相手スクリプト
     PlayerController enemyScript;
 
-    [SerializeField]
-    GameObject ogj;
-    PlayerController preScript;
-
     //ガードする距離
     public float distanceToGuard = 0.7f;
 
@@ -52,6 +48,12 @@ public class PlayerController : MonoBehaviour
 
     //これがモデルかどうか
     public bool isModel = false;
+
+    //効果音
+    private AudioSource audio;
+
+    public AudioClip Ldmg;
+    public AudioClip Mdmg;
 
 
     //public Text text;
@@ -82,6 +84,8 @@ public class PlayerController : MonoBehaviour
     TestChar TChar = null;
     BattleDirector battleDirector;
 
+    GameObject parent;
+
     // Use this for initialization
     void Start()
     {
@@ -111,8 +115,10 @@ public class PlayerController : MonoBehaviour
         {
             CEvent = this.GetComponent<ColliderEvent>();
             TChar = this.GetComponent<TestChar>();
-            preScript = ogj.GetComponent<PlayerController>();
+            audio = GetComponent<AudioSource>();
+            parent = this.transform.parent.gameObject;
             //battleDirector = this.GetComponent<BattleDirector>();
+
         }
     }
 
@@ -129,12 +135,14 @@ public class PlayerController : MonoBehaviour
         switch (state)
         {
             case "Stand":
+                //SetDirection();
                 Stand();
                 break;
             case "Dash":
                 Dashing();
                 break;
             case "Sit":
+                //SetDirection();
                 Sit();
                 break;
             case "Jump":
@@ -197,25 +205,29 @@ public class PlayerController : MonoBehaviour
     private void Damage()
     {
         float m = animator.GetInteger("Damage");
-        if(direction == 1)finalMove = new Vector3(-0.2f, 0, 0);
-        else finalMove = new Vector3(0.2f, 0, 0);
+        state = "Damage";
+        //if(direction == 1)finalMove = new Vector3(-0.2f, 0, 0);
+        //else finalMove = new Vector3(0.2f, 0, 0);
+
+        speed = 0.0f;
 
         animator.SetInteger("Move", 0);
         animator.SetInteger("Special", 0);
         animator.SetBool("Guard", false);
-        animator.SetBool("Sit", false);
+        //animator.SetBool("Sit", false);
         animator.SetBool("Punch", false);
         animator.SetBool("Kick", false);
         animator.SetBool("Dash", false);
         animator.SetBool("Jump", false);
 
-        Debug.Log(damageTime);
+        //Debug.Log(damageTime);
 
         if (damageCount >= damageTime)
         {
             damageCount = 0;
             animator.SetInteger("Damage", 0);
             state = "Stand";
+            Debug.Log("ダダダ戻れたぞ");
         }
 
         damageCount++; 
@@ -229,13 +241,15 @@ public class PlayerController : MonoBehaviour
     {
         float m = animator.GetInteger("Damage");
 
-        if (direction == 1) finalMove = new Vector3(-0.075f, 0, 0);
-        else finalMove = new Vector3(0.075f, 0, 0);
+        speed = 0.0f;
+
+        //if (direction == 1) finalMove = new Vector3(-0.075f, 0, 0);
+        //else finalMove = new Vector3(0.075f, 0, 0);
 
         animator.SetInteger("Move", 0);
         animator.SetInteger("Special", 0);
         animator.SetBool("Guard", true);
-        animator.SetBool("Sit", false);
+        //animator.SetBool("Sit", false);
         animator.SetBool("Punch", false);
         animator.SetBool("Kick", false);
         animator.SetBool("Dash", false);
@@ -249,6 +263,7 @@ public class PlayerController : MonoBehaviour
             damageCount = 0;
             animator.SetInteger("Damage", 0);
             state = "Stand";
+            Debug.Log("ガガガ戻れたぞ");
         }
 
         damageCount++;
@@ -260,6 +275,8 @@ public class PlayerController : MonoBehaviour
     /// </summary>
     void SetDirection()
     {
+        int dirold = direction;
+
         if (enemy.transform.position.x >= transform.position.x)
         {
             direction = 1;
@@ -268,6 +285,8 @@ public class PlayerController : MonoBehaviour
         {
             direction = -1;
         }
+
+        //if (dirold != direction) Debug.Log("振り返った");
     }
 
     /// <summary>
@@ -447,6 +466,18 @@ public class PlayerController : MonoBehaviour
         animator.SetBool("Kick", false);
         gameObject.transform.position = new Vector3(gameObject.transform.position.x, 0, 0);
         finalMove = new Vector3(0, 0, 0);
+
+        if (direction == 1)
+        {
+            //右向き
+            if (!isModel) transform.localScale = new Vector3(transform.localScale.x, transform.localScale.y, 1);
+
+        }
+        else
+        {
+            //左向き
+            if (!isModel) transform.localScale = new Vector3(transform.localScale.x, transform.localScale.y, -1);
+        }
 
         //下が離されたら立つ
         if (inputDKey <= 3)
@@ -885,7 +916,7 @@ public class PlayerController : MonoBehaviour
             if (inputDKey == 4 || inputDKey == 7) move = -1;
 
             //右向き
-            if (!isModel) transform.localScale = new Vector3(transform.localScale.x, transform.localScale.y, 1);
+            //if (!isModel) transform.localScale = new Vector3(transform.localScale.x, transform.localScale.y, 1);
 
         }
         else
@@ -894,7 +925,7 @@ public class PlayerController : MonoBehaviour
             if (inputDKey == 4 || inputDKey == 7) move = 1;
 
             //左向き
-            if (!isModel) transform.localScale = new Vector3(transform.localScale.x, transform.localScale.y, -1);
+            //if (!isModel) transform.localScale = new Vector3(transform.localScale.x, transform.localScale.y, -1);
         }
 
         //下が押されたらしゃがみ
@@ -1019,21 +1050,33 @@ public class PlayerController : MonoBehaviour
 
     public void HitDamage(int dmg)
     {
-        if((state == "Stand" || state == "Sit") && inputDKey == 1 || inputDKey == 4)
+        if((state == "Stand" || state == "Sit" || state == "Guard" || state == "SitGuard" || state == "StandGuard") && state != "Jump" && (inputDKey == 1 || inputDKey == 4))
         {
+
+            Debug.Log(state);
             animator.SetBool("Guard", true);
             state = "Guard";
-            preScript.state = "Guard";
+            
+            parent.GetComponent<PlayerController>().state = "Guard";
             damageTime = (dmg / 500 + 15)/3;
+            damageDir = direction * -1;
+            parent.GetComponent<PlayerController>().damageTime = (dmg / 500 + 15) / 3;
+            parent.GetComponent<PlayerController>().damageDir = direction * -1;
         }
         else
         {
+
+            Debug.Log(state);
             animator.SetInteger("Damage", dmg);
             state = "Damage";
-            preScript.state = "Damage";
+            
+            parent.GetComponent<PlayerController>().state = "Damage";
             backDistance = dmg;
             damageTime = dmg / 500 + 15;
             damageDir = direction * -1;
+            parent.GetComponent<PlayerController>().damageTime = dmg / 500 + 15;
+            parent.GetComponent<PlayerController>().damageDir = direction * -1;
+            audio.PlayOneShot(Ldmg);
         }
 
     }
