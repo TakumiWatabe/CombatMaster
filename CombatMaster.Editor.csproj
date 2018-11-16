@@ -347,6 +347,7 @@
     <None Include="Assets\Model\VRM\UniGLTF\Resources\Shaders\Dxt5Decoder.shader" />
     <None Include="Assets\Model\VRM\UniGLTF\Resources\Shaders\StandardVColor.shader" />
     <None Include="Assets\Model\VRM\UniGLTF\UniUnlit\Resources\UniUnlit.shader" />
+    <None Include="Assets\Plugins\DynamicBone\ReadMe.txt" />
     <None Include="Assets\Plugins\Pixelplacement\iTween\ReadMe!\ReadMe!.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
