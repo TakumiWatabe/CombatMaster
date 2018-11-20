@@ -1136,23 +1136,73 @@ public class PlayerController : MonoBehaviour
 
     }
 
-    public void SetInputDKey(int dir)
+    public int InputDKey
     {
-        inputDKey = dir;
+        get {
+            return inputDKey;
+        }
+        set {
+            inputDKey = value;
+        }
     }
 
-    public void SetPunchKey(bool b)
+    public bool PunchKey
     {
-        punchKey = b;
+        get {
+            return punchKey;
+        }
+        set {
+            punchKey = value;
+        }
     }
 
-    public void SetKickKey(bool b)
+    public bool KickKey
     {
-        kickKey = b;
+        get {
+            return kickKey;
+        }
+        set {
+            kickKey = value;
+        }
     }
 
-    public void SetControllerName(string name)
+    public string ControllerName
     {
-        controllerName = name;
+        get {
+            return controllerName;
+        }
+        set {
+            controllerName = value;
+        }
+    }
+
+    public string State
+    {
+        get {
+            return state;
+        }
+        set {
+            state = value;
+        }
+    }
+
+    public string SpecialState
+    {
+        get {
+            return specialState;
+        }
+        set {
+            specialState = value;
+        }
+    }
+
+    public int Direction
+    {
+        get {
+            return direction;
+        }
+        set {
+            direction = value;
+        }
     }
 }

@@ -16,6 +16,7 @@ public class EnemyAI : MonoBehaviour {
     private bool isJump = false;
     private int elapsedTime = 0;
     private Animator animator;
+    private PlayerController pc;
 
     [SerializeField,Header("移動系行動の判定間隔")]
     private int judgTime = 20;
@@ -56,7 +57,8 @@ public class EnemyAI : MonoBehaviour {
     {
         //enemy = GameObject.Find("");
 
-        //gameObject.GetComponent<PlayerController>().SetController("AI");
+        pc = gameObject.GetComponent<PlayerController>();
+        pc.ControllerName = "AI";
         //animator = GetComponent<Animator>();
     }
 
@@ -119,20 +121,46 @@ public class EnemyAI : MonoBehaviour {
         if (n < neutralProbability)
         {
             //待機
+            pc.InputDKey = 5;
             elapsedTime = 10;
         }
         else if (n < neutralProbability + dashProbability)
         {
             //ダッシュ
+            if (pc.Direction == 1)
+            {
+                pc.InputDKey = 6;
+            }
+            else
+            {
+                pc.InputDKey = 4;
+            }
+            pc.State = "Dash";
             elapsedTime = 10;
         }
         else if (n < neutralProbability + dashProbability + advanceProbability)
         {
             //前進
+            if (pc.Direction == 1)
+            {
+                pc.InputDKey = 6;
+            }
+            else
+            {
+                pc.InputDKey = 4;
+            }
         }
         else
         {
             //後退
+            if (pc.Direction == 1)
+            {
+                pc.InputDKey = 4;
+            }
+            else
+            {
+                pc.InputDKey = 6;
+            }
         }
 
         //ジャンプのT/F判定
@@ -149,7 +177,22 @@ public class EnemyAI : MonoBehaviour {
     {
         if(Random.Range(0,100) <= 10)
         {
-            //ジャンプする
+            switch (pc.InputDKey)
+            {
+                //後ジャンプ
+                case 4:
+                    pc.InputDKey = 7;
+                    break;
+                //ジャンプ
+                case 5:
+                    pc.InputDKey = 8;
+                    break;
+                case 6:
+                    pc.InputDKey = 9;
+                    //前ジャンプ
+                    break;
+            }
+
             isJump = true;
         }
     }
@@ -228,6 +271,8 @@ public class EnemyAI : MonoBehaviour {
         if (enemyDis < wStandAttackDis)
         {
             //立ち弱
+            pc.InputDKey = 5;
+            pc.PunchKey = true;
             return true;
         }
         return false;
@@ -238,6 +283,8 @@ public class EnemyAI : MonoBehaviour {
         if (enemyDis < sStandAttackDis)
         {
             //立ち強
+            pc.InputDKey = 5;
+            pc.KickKey = true;
             return true;
         }
         return false;
@@ -248,6 +295,8 @@ public class EnemyAI : MonoBehaviour {
         if (enemyDis < wSitAttackDis)
         {
             //しゃがみ弱
+            pc.InputDKey = 2;
+            pc.PunchKey = true;
             return true;
         }
         return false;
@@ -258,6 +307,8 @@ public class EnemyAI : MonoBehaviour {
         if (enemyDis < sSitAttackDis)
         {
             //しゃがみ強
+            pc.InputDKey = 2;
+            pc.KickKey = true;
             return true;
         }
         return false;
@@ -268,6 +319,8 @@ public class EnemyAI : MonoBehaviour {
         if (enemyDis < wJumpAttackDis)
         {
             //ジャンプ弱
+            pc.InputDKey = 5;
+            pc.PunchKey = true;
             return true;
         }
         return false;
@@ -278,6 +331,8 @@ public class EnemyAI : MonoBehaviour {
         if (enemyDis < sJumpAttackDis)
         {
             //ジャンプ強
+            pc.InputDKey = 5;
+            pc.KickKey = true;
             return true;
         }
         return false;
@@ -288,6 +343,9 @@ public class EnemyAI : MonoBehaviour {
         if (enemyDis < hadouKenDis)
         {
             //波動拳
+            pc.InputDKey = 5;
+            pc.State = "Special";
+            pc.SpecialState = "Hadoken";
             return true;
         }
         return false;
@@ -298,6 +356,9 @@ public class EnemyAI : MonoBehaviour {
         if (enemyDis < shouryuKenDis)
         {
             //昇竜拳
+            pc.InputDKey = 5;
+            pc.State = "Special";
+            pc.SpecialState = "Syoryuken";
             return true;
         }
         return false;
