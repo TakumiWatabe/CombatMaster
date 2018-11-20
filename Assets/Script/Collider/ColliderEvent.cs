@@ -14,23 +14,16 @@ public class ColliderEvent : MonoBehaviour {
     //攻撃判定
     [SerializeField]
     private List<GameObject> AtkCollider;
-    //押し合い判定
-    [SerializeField]
-    private List<GameObject> PushCollider;
 
     //コライダー
     BoxCollider HitBox;
     BoxCollider AtkBox;
-    BoxCollider PushBox;
 
     //あたり判定の数
     int HCnum;
     int ACnum;
-    int PCnum;
 
     private const float CSizeZ = 0.25f;
-
-    private BattleDirector.AtkVal[] attackV = new BattleDirector.AtkVal[(int)BattleDirector.AtkVal.ATK_NUM];
 
     // Use this for initialization
     void Start ()
@@ -38,7 +31,6 @@ public class ColliderEvent : MonoBehaviour {
         //あたり判定の数
         HCnum = HitCollider.Count;
         ACnum = AtkCollider.Count;
-        PCnum = PushCollider.Count;
 	}
 
     //-------------------------------------------------------------------------------------------------------------------
@@ -103,8 +95,10 @@ public class ColliderEvent : MonoBehaviour {
         //コライダー設定
         SetBoxState(
             HitBox,
-            new Vector3(0, 1, 0.38f),
+            new Vector3(0, 1, 0.35f),
             new Vector3(0.25f, 0.35f, 0.55f));
+
+        AtkColliderActive();
     }
     void SetPunchCollider_2()
     {
@@ -112,7 +106,7 @@ public class ColliderEvent : MonoBehaviour {
         SetBoxState(
             HitBox,
             new Vector3(0, 1, 0.25f),
-            new Vector3(0.25f, 0.5f, 0.25f));
+            new Vector3(0.25f, 0.5f, 0.3f));
     }
 
     //------------------
@@ -122,7 +116,6 @@ public class ColliderEvent : MonoBehaviour {
     //------------------
     void BaseKickColliderAtk()
     {
-
         HitCollider[3].SetActive(true);
         AtkCollider[1].SetActive(true);
 
@@ -131,34 +124,42 @@ public class ColliderEvent : MonoBehaviour {
 
         SetBoxState(
             HitBox,
-            new Vector3(0, 0.78f, 0.4f),
-            new Vector3(0.25f, 0.3f, 0.55f));
+            new Vector3(0, 0.85f, 0.45f),
+            new Vector3(0.25f, 0.3f, 0.8f));
         SetBoxState(
             AtkBox,
-            new Vector3(0, 0.78f, 0.38f),
-            new Vector3(0.25f, 0.25f, 0.55f));
+            new Vector3(0, 0.95f, 0.48f),
+            new Vector3(0.25f, 0.25f, 0.95f));
     }
     void SetKickCollider_1()
     {
+        HitBox = HitCollider[3].GetComponent<BoxCollider>();
         SetBoxState(
             HitBox,
-            new Vector3(0, 0.78f, 0.4f),
-            new Vector3(0.25f, 0.3f, 0.55f));
-        SetBoxState(
-            AtkBox,
-            new Vector3(0, 0.78f, 0.38f),
-            new Vector3(0.25f, 0.25f, 0.55f));
+            new Vector3(0, 0.9f, 0.5f),
+            new Vector3(0.25f, 0.3f, 0.95f));
     }
     void SetKickCollider_2()
     {
+        AtkColliderActive();
+    }
+    void SetKickCollider_3()
+    {
+        HitBox = HitCollider[3].GetComponent<BoxCollider>();
         SetBoxState(
             HitBox,
-            new Vector3(0, 0.85f, 0.5f),
-            new Vector3(0.25f, 0.3f, 0.95f));
+            new Vector3(0, 0.65f, 0.4f),
+            new Vector3(0.25f, 0.3f, 0.75f));
+    }
+    void SetKickCollider_4()
+    {
+        HitColliderActive();
+        HitCollider[3].SetActive(true);
+        HitBox = HitCollider[3].GetComponent<BoxCollider>();
         SetBoxState(
-            AtkBox,
-            new Vector3(0, 0.9f, 0.48f),
-            new Vector3(0.25f, 0.25f, 0.95f));
+            HitBox,
+            new Vector3(0, 0.85f, 0.45f),
+            new Vector3(0.25f, 0.3f, 0.8f));
     }
 
     //--------------------------------
@@ -190,84 +191,101 @@ public class ColliderEvent : MonoBehaviour {
     {
         HitColliderActive();
 
-        HitCollider[6].SetActive(true);
-        HitCollider[7].SetActive(true);
-        HitBox = HitCollider[6].GetComponent<BoxCollider>();
-
-        SetBoxState(
-            HitBox,
-            new Vector3(0, 1.1f, 0.2f),
-            new Vector3(0.25f, 0.8f, 0.65f));
-
-        HitBox = HitCollider[7].GetComponent<BoxCollider>();
-
-        SetBoxState(
-            HitBox,
-            new Vector3(0, 0.47f, -0.1f),
-            new Vector3(0.25f, 0.65f, 0.9f));
-
         AtkColliderActive();
-    }
-    void BasicShoruCollider2()
-    {
-        HitColliderActive();
-
-        HitCollider[6].SetActive(true);
-        HitBox = HitCollider[6].GetComponent<BoxCollider>();
-
-        SetBoxState(
-            HitBox,
-            new Vector3(0, 0.85f, 0.1f),
-            new Vector3(0.25f, 1.4f, 0.7f));
-    }
-    void BasicShoruCollider3()
-    {
-        SetBoxState(
-            HitBox,
-            new Vector3(0, 1.15f, 0.1f),
-            new Vector3(0.25f, 0.9f, 0.65f));
-
-        HitCollider[7].SetActive(true);
-        HitBox = HitCollider[7].GetComponent<BoxCollider>();
-
-        SetBoxState(
-            HitBox,
-            new Vector3(0, 0.47f, 0),
-            new Vector3(0.25f, 0.75f, 0.9f));
-
-        HitCollider[8].SetActive(true);
-        HitBox = HitCollider[8].GetComponent<BoxCollider>();
-
-        SetBoxState(
-            HitBox,
-            new Vector3(0, 1.15f, 0.55f),
-            new Vector3(0.25f, 0.25f, 0.55f));
-
-    }
-    void BasicShoruCollider4()
-    {
-        SetBoxState(
-            HitBox,
-            new Vector3(0, 1.3f, 0.45f),
-            new Vector3(0.25f, 0.25f, 0.55f));
 
         AtkCollider[2].SetActive(true);
     }
-    void BasicShoruCollider5()
+    void BasicShoruCollider2()
     {
+        HitCollider[6].SetActive(true);
+        HitCollider[7].SetActive(true);
+        HitCollider[8].SetActive(true);
+
+        HitBox = HitCollider[6].GetComponent<BoxCollider>();
         SetBoxState(
             HitBox,
-            new Vector3(0, 1.4f, 0.3f),
-            new Vector3(0.25f, 0.3f, 0.55f));
+            new Vector3(0, 1.25f, 0),
+            new Vector3(0.25f, 0.75f, 0.4f));
+
+        HitBox = HitCollider[7].GetComponent<BoxCollider>();
+        SetBoxState(
+            HitBox,
+            new Vector3(0, 0.5f, 0),
+            new Vector3(0.25f, 0.8f, 0.9f));
+
+        HitBox = HitCollider[8].GetComponent<BoxCollider>();
+        SetBoxState(
+            HitBox,
+            new Vector3(0, 1.35f, 0.35f),
+            new Vector3(0.25f, 0.3f, 0.5f));
+
+        AtkColliderActive();
+    }
+    void BasicShoruCollider3()
+    {
+        HitBox = HitCollider[8].GetComponent<BoxCollider>();
+        SetBoxState(
+            HitBox,
+            new Vector3(0, 1.45f, 0.3f),
+            new Vector3(0.25f, 0.4f, 0.4f));
+    }
+    void BasicShoruCollider4()
+    {
+        HitBox = HitCollider[6].GetComponent<BoxCollider>();
+        SetBoxState(
+            HitBox,
+            new Vector3(0, 1.25f, 0.05f),
+            new Vector3(0.25f, 0.75f, 0.4f));
+
+        HitBox = HitCollider[8].GetComponent<BoxCollider>();
+        SetBoxState(
+            HitBox,
+            new Vector3(0, 1.35f, 0.4f),
+            new Vector3(0.25f, 0.3f, 0.5f));
+    }
+    void BasicShoruCollider5()
+    {
+        HitBox = HitCollider[6].GetComponent<BoxCollider>();
+        SetBoxState(
+            HitBox,
+            new Vector3(0, 1.25f, 0.1f),
+            new Vector3(0.25f, 0.75f, 0.4f));
+
+        HitBox = HitCollider[8].GetComponent<BoxCollider>();
+        SetBoxState(
+            HitBox,
+            new Vector3(0, 1.25f, 0.5f),
+            new Vector3(0.25f, 0.25f, 0.5f));
     }
     void BasicShoruCollider6()
+    {
+        HitBox = HitCollider[6].GetComponent<BoxCollider>();
+        SetBoxState(
+            HitBox,
+            new Vector3(0, 1.25f, 0.05f),
+            new Vector3(0.25f, 0.75f, 0.4f));
+
+        HitBox = HitCollider[8].GetComponent<BoxCollider>();
+        SetBoxState(
+            HitBox,
+            new Vector3(0, 1.1f, 0.4f),
+            new Vector3(0.25f, 0.25f, 0.5f));
+    }
+    void BasicShoruCollider7()
+    {
+        HitBox = HitCollider[8].GetComponent<BoxCollider>();
+        SetBoxState(
+            HitBox,
+            new Vector3(0, 1f, 0.35f),
+            new Vector3(0.25f, 0.25f, 0.35f));
+    }
+    void BasicShoruCollider8()
     {
         HitColliderActive();
         HitCollider[6].SetActive(true);
         HitCollider[7].SetActive(true);
-
-        AtkColliderActive();
     }
+
 
     //--------------------------------
     //波動コマンドあたり判定
@@ -279,57 +297,97 @@ public class ColliderEvent : MonoBehaviour {
         HitColliderActive();
         HitCollider[9].SetActive(true);
         HitCollider[10].SetActive(true);
-
-        HitBox = HitCollider[9].GetComponent<BoxCollider>();
-        SetBoxState(
-            HitBox,
-            new Vector3(0, 0.87f, 0),
-            new Vector3(0.25f, 1.45f, 0.7f));
-
-        HitBox = HitCollider[10].GetComponent<BoxCollider>();
-        SetBoxState(
-            HitBox,
-            new Vector3(0, 1.3f, 0.35f),
-            new Vector3(0.25f, 0.25f, 0.5f));
-
-        AtkColliderActive();
-
-    }
-
-    void BasicHadouCollider2()
-    {
         HitCollider[11].SetActive(true);
 
         HitBox = HitCollider[9].GetComponent<BoxCollider>();
         SetBoxState(
             HitBox,
-            new Vector3(0, 0.93f, 0),
-            new Vector3(0.25f, 1.6f, 0.7f));
+            new Vector3(0, 0.88f, 0),
+            new Vector3(0.25f, 1.5f, 0.5f));
 
         HitBox = HitCollider[10].GetComponent<BoxCollider>();
         SetBoxState(
             HitBox,
-            new Vector3(0, 0.38f, 0.35f),
+            new Vector3(0, 0.38f, 0.38f),
             new Vector3(0.25f, 0.5f, 0.3f));
 
         HitBox = HitCollider[11].GetComponent<BoxCollider>();
         SetBoxState(
             HitBox,
-            new Vector3(0, 0.26f, 0.45f),
-            new Vector3(0.25f, 0.25f, 0.25f));
+            new Vector3(0, 1.25f, 0.4f),
+            new Vector3(0.25f, 0.25f, 0.5f));
+
+        AtkColliderActive();
+
     }
-    void BasicHadouCollider3()
+    void BasicHadouCollider2()
     {
-        HitBox = HitCollider[9].GetComponent<BoxCollider>();
+        HitBox = HitCollider[11].GetComponent<BoxCollider>();
         SetBoxState(
             HitBox,
-            new Vector3(0, 0.9f, 0),
-            new Vector3(0.25f, 1.5f, 0.6f));
+            new Vector3(0, 1.5f, 0.3f),
+            new Vector3(0.25f, 0.3f, 0.4f));
 
         AtkCollider[3].SetActive(true);
         AtkCollider[4].SetActive(true);
         AtkCollider[5].SetActive(true);
         AtkCollider[6].SetActive(true);
+    }
+    void BasicHadouCollider3()
+    {
+        HitColliderActive();
+        HitCollider[9].SetActive(true);
+        HitCollider[10].SetActive(true);
+
+        HitBox = HitCollider[9].GetComponent<BoxCollider>();
+        SetBoxState(
+            HitBox,
+            new Vector3(0, 0.9f, -0.05f),
+            new Vector3(0.25f, 1.5f, 0.5f));
+
+        HitBox = HitCollider[10].GetComponent<BoxCollider>();
+        SetBoxState(
+            HitBox,
+            new Vector3(0, 0.42f, 0.35f),
+            new Vector3(0.25f, 0.55f, 0.35f));
+
+        AtkColliderActive();
+    }
+    void BasicHadouCollider4()
+    {
+        HitBox = HitCollider[9].GetComponent<BoxCollider>();
+        SetBoxState(
+            HitBox,
+            new Vector3(0, 0.9f, 0f),
+            new Vector3(0.25f, 1.6f, 0.5f));
+
+        HitBox = HitCollider[10].GetComponent<BoxCollider>();
+        SetBoxState(
+            HitBox,
+            new Vector3(0, 0.35f, 0.35f),
+            new Vector3(0.25f, 0.5f, 0.35f));
+    }
+    void BasicHadouCollider5()
+    {
+        HitBox = HitCollider[9].GetComponent<BoxCollider>();
+        SetBoxState(
+            HitBox,
+            new Vector3(0, 0.85f, 0f),
+            new Vector3(0.25f, 1.55f, 0.5f));
+
+        HitBox = HitCollider[10].GetComponent<BoxCollider>();
+        SetBoxState(
+            HitBox,
+            new Vector3(0, 0.32f, 0.3f),
+            new Vector3(0.25f, 0.5f, 0.3f));
+
+        HitCollider[11].SetActive(true);
+        HitBox = HitCollider[11].GetComponent<BoxCollider>();
+        SetBoxState(
+            HitBox,
+            new Vector3(0, 1.2f, 0.4f),
+            new Vector3(0.25f, 0.25f, 0.45f));
+
     }
 
     //--------------------------------
@@ -337,11 +395,17 @@ public class ColliderEvent : MonoBehaviour {
     //
     //使用モーション:しゃがみパンチ
     //--------------------------------
-    void SitPunchCollider()
+    void SitPunchCollider_1()
     {
+        HitColliderActive();
         HitCollider[12].SetActive(true);
 
+        AtkColliderActive();
         AtkCollider[7].SetActive(true);
+    }
+    void SitPunchCollider_2()
+    {
+        AtkColliderActive();
     }
 
     //--------------------------------
@@ -355,59 +419,109 @@ public class ColliderEvent : MonoBehaviour {
 
         HitCollider[13].SetActive(true);
         HitBox = HitCollider[13].GetComponent<BoxCollider>();
-
         SetBoxState(
             HitBox,
-            new Vector3(0, 1.08f, 0.08f),
-            new Vector3(0.25f, 1.1f, 0.5f));
+            new Vector3(0, 1.05f, 0),
+            new Vector3(0.25f, 1.05f, 0.7f));
 
         AtkColliderActive();
     }
     void SitKickCollider2()
     {
-        HitCollider[14].SetActive(true);
-
+        HitBox = HitCollider[13].GetComponent<BoxCollider>();
         SetBoxState(
             HitBox,
-            new Vector3(0, 0.95f, -0.15f),
-            new Vector3(0.25f, 0.75f, 0.85f));
+            new Vector3(0, 1.02f, 0),
+            new Vector3(0.25f, 0.9f, 0.65f));
+
+        HitCollider[14].SetActive(true);
+        HitBox = HitCollider[14].GetComponent<BoxCollider>();
+        SetBoxState(
+            HitBox,
+            new Vector3(0, 0.75f, 0.45f),
+            new Vector3(0.25f, 0.35f, 0.5f));
+
+    }
+    void SitKickCollider3()
+    {
+        HitBox = HitCollider[13].GetComponent<BoxCollider>();
+        SetBoxState(
+            HitBox,
+            new Vector3(0, 1f, -0.1f),
+            new Vector3(0.25f, 0.88f, 0.65f));
+
+        HitBox = HitCollider[14].GetComponent<BoxCollider>();
+        SetBoxState(
+            HitBox,
+            new Vector3(0, 0.75f, 0.5f),
+            new Vector3(0.25f, 0.35f, 0.75f));
 
         AtkCollider[8].SetActive(true);
     }
-    void SitKickCollider3()
+    void SitKickCollider4()
+    {
+        HitBox = HitCollider[13].GetComponent<BoxCollider>();
+        SetBoxState(
+            HitBox,
+            new Vector3(0, 1f, -0.15f),
+            new Vector3(0.25f, 0.85f, 0.7f));
+
+        AtkColliderActive();
+    }
+    void SitKickCollider5()
+    {
+        HitBox = HitCollider[13].GetComponent<BoxCollider>();
+        SetBoxState(
+            HitBox,
+            new Vector3(0, 0.98f, -0.2f),
+            new Vector3(0.25f, 0.8f, 0.75f));
+
+        HitBox = HitCollider[14].GetComponent<BoxCollider>();
+        SetBoxState(
+            HitBox,
+            new Vector3(0, 0.9f, 0.4f),
+            new Vector3(0.25f, 0.25f, 0.7f));
+    }
+    void SitKickCollider6()
+    {
+        HitBox = HitCollider[14].GetComponent<BoxCollider>();
+        SetBoxState(
+            HitBox,
+            new Vector3(0, 0.8f, 0.35f),
+            new Vector3(0.25f, 0.35f, 0.6f));
+    }
+    void SitKickCollider7()
+    {
+        HitBox = HitCollider[13].GetComponent<BoxCollider>();
+        SetBoxState(
+            HitBox,
+            new Vector3(0, 1.02f, -0.1f),
+            new Vector3(0.25f, 0.9f, 0.5f));
+
+        HitBox = HitCollider[14].GetComponent<BoxCollider>();
+        SetBoxState(
+            HitBox,
+            new Vector3(0, 0.67f, 0.3f),
+            new Vector3(0.25f, 0.2f, 0.5f));
+    }
+    void SitKickCollider8()
     {
         HitColliderActive();
 
         HitCollider[13].SetActive(true);
-
+        HitBox = HitCollider[13].GetComponent<BoxCollider>();
         SetBoxState(
             HitBox,
-            new Vector3(0, 0.95f, -0.1f),
-            new Vector3(0.25f, 0.75f, 0.8f));
-
-        AtkColliderActive();
+            new Vector3(0, 1.08f, -0.05f),
+            new Vector3(0.25f, 1f, 0.5f));
     }
-    void SitKickCollider4()
+    void SitKickCollider9()
     {
+        HitBox = HitCollider[13].GetComponent<BoxCollider>();
         SetBoxState(
             HitBox,
-            new Vector3(0, 1, 0),
-            new Vector3(0.25f, 0.85f, 0.7f));
-    }
-    void SitKickCollider5()
-    {
-        SetBoxState(
-            HitBox,
-            new Vector3(0, 1.08f, 0),
-            new Vector3(0.25f, 1, 0.65f));
-    }
-    void SitKickCollider6()
-    {
-        SetBoxState(
-            HitBox,
-            new Vector3(0, 1.08f, -0.15f),
-            new Vector3(0.25f, 1, 0.8f));
-
+            new Vector3(0, 1.08f, -0.05f),
+            new Vector3(0.25f, 1f, 0.6f));
     }
 
     //--------------------------------
@@ -423,14 +537,12 @@ public class ColliderEvent : MonoBehaviour {
         HitCollider[16].SetActive(true);
 
         HitBox = HitCollider[15].GetComponent<BoxCollider>();
-
         SetBoxState(
             HitBox,
-            new Vector3(0, 0.9f, 0.1f),
-            new Vector3(0.25f, 1.4f, 0.5f));
+            new Vector3(0, 0.95f, 0.1f),
+            new Vector3(0.25f, 1.3f, 0.5f));
 
         HitBox = HitCollider[16].GetComponent<BoxCollider>();
-
         SetBoxState(
             HitBox,
             new Vector3(0, 0.5f, -0.25f),
@@ -441,24 +553,80 @@ public class ColliderEvent : MonoBehaviour {
     void JumpPunchCollider2()
     {
         HitCollider[17].SetActive(true);
+
         HitBox = HitCollider[15].GetComponent<BoxCollider>();
-
         SetBoxState(
             HitBox,
-            new Vector3(0, 0.9f, 0),
-            new Vector3(0.25f, 1.4f, 0.5f));
+            new Vector3(0, 1f, 0.1f),
+            new Vector3(0.25f, 1.2f, 0.5f));
 
-        HitBox = HitCollider[16].GetComponent<BoxCollider>();
-
+        HitBox = HitCollider[17].GetComponent<BoxCollider>();
         SetBoxState(
             HitBox,
-            new Vector3(0, 0.5f, -0.35f),
-            new Vector3(0.25f, 0.8f, 0.4f));
+            new Vector3(0, 1.25f, 0.4f),
+            new Vector3(0.25f, 0.2f, 0.5f));
     }
     void JumpPunchCollider3()
     {
+        HitBox = HitCollider[15].GetComponent<BoxCollider>();
+        SetBoxState(
+            HitBox,
+            new Vector3(0, 1f, 0f),
+            new Vector3(0.25f, 1.2f, 0.5f));
+        HitBox = HitCollider[16].GetComponent<BoxCollider>();
+        SetBoxState(
+            HitBox,
+            new Vector3(0, 0.5f, -0.4f),
+            new Vector3(0.25f, 0.65f, 0.4f));
+        HitBox = HitCollider[17].GetComponent<BoxCollider>();
+        SetBoxState(
+            HitBox,
+            new Vector3(0, 1.25f, 0.4f),
+            new Vector3(0.25f, 0.2f, 0.5f));
+
         AtkCollider[9].SetActive(true);
         AtkCollider[10].SetActive(true);
+    }
+    void JumpPunchCollider4()
+    {
+        HitBox = HitCollider[17].GetComponent<BoxCollider>();
+        SetBoxState(
+            HitBox,
+            new Vector3(0, 1.2f, 0.45f),
+            new Vector3(0.25f, 0.2f, 0.5f));
+
+        AtkColliderActive();
+    }
+    void JumpPunchCollider5()
+    {
+        HitBox = HitCollider[15].GetComponent<BoxCollider>();
+        SetBoxState(
+            HitBox,
+            new Vector3(0, 0.95f, -0.02f),
+            new Vector3(0.25f, 1.3f, 0.5f));
+        HitBox = HitCollider[16].GetComponent<BoxCollider>();
+        SetBoxState(
+            HitBox,
+            new Vector3(0, 0.3f, -0.4f),
+            new Vector3(0.25f, 0.55f, 0.35f));
+        HitBox = HitCollider[17].GetComponent<BoxCollider>();
+        SetBoxState(
+            HitBox,
+            new Vector3(0, 1.15f, 0.35f),
+            new Vector3(0.25f, 0.3f, 0.35f));
+    }
+    void JumpPunchCollider6()
+    {
+        HitBox = HitCollider[16].GetComponent<BoxCollider>();
+        SetBoxState(
+            HitBox,
+            new Vector3(0, 0.3f, -0.35f),
+            new Vector3(0.25f, 0.55f, 0.35f));
+        HitBox = HitCollider[17].GetComponent<BoxCollider>();
+        SetBoxState(
+            HitBox,
+            new Vector3(0, 1.1f, 0.3f),
+            new Vector3(0.25f, 0.3f, 0.3f));
     }
 
     //--------------------------------
@@ -471,11 +639,10 @@ public class ColliderEvent : MonoBehaviour {
         HitColliderActive();
         HitCollider[18].SetActive(true);
         HitBox = HitCollider[18].GetComponent<BoxCollider>();
-
         SetBoxState(
             HitBox,
-            new Vector3(0, 1f, 0),
-            new Vector3(0.25f, 1.3f, 0.5f));
+            new Vector3(0, 1f, -0.05f),
+            new Vector3(0.25f, 1.3f, 0.45f));
 
         AtkColliderActive();
     }
@@ -483,22 +650,30 @@ public class ColliderEvent : MonoBehaviour {
     {
         HitCollider[19].SetActive(true);
 
+        HitBox = HitCollider[18].GetComponent<BoxCollider>();
         SetBoxState(
             HitBox,
-            new Vector3(0, 1.05f, 0),
-            new Vector3(0.25f, 1.15f, 0.6f));
+            new Vector3(0, 1.05f, -0.05f),
+            new Vector3(0.25f, 1.15f, 0.45f));
 
         HitBox = HitCollider[19].GetComponent<BoxCollider>();
         SetBoxState(
             HitBox,
-            new Vector3(0, 0.7f, 0.3f),
-            new Vector3(0.25f, 0.35f, 0.6f));
+            new Vector3(0, 0.5f, 0.25f),
+            new Vector3(0.25f, 0.35f, 0.35f));
     }
     void JumpKickCollider3()
     {
+        HitBox = HitCollider[18].GetComponent<BoxCollider>();
         SetBoxState(
             HitBox,
-            new Vector3(0, 0.6f, 0.3f),
+            new Vector3(0, 1.05f, -0.05f),
+            new Vector3(0.25f, 1.1f, 0.45f));
+
+        HitBox = HitCollider[19].GetComponent<BoxCollider>();
+        SetBoxState(
+            HitBox,
+            new Vector3(0, 0.5f, 0.3f),
             new Vector3(0.25f, 0.5f, 0.5f));
 
         AtkCollider[11].SetActive(true);
@@ -507,6 +682,15 @@ public class ColliderEvent : MonoBehaviour {
     void JumpKickCollider4()
     {
         AtkColliderActive();
+    }
+    void JumpKickCollider5()
+    {
+        HitCollider[19].SetActive(true);
+        HitBox = HitCollider[19].GetComponent<BoxCollider>();
+        SetBoxState(
+            HitBox,
+            new Vector3(0, 0.3f, 0.1f),
+            new Vector3(0.25f, 0.325f, 0.25f));
     }
 
     //--------------------------------
@@ -1531,16 +1715,6 @@ public class ColliderEvent : MonoBehaviour {
         }
     }
 
-    //押し合い判定初期化関数
-    private void PushColliderActive()
-    {
-        for (int i = 0; i < PCnum; i++)
-        {
-            //判定非動作
-            PushCollider[i].SetActive(false);
-        }
-    }
-
     //あたり判定設定関数
     private void SetBoxState(BoxCollider box, Vector3 pos, Vector3 size)
     {
@@ -1551,5 +1725,4 @@ public class ColliderEvent : MonoBehaviour {
     //変数取得
     public List<GameObject> HClid { get { return HitCollider; } }
     public List<GameObject> AClid { get { return AtkCollider; } }
-    public List<GameObject> PClid { get { return PushCollider; } }
 }

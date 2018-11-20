@@ -282,10 +282,10 @@
      <Compile Include="Assets\Script\Collider\ColliderReact.cs" />
      <Compile Include="Assets\Script\Collider\ComboScript.cs" />
      <Compile Include="Assets\Script\Collider\HikariEvent.cs" />
+     <Compile Include="Assets\Script\Collider\Player\PlayerController.cs" />
      <Compile Include="Assets\Script\Collider\TestChar.cs" />
      <Compile Include="Assets\Script\EffectManager.cs" />
      <Compile Include="Assets\Script\NumberImageRenderer.cs" />
-     <Compile Include="Assets\Script\Player\PlayerController.cs" />
      <Compile Include="Assets\Script\SampleScript.cs" />
      <Compile Include="Assets\Script\System\GameDirector.cs" />
      <Compile Include="Assets\Script\System\GetCenterPoint.cs" />

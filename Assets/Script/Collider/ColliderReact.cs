@@ -4,6 +4,30 @@ using UnityEngine;
 
 public class ColliderReact : MonoBehaviour {
 
+    //技の性能用変数
+    struct ArtsState
+    {
+        public string attri;        //技の属性
+        public float startCorr;     //初動ダメージ
+        public float comboCorr;     //コンボダメージ
+        public int atkLev;          //攻撃レベル
+        public int blockStun;       //ガードしたときに行動ができるようになるまでのフレーム
+        public int hitStun;         //技を食らったときに行動ができるようになるまでのフレーム
+    };
+
+    //CSV読み込みオブジェクト
+    [SerializeField]
+    private GameObject dir;
+    private ReadCSV csv;
+
+    //プレイヤーネーム(大文字)
+    [SerializeField]
+    private string playerName;
+
+    //技データ集
+    private Dictionary<string, ReadCSV.CharaData> artsData;
+    private const int act = 10;
+
     //あたり判定のタグ名
     private string colliderTag;
 
@@ -13,6 +37,8 @@ public class ColliderReact : MonoBehaviour {
     private GameObject collid = null;
 
     bool flag = false;
+
+    private ArtsState arts;
 
     //あたり判定に当たったら
     void OnTriggerEnter(Collider other)
@@ -38,6 +64,26 @@ public class ColliderReact : MonoBehaviour {
         colliderTag = this.gameObject.tag;
     }
 
+    // Use this for initialization
+    void Start()
+    {
+        if (colliderTag == "Attack")
+        {
+            //CSV読み込みスクリプト取得
+            csv = dir.GetComponent<ReadCSV>();
+
+            //キャラクターの技データ集を取得
+            artsData = csv.readCSVData(playerName);
+
+            //データ設定
+            Data(this.gameObject.layer - act);
+        }
+        else
+        {
+            csv = null;
+        }
+    }
+
     //衝突判定取得
     public bool hiting
     {
@@ -49,4 +95,22 @@ public class ColliderReact : MonoBehaviour {
         set { collid = value; }
         get { return collid; }
     }
+
+    private void Data(int DataID)
+    {
+        arts.attri = artsData[csv.Skills[DataID]].attri;
+        arts.startCorr = artsData[csv.Skills[DataID]].startCorrec;
+        arts.comboCorr = artsData[csv.Skills[DataID]].conboCorrec;
+        arts.atkLev = artsData[csv.Skills[DataID]].attackLevel;
+        arts.blockStun = artsData[csv.Skills[DataID]].blockStun;
+        arts.hitStun = artsData[csv.Skills[DataID]].hitStun;
+    }
+
+    //データ取得
+    public string Attri { get { return arts.attri; } }
+    public float StartCorr { get { return arts.startCorr; } }
+    public float CombCorr { get { return arts.comboCorr; } }
+    public int AtkLev { get { return arts.atkLev; } }
+    public int BlockStun { get { return arts.blockStun; } }
+    public int HitStun { get { return arts.hitStun; } }
 }

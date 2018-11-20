@@ -4,30 +4,6 @@ using UnityEngine;
 
 public class BattleDirector : MonoBehaviour {
 
-    //キャラクター用変数
-    public enum FightChar
-    {
-        CHARA_1,
-        CHARA_2,
-
-        CHARA_NUM,
-    };
-
-    //アクション用変数
-    public enum AtkVal
-    {
-        PUNCH,
-        KICK,
-        PUNCH_SIT,
-        KICK_SIT,
-        PUNCH_JUMP,
-        KICK_JUMP,
-        HADOUKEN,
-        SYORYUKEN,
-
-        ATK_NUM,
-    };
-
     //アクションステータス
     private struct FS
     {
@@ -49,36 +25,47 @@ public class BattleDirector : MonoBehaviour {
         public int playNumber;
     };
 
+
     //キャラクターオブジェクト
     [SerializeField]
     private List<GameObject> character;
     private const int act = 10;
 
+    //プレイヤーネーム(大文字)
+    [SerializeField]
+    private string player1Name,player2Name;
+
     //キャラクタースクリプト
     private ColliderEvent[] CEvent = new ColliderEvent[2];
+    private ReadCSV csv;
 
     //アクションステータス
-    private FS[,] f = new FS[(int)FightChar.CHARA_NUM, (int)AtkVal.ATK_NUM];
-    //アクションステータス
-    private int[,] atk = new int[(int)FightChar.CHARA_NUM, (int)AtkVal.ATK_NUM];
+    private FS[,] f = new FS[(int)ValueScript.FightChar.CHARA_NUM, (int)ValueScript.AtkVal.ATK_NUM];
     //キャラクターステータス
-    private FightPlayer[] fp = new FightPlayer[(int)FightChar.CHARA_NUM];
+    private FightPlayer[] fp = new FightPlayer[(int)ValueScript.FightChar.CHARA_NUM];
+
+    //技データ集
+    private Dictionary<string, ReadCSV.CharaData>[] artsData = new Dictionary<string, ReadCSV.CharaData>[2];
 
     // Use this for initialization
     void Start ()
     {
-        RevolvingStake(atk);
-
         //スクリプト取得
         //Aoi
-        CEvent[0] = character[(int)FightChar.CHARA_1].GetComponent<ColliderEvent>();
+        CEvent[0] = character[(int)ValueScript.FightChar.CHARA_1].GetComponent<ColliderEvent>();
         //Hikari
-        CEvent[1] = character[(int)FightChar.CHARA_2].GetComponent<ColliderEvent>();
+        CEvent[1] = character[(int)ValueScript.FightChar.CHARA_2].GetComponent<ColliderEvent>();
+
+        //CSV読み込みスクリプト取得
+        csv = GetComponent<ReadCSV>();
+        //キャラクターの技データ集を取得
+        artsData[(int)ValueScript.FightChar.CHARA_1] = csv.readCSVData(player1Name);
+        artsData[(int)ValueScript.FightChar.CHARA_2] = csv.readCSVData(player2Name);
 
         //配列を使うために初期化を行う
-        for(int i=0;i<(int)FightChar.CHARA_NUM;i++)
+        for (int i=0;i<(int)ValueScript.FightChar.CHARA_NUM;i++)
         {
-            for(int j=0;j<(int)AtkVal.ATK_NUM;j++)
+            for(int j=0;j<(int)ValueScript.AtkVal.ATK_NUM;j++)
             {
                 f[i, j].Reset();
             }
@@ -86,47 +73,37 @@ public class BattleDirector : MonoBehaviour {
 
         //技ごとの攻撃判定設定
         Burger();
-        for (int i=0;i<(int)FightChar.CHARA_NUM;i++)
-        {
-            for(int j=0;j<(int)AtkVal.ATK_NUM;j++)
-            {
-                //威力設定
-                f[i, j].ac = atk[i, j];
-            }
-        }
+        RevolvingStake();
 
         //キャラクターセレクトからキャラクターを取得
-        fp[(int)FightChar.CHARA_1].fightCharacter = character[(int)FightChar.CHARA_1];
-        fp[(int)FightChar.CHARA_1].playNumber = (int)FightChar.CHARA_1;
-        fp[(int)FightChar.CHARA_2].fightCharacter = character[(int)FightChar.CHARA_2];
-        fp[(int)FightChar.CHARA_2].playNumber = (int)FightChar.CHARA_2; 
+        fp[(int)ValueScript.FightChar.CHARA_1].fightCharacter = character[(int)ValueScript.FightChar.CHARA_1];
+        fp[(int)ValueScript.FightChar.CHARA_1].playNumber = (int)ValueScript.FightChar.CHARA_1;
+        fp[(int)ValueScript.FightChar.CHARA_2].fightCharacter = character[(int)ValueScript.FightChar.CHARA_2];
+        fp[(int)ValueScript.FightChar.CHARA_2].playNumber = (int)ValueScript.FightChar.CHARA_2;
     }
 
-    //攻撃を設定する関数
-    private void RevolvingStake(int[,] at)
+    //技の威力を設定する関数
+    private void RevolvingStake()
     {
-        for (int i = 0; i < (int)FightChar.CHARA_NUM; i++)
+        for (int i = 0; i < (int)ValueScript.FightChar.CHARA_NUM; i++)
         {
-            at[i, (int)AtkVal.PUNCH] = 500;
-            at[i, (int)AtkVal.KICK] = 1000;
-            at[i, (int)AtkVal.PUNCH_SIT] = 800;
-            at[i, (int)AtkVal.KICK_SIT] = 1200;
-            at[i, (int)AtkVal.PUNCH_JUMP] = 700;
-            at[i, (int)AtkVal.KICK_JUMP] = 900;
-            at[i, (int)AtkVal.HADOUKEN] = 1100;
-            at[i, (int)AtkVal.SYORYUKEN] = 1500;
+            for (int j = 0; j < (int)ValueScript.AtkVal.ATK_NUM; j++)
+            {
+                //威力設定
+                f[i, j].ac = artsData[i][csv.Skills[j]].damage;
+                Debug.Log(artsData[i][csv.Skills[j]].damage);
+            }
         }
     }
 
     //あたり判定の判別変数設定関数
     private void Burger()
     {
-        //実験
         //キャラの数
-        for (int i = 0; i < (int)FightChar.CHARA_NUM; i++)
+        for (int i = 0; i < (int)ValueScript.FightChar.CHARA_NUM; i++)
         {
             //攻撃技の数
-            for (int j = 0; j < (int)AtkVal.ATK_NUM; j++)
+            for (int j = 0; j < (int)ValueScript.AtkVal.ATK_NUM; j++)
             {
                 //全攻撃判定の数
                 for (int k = 0; k < CEvent[i].AClid.Count; k++)
@@ -141,9 +118,14 @@ public class BattleDirector : MonoBehaviour {
         }
     }
 
+    //攻撃判定の取得
     public GameObject Fcollider(int ft, int at,int num) { return f[ft, at].co[num]; }
+    //技威力の取得
     public int Fattack(int ft, int at) { return f[ft, at].ac; }
+    //攻撃判定数の取得
     public int CCount(int ft, int at) { return f[ft, at].co.Count; }
+    //キャラクターの取得
     public GameObject Fighter(int ft) { return fp[ft].fightCharacter; }
+    //キャラクターIDの取得
     public int FNumber(int ft) { return fp[ft].playNumber; }
 }
