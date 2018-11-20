@@ -57,10 +57,10 @@ public class TestChar : MonoBehaviour {
         //キャラクター番号から相手キャラクターを判別
         switch (numID)
         {
-            case (int)BattleDirector.FightChar.CHARA_1:
+            case (int)ValueScript.FightChar.CHARA_1:
                 hitJudg(1);
                 break;
-            case (int)BattleDirector.FightChar.CHARA_2:
+            case (int)ValueScript.FightChar.CHARA_2:
                 hitJudg(0);
                 break;
             default:
@@ -79,7 +79,7 @@ public class TestChar : MonoBehaviour {
             if (react[i].hiting)
             {
                 //技の数
-                for (int j = 0; j < (int)BattleDirector.AtkVal.ATK_NUM; j++)
+                for (int j = 0; j < (int)ValueScript.AtkVal.ATK_NUM; j++)
                 {
                     //技の攻撃判定の数
                     for (int k = 0; k < BtDir.CCount(0, j); k++)
@@ -119,12 +119,12 @@ public class TestChar : MonoBehaviour {
         if (tagname == "P1")
         {
             //操作番号決定
-            numID = (int)BattleDirector.FightChar.CHARA_1;
+            numID = (int)ValueScript.FightChar.CHARA_1;
         }
         else if (tagname == "P2")
         {
             //操作番号決定
-            numID = (int)BattleDirector.FightChar.CHARA_2;
+            numID = (int)ValueScript.FightChar.CHARA_2;
         }
     }
 }
