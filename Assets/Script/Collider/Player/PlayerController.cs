@@ -7,9 +7,11 @@ using System;
 
 public class PlayerController : MonoBehaviour
 {
-
-    //スピード
-    public float speed = 0.1f;
+    float speed = 0;
+    //歩くスピード
+    public float walkSpeed = 0.03f;
+    //走るスピード
+    public float dashSpeed = 0.08f;
     //重力
     public float gravity = 0.008f;
     //状態
@@ -32,6 +34,10 @@ public class PlayerController : MonoBehaviour
     int damageCount = 0;
     int damageTime = 0;
 
+    //コントローラーの名前
+    [SerializeField]
+    public string controllerName = "";
+
     //向き
     int direction = 1;
     //相手
@@ -52,8 +58,9 @@ public class PlayerController : MonoBehaviour
     //効果音
     private AudioSource audio;
 
-    public AudioClip Ldmg;
-    public AudioClip Mdmg;
+    public AudioClip largeDmg;
+    public AudioClip midiumDmg;
+    public AudioClip lowDmg;
 
 
     //public Text text;
@@ -110,6 +117,14 @@ public class PlayerController : MonoBehaviour
 
         inputDKey = 5;
         inputDKeyOld = inputDKey;
+
+        if(controller > 0)controllerName = Input.GetJoystickNames()[controller - 1];
+
+        Debug.Log(Input.GetJoystickNames()[0]);
+        Debug.Log(Input.GetJoystickNames()[1]);
+
+
+
 
         if (isModel)
         {
@@ -315,6 +330,18 @@ public class PlayerController : MonoBehaviour
             punchKey = GamePad.GetButtonDown(GamePad.Button.A, GamePad.Index.One);
             //キック
             kickKey = GamePad.GetButtonDown(GamePad.Button.X, GamePad.Index.One);
+
+            if (controllerName == "Arcade Stick (MadCatz FightStick Neo)")
+            {
+                // 上・下
+                y = GamePad.GetAxis(GamePad.Axis.LeftStick, GamePad.Index.One).y * 1 * -1;
+                y += GamePad.GetAxis(GamePad.Axis.Dpad, GamePad.Index.One).y * 1000 * -1;
+
+                //パンチ
+                punchKey = GamePad.GetButtonDown(GamePad.Button.X, GamePad.Index.One);
+                //キック
+                kickKey = GamePad.GetButtonDown(GamePad.Button.Y, GamePad.Index.One);
+            }
         }
         else if (controller == 2)
         {
@@ -330,6 +357,18 @@ public class PlayerController : MonoBehaviour
             punchKey = GamePad.GetButtonDown(GamePad.Button.A, GamePad.Index.Two);
             //キック
             kickKey = GamePad.GetButtonDown(GamePad.Button.X, GamePad.Index.Two);
+
+            if (controllerName == "Arcade Stick (MadCatz FightStick Neo)")
+            {
+                // 上・下
+                y = GamePad.GetAxis(GamePad.Axis.LeftStick, GamePad.Index.Two).y * 1 * -1;
+                y += GamePad.GetAxis(GamePad.Axis.Dpad, GamePad.Index.Two).y * 1000 * -1;
+
+                //パンチ
+                punchKey = GamePad.GetButtonDown(GamePad.Button.X, GamePad.Index.Two);
+                //キック
+                kickKey = GamePad.GetButtonDown(GamePad.Button.Y, GamePad.Index.Two);
+            }
         }
         else
         {
@@ -394,7 +433,7 @@ public class PlayerController : MonoBehaviour
         gameObject.transform.position = new Vector3(gameObject.transform.position.x, 0, 0);
 
         int move = 0;
-        speed = 0.03f;
+        speed = walkSpeed;
 
         //左右移動する
         if (direction == 1)
@@ -419,12 +458,7 @@ public class PlayerController : MonoBehaviour
         {
             state = "Sit";
         }
-        //上が押されたらジャンプ
-        if (inputDKey >= 7)
-        {
-            nowGravity = 0;
-            state = "Jump";
-        }
+
 
 
         // 移動する向きを求める
@@ -438,6 +472,14 @@ public class PlayerController : MonoBehaviour
         animator.SetBool("Punch", false);
         animator.SetBool("Kick", false);
         animator.SetBool("Dash", false);
+
+        //上が押されたらジャンプ
+        if (inputDKey >= 7)
+        {
+            nowGravity = 0;
+            state = "Jump";
+            //animator.SetBool("Jump", true);
+        }
 
         //立ち状態時にZを押すとパンチ
         if (punchKey)
@@ -525,6 +567,7 @@ public class PlayerController : MonoBehaviour
     /// </summary>
     void Jump()
     {
+        animator.SetBool("Jump", true);
         jumpCount++;
     }
 
@@ -907,7 +950,7 @@ public class PlayerController : MonoBehaviour
         gameObject.transform.position = new Vector3(gameObject.transform.position.x, 0, 0);
 
         int move = 0;
-        speed = 0.08f;
+        speed = dashSpeed;
 
         //左右移動する
         if (direction == 1)
@@ -1076,7 +1119,14 @@ public class PlayerController : MonoBehaviour
             damageDir = direction * -1;
             parent.GetComponent<PlayerController>().damageTime = dmg / 500 + 15;
             parent.GetComponent<PlayerController>().damageDir = direction * -1;
-            audio.PlayOneShot(Ldmg);
+
+            AudioClip sound;
+
+            sound = lowDmg;
+            if (dmg > 700) sound = midiumDmg;
+            if (dmg > 1000) sound = largeDmg;
+
+            audio.PlayOneShot(sound);
         }
 
     }

@@ -473,6 +473,8 @@
     <Compile Include="Assets\Script\EffectManager.cs" />
     <Compile Include="Assets\Script\NumberImageRenderer.cs" />
     <Compile Include="Assets\Script\SampleScript.cs" />
+    <Compile Include="Assets\Script\System\CSVRelation\ReadCSV.cs" />
+    <Compile Include="Assets\Script\System\CSVRelation\TestReadCSV.cs" />
     <Compile Include="Assets\Script\System\GameDirector.cs" />
     <Compile Include="Assets\Script\System\GetCenterPoint.cs" />
     <Compile Include="Assets\Script\System\GetGameScript.cs" />
