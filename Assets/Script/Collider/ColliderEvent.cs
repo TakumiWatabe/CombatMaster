@@ -23,6 +23,9 @@ public class ColliderEvent : MonoBehaviour {
     int HCnum;
     int ACnum;
 
+    List<BoxCollider> HitBoxs = new List<BoxCollider>();
+    List<BoxCollider> AtkBoxs = new List<BoxCollider>();
+
     private const float CSizeZ = 0.25f;
 
     // Use this for initialization
@@ -31,7 +34,18 @@ public class ColliderEvent : MonoBehaviour {
         //あたり判定の数
         HCnum = HitCollider.Count;
         ACnum = AtkCollider.Count;
-	}
+
+        //あたり判定のコライダーを格納
+        for (int i = 0; i < HCnum; i++)
+        {
+            HitBoxs.Add(HitCollider[i].GetComponent<BoxCollider>());
+        }
+
+        for (int i = 0; i < ACnum; i++)
+        {
+            AtkBoxs.Add(AtkCollider[i].GetComponent<BoxCollider>());
+        }
+    }
 
     //-------------------------------------------------------------------------------------------------------------------
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -1725,4 +1739,6 @@ public class ColliderEvent : MonoBehaviour {
     //変数取得
     public List<GameObject> HClid { get { return HitCollider; } }
     public List<GameObject> AClid { get { return AtkCollider; } }
+    public List<BoxCollider> GetHitBoxs { get { return HitBoxs; } }
+    public List<BoxCollider> GetAtkBoxs { get { return AtkBoxs; } }
 }

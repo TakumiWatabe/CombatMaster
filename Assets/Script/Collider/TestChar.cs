@@ -15,6 +15,15 @@ public class TestChar : MonoBehaviour {
     //HPディレクター
     HPDirectorScript HPDir;
 
+    //各種エフェクト
+    [SerializeField]
+    GameObject effectStr;
+    [SerializeField]
+    GameObject effectMid;
+    [SerializeField]
+    GameObject effectWeak;
+
+
     //あたり判定群
     List<GameObject> col = new List<GameObject>();
     List<ColliderReact> react = new List<ColliderReact>();
@@ -93,6 +102,31 @@ public class TestChar : MonoBehaviour {
                             //判定した攻撃の威力分ダメージを受ける
                             HPDir.hitDmage(BtDir.Fattack(0, j));
                             react[i].hiting = false;
+
+                            Vector3 position = new Vector3(this.transform.parent.transform.position.x, this.transform.parent.transform.position.y, this.transform.parent.transform.position.z);
+
+                            Vector3 body = GetComponent<ColliderEvent>().GetHitBoxs[i].center + this.transform.parent.transform.position;
+                            Vector3 attack = new Vector3(0, 0, 0);
+                            for (int l = 0; l < GetComponent<ColliderEvent>().AClid.Count; l++)
+                            {
+                                if (react[i].CObj.name == GetComponent<ColliderEvent>().GetAtkBoxs[l].name)
+                                {
+                                    Debug.Log(GetComponent<ColliderEvent>().GetAtkBoxs[l].name);
+                                    attack = GetComponent<ColliderEvent>().GetAtkBoxs[l].center + this.transform.parent.transform.position;
+                                }
+
+                            }
+                            //攻撃判定の場所
+                            Vector3 pos1 = BtDir.Fcollider(charNum, j, k).GetComponent<Collider>().ClosestPointOnBounds(position);
+
+                            //エフェクト発生場所
+                            Vector3 effectPos = (body + attack) / 2;
+
+                            //エフェクト発生
+                            if (BtDir.Fattack(0, j) > 1000) Instantiate(effectStr, effectPos, Quaternion.identity);
+                            else if (BtDir.Fattack(0, j) > 700) Instantiate(effectMid, effectPos, Quaternion.identity);
+                            else if (BtDir.Fattack(0, j) <= 700) Instantiate(effectWeak, effectPos, Quaternion.identity);
+
                             GetComponent<PlayerController>().HitDamage(BtDir.Fattack(0, j));
                         }
                     }

@@ -20,7 +20,7 @@ MonoBehaviour:
   m_ShowMode: 4
   m_Title: 
   m_RootView: {fileID: 3}
-  m_MinSize: {x: 950, y: 371}
+  m_MinSize: {x: 950, y: 392}
   m_MaxSize: {x: 10000, y: 10000}
 --- !u!114 &2
 MonoBehaviour:
@@ -68,7 +68,7 @@ MonoBehaviour:
     y: 0
     width: 1280
     height: 637
-  m_MinSize: {x: 950, y: 371}
+  m_MinSize: {x: 950, y: 392}
   m_MaxSize: {x: 10000, y: 10000}
 --- !u!114 &4
 MonoBehaviour:
@@ -133,10 +133,10 @@ MonoBehaviour:
     y: 30
     width: 1280
     height: 587
-  m_MinSize: {x: 915, y: 321}
+  m_MinSize: {x: 917, y: 342}
   m_MaxSize: {x: 22012, y: 10021}
   vertical: 0
-  controlID: 28
+  controlID: 139
 --- !u!114 &7
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -157,10 +157,10 @@ MonoBehaviour:
     y: 0
     width: 522
     height: 587
-  m_MinSize: {x: 200, y: 321}
-  m_MaxSize: {x: 4002, y: 8021}
+  m_MinSize: {x: 202, y: 342}
+  m_MaxSize: {x: 4002, y: 8042}
   vertical: 1
-  controlID: 29
+  controlID: 33
 --- !u!114 &8
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -447,14 +447,14 @@ MonoBehaviour:
     m_KeySerializationHelper:
     - {fileID: 1107903308968630596, guid: 18a87bcbeed66d7428defb8fb23e7717, type: 2}
     m_ValueSerializationHelper:
-    - e00: 0.3587306
+    - e00: 0.17634855
       e01: 0
       e02: 0
-      e03: 25.363998
+      e03: 84.83402
       e10: 0
-      e11: 0.3587306
+      e11: 0.17634855
       e12: 0
-      e13: 43.79134
+      e13: 93.98755
       e20: 0
       e21: 0
       e22: 1
@@ -505,23 +505,23 @@ MonoBehaviour:
   m_PersistentViewDataDictionary: {fileID: 0}
   m_TreeViewState:
     scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: 143f0000
+    m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 084bfaffc079faff468efbffb890fbff34a0fbffc6fdfbfffeebfcff44edfcffb8a9ffff2ebeffff9ec3ffff54d1ffff00000000
+    m_ExpandedIDs: 28f1ffff00000000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
-      m_Name: TestPlayer1
-      m_OriginalName: TestPlayer1
+      m_Name: 
+      m_OriginalName: 
       m_EditFieldRect:
         serializedVersion: 2
         x: 0
         y: 0
         width: 0
         height: 0
-      m_UserData: -22064
+      m_UserData: 0
       m_IsWaitingForDelay: 0
       m_IsRenaming: 0
-      m_OriginalEventType: 0
+      m_OriginalEventType: 11
       m_IsRenamingFilename: 0
       m_ClientGUIView: {fileID: 10}
     m_SearchString: 
@@ -569,7 +569,7 @@ MonoBehaviour:
     m_ShowAllHits: 0
     m_SearchArea: 0
     m_Folders:
-    - Assets/Prefab/Effect
+    - Assets/Prefab/Model
   m_ViewMode: 0
   m_StartGridSize: 64
   m_LastFolders:
@@ -581,7 +581,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 94380000
     m_LastClickedID: 14484
-    m_ExpandedIDs: 000000004e3a0000384200007e420000f2420000084300000a430000864300000e4400002e4400003844000040440000aa440000ac4400008c450000a4450000fc4500002847000034470000dc470000de470000e0470000e2470000e4470000e6470000e8470000ea470000ec470000
+    m_ExpandedIDs: 00000000d23100001c3200001e320000443200009c320000bc320000be320000a63300005c34000082340000d8340000e03400005c3500005e3500006a36000082360000e6360000ec360000ac3700000e380000483800005c380000f63d0000f83d0000fa3d0000fc3d0000fe3d0000003e0000023e0000043e0000063e0000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -606,24 +606,24 @@ MonoBehaviour:
       m_Icon: {fileID: 0}
       m_ResourceFile: 
   m_AssetTreeState:
-    scrollPos: {x: 0, y: 1440}
+    scrollPos: {x: 0, y: 1200}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 00000000384200007e42000080420000a4420000f2420000084300000a430000864300000e4400002e4400003844000040440000aa440000ac4400008c450000a4450000fc45000002460000a0460000f84600002847000034470000dc470000de470000e0470000e2470000e4470000e6470000e8470000ea470000ec470000
+    m_ExpandedIDs: 00000000e82f0000d23100001c3200001e320000443200009c320000bc320000be320000a63300005c34000082340000d8340000e03400005c3500005e3500006a36000082360000e6360000ec360000ac3700000e380000483800005c380000f63d0000f83d0000fa3d0000fc3d0000fe3d0000003e0000023e0000043e0000063e0000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
-      m_Name: Effect
-      m_OriginalName: Effect
+      m_Name: 
+      m_OriginalName: 
       m_EditFieldRect:
         serializedVersion: 2
         x: 0
         y: 0
         width: 0
         height: 0
-      m_UserData: 17804
+      m_UserData: 0
       m_IsWaitingForDelay: 0
       m_IsRenaming: 0
-      m_OriginalEventType: 0
+      m_OriginalEventType: 11
       m_IsRenamingFilename: 1
       m_ClientGUIView: {fileID: 10}
     m_SearchString: 
@@ -691,7 +691,7 @@ MonoBehaviour:
     width: 288
     height: 566
   m_PersistentViewDataDictionary: {fileID: 0}
-  m_ScrollPosition: {x: 0, y: 669.9551}
+  m_ScrollPosition: {x: 0, y: 0}
   m_InspectorMode: 0
   m_PreviewResizer:
     m_CachedPref: 121

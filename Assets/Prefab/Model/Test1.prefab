@@ -4386,6 +4386,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc575b4f4da87554681ac773b2b50274, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  effectStr: {fileID: 1680862758961744, guid: c2bf0a45094d9104e99b781a60a29764, type: 2}
+  effectMid: {fileID: 1289611684772068, guid: fc854581da1f3304894bfa4569d0f5d0, type: 2}
+  effectWeak: {fileID: 1848129787870010, guid: b553b46c70ade4141b6057ee00937929, type: 2}
   time: 12
 --- !u!114 &114874440859785866
 MonoBehaviour:
