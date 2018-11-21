@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/Scene/AkitaScene.unity
+- path: Assets/Scene/AITestScene.unity
   isLoaded: 1
   isActive: 1
