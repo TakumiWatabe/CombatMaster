@@ -8,13 +8,13 @@ public class TimerScript : MonoBehaviour
 
     private float gameTimer = 99;
     private float timer = 0;
-    private Text text;
+    //private Text text;
 
     bool stopFlag = false;
 	// Use this for initialization
 	void Start ()
     {
-        text = GetComponent<Text>();
+        //text = GetComponent<Text>();
 	}
 	
 	// Update is called once per frame
@@ -33,7 +33,7 @@ public class TimerScript : MonoBehaviour
                 gameTimer -= Time.deltaTime;
             }
         }
-        text.text = gameTimer.ToString("F0");
+        //text.text = gameTimer.ToString("F0");
 	}
     // 制限時間を取得
     public float GetGameTimer()

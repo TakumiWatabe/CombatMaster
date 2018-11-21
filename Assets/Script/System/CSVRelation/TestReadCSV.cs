@@ -4,21 +4,40 @@ using UnityEngine;
 
 public class TestReadCSV : MonoBehaviour {
 
+    //CSV読み込みオブジェクト
+    [SerializeField]
+    private GameObject dir;
     private ReadCSV rc;
-    private Dictionary<string, ReadCSV.CharaData> aoiData;
+
+    //プレイヤーネーム(大文字)
+    [SerializeField]
+    private string playerName;
+
+    //技データ集
+    private Dictionary<string, ReadCSV.CharaData> artsData;
+
 
 	// Use this for initialization
-	void Start () {
-        rc = GetComponent<ReadCSV>();
+	void Start ()
+    {
+        //CSV読み込みスクリプト取得
+        rc = dir.GetComponent<ReadCSV>();
 
-        aoiData = rc.readCSVData("AOI");
+        //キャラクターの技データ集を取得
+        artsData = rc.readCSVData(playerName);
 
-        Debug.Log(aoiData.Count);
-        rc.WriteCharaDatas(aoiData, aoiData.Count);
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+        ////技データ集表示
+        //rc.WriteCharaDatas(artsData, artsData.Count);
+
+        for(int i=0;i<artsData.Count;i++)
+        {
+            Debug.Log(rc.Skills[i] + " : ダメージ　 : " + artsData[rc.Skills[i]].damage);
+        }
+    }
+
+    // Update is called once per frame
+    void Update ()
+    {
+        //Debug.Log(artsData["5A"].skill + " : ダメージ　 : " + artsData["5A"].damage);
+    }
 }

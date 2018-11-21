@@ -6,7 +6,8 @@ using System.IO;
 
 public class ReadCSV : MonoBehaviour
 {
-    public string charaName;
+    //技名変数
+    private List<string> skillName = new List<string>();
 
     public struct CharaData
     {
@@ -70,6 +71,8 @@ public class ReadCSV : MonoBehaviour
             cd.hitStun = int.Parse(splitedData[11]);
 
             cdata.Add(cd.skill,cd);
+
+            skillName.Add(cd.skill);
         }
 
         return cdata;
@@ -94,4 +97,6 @@ public class ReadCSV : MonoBehaviour
             Debug.Log(array[key].skill + " : ヒット硬直 : " + array[key].hitStun);
         }
     }
+
+    public List<string> Skills { get{ return skillName; } }
 }

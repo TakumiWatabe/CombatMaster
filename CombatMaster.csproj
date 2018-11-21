@@ -468,7 +468,9 @@
     <Compile Include="Assets\Script\Collider\ColliderReact.cs" />
     <Compile Include="Assets\Script\Collider\ComboScript.cs" />
     <Compile Include="Assets\Script\Collider\HikariEvent.cs" />
+    <Compile Include="Assets\Script\Collider\OverlapScript.cs" />
     <Compile Include="Assets\Script\Collider\Player\PlayerController.cs" />
+    <Compile Include="Assets\Script\Collider\Player\PlayerControllerTest.cs" />
     <Compile Include="Assets\Script\Collider\TestChar.cs" />
     <Compile Include="Assets\Script\EffectManager.cs" />
     <Compile Include="Assets\Script\NumberImageRenderer.cs" />
@@ -479,9 +481,12 @@
     <Compile Include="Assets\Script\System\GetCenterPoint.cs" />
     <Compile Include="Assets\Script\System\GetGameScript.cs" />
     <Compile Include="Assets\Script\System\HPDirectorScript.cs" />
+    <Compile Include="Assets\Script\System\Instance\InstanceScript.cs" />
     <Compile Include="Assets\Script\System\PauseScript.cs" />
     <Compile Include="Assets\Script\System\SceneManagement.cs" />
+    <Compile Include="Assets\Script\System\TimerImageScript.cs" />
     <Compile Include="Assets\Script\System\TimerScript.cs" />
+    <Compile Include="Assets\Script\System\ValueScript.cs" />
     <Compile Include="Assets\Script\UI\AlphaScript.cs" />
     <Compile Include="Assets\Script\UI\FadeScript.cs" />
     <Compile Include="Assets\Script\UI\ItweenCamera.cs" />
@@ -507,6 +512,7 @@
     <None Include="Assets\Model\VRM\UniGLTF\Resources\Shaders\Dxt5Decoder.shader" />
     <None Include="Assets\Model\VRM\UniGLTF\Resources\Shaders\StandardVColor.shader" />
     <None Include="Assets\Model\VRM\UniGLTF\UniUnlit\Resources\UniUnlit.shader" />
+    <None Include="Assets\Plugins\DynamicBone\ReadMe.txt" />
     <None Include="Assets\Plugins\Pixelplacement\iTween\ReadMe!\ReadMe!.txt" />
     <None Include="Assets\Prefab\Effect\Hologram\Shader\Hologram.shader" />
     <None Include="Assets\Prefab\Effect\PostProcessing\Editor Resources\Monitors\HistogramCompute.compute" />
