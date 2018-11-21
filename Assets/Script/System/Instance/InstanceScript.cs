@@ -15,10 +15,11 @@ public class InstanceScript : MonoBehaviour {
     private List<GameObject> charcter;
 
     private InstantFighter[] fight = new InstantFighter[2];
-    private string[] names = new string[2]
+    private string[] names = new string[3]
     {
         "Aoi" ,
-        "Aoi" 
+        "Aoi" ,
+        "none"
     };
 
 
@@ -39,12 +40,17 @@ public class InstanceScript : MonoBehaviour {
                 //    fight[i].fighter = charcter[1];
                 //    fight[i].playerTag = i + 1;
                 //    break;
-                //default:
-                //    break;
+                default:
+                    fight[i].fighter = null;
+                    fight[i].playerTag = 0;
+                    break;
             }
 
-            fight[i].fighter.tag = "P" + fight[i].playerTag.ToString();
-            fight[i].fighter.transform.GetChild(0).tag = "P" + fight[i].playerTag.ToString();
+            if (fight[i].fighter != null)
+            {
+                fight[i].fighter.tag = "P" + fight[i].playerTag.ToString();
+                fight[i].fighter.transform.GetChild(0).tag = "P" + fight[i].playerTag.ToString();
+            }
         }
     }
 	

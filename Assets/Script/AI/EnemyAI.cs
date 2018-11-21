@@ -57,7 +57,7 @@ public class EnemyAI : MonoBehaviour {
     void Start () {
         pc = gameObject.GetComponent<PlayerController>();
         cpc = gameObject.transform.GetChild(0).GetComponent<PlayerController>();
-        enemy = pc.enemy;
+        enemy = pc.fightEnemy;
         pc.ControllerName = "AI";
         cpc.ControllerName = "AI";
         animator = GetComponent<Animator>();
@@ -67,7 +67,7 @@ public class EnemyAI : MonoBehaviour {
     public void Initialize()
     {
         pc = gameObject.GetComponent<PlayerController>();
-        enemy = pc.enemy;
+        enemy = pc.fightEnemy;
         pc.ControllerName = "AI";
         //animator = GetComponent<Animator>();
     }

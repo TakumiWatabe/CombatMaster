@@ -23,7 +23,7 @@ public class PlayerController : MonoBehaviour
     //入力履歴の数
     public int numInputHistory = 10;
     //コントローラー番号
-    public int controller = 0;
+    private int controller = 0;
     //ダメージ
     public int damage = 0;
     //ダメージ受けたときに下がる距離
@@ -41,7 +41,7 @@ public class PlayerController : MonoBehaviour
     //向き
     int direction = 1;
     //相手
-    public GameObject enemy;
+    private GameObject enemy;
     //相手スクリプト
     PlayerController enemyScript;
 
@@ -93,10 +93,36 @@ public class PlayerController : MonoBehaviour
 
     GameObject parent;
 
+    //キャラクター生成オブジェクト
+    private GameObject contl;
+    private InstanceScript InScript;
+
+    void Awake()
+    {
+        contl = GameObject.Find("FighterComtrol");
+        InScript = contl.GetComponent<InstanceScript>();
+    }
+
     // Use this for initialization
     void Start()
     {
+        //キャラクター設定
+        switch (this.gameObject.tag)
+        {
+            case "P1":
+                enemy = InScript.Fighter(1);
+                controller = 1;
+                break;
+            case "P2":
+                enemy = InScript.Fighter(0);
+                controller = 2;
+                this.transform.position = new Vector3(1, this.transform.position.y, this.transform.position.z);
+                break;
+            default:
+                break;
+        }
 
+        Debug.Log(enemy.tag);
         enemyScript = enemy.GetComponent<PlayerController>();
 
 
@@ -1205,4 +1231,6 @@ public class PlayerController : MonoBehaviour
             direction = value;
         }
     }
+
+    public GameObject fightEnemy{get{ return enemy; }    }
 }
