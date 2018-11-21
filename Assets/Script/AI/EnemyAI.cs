@@ -15,6 +15,7 @@ public class EnemyAI : MonoBehaviour {
     private bool isGap = false;     //後隙
     private bool isJump = false;
     private int elapsedTime = 0;
+    private Animator animator;
 
     [SerializeField,Header("移動系行動の判定間隔")]
     private int judgTime = 20;
@@ -49,17 +50,34 @@ public class EnemyAI : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-		//enemy = GameObject.Find("");
 	}
-	
-	// Update is called once per frame
-	void Update () {
+
+    public void Initialize()
+    {
+        //enemy = GameObject.Find("");
+
+        //gameObject.GetComponent<PlayerController>().SetController("AI");
+        //animator = GetComponent<Animator>();
+    }
+
+    // Update is called once per frame
+    void Update () {
         //相手との距離を計算
         enemyDis = gameObject.transform.position.x - enemy.transform.position.x;
         if (enemyDis < 0.0f)
             enemyDis *= -1.0f;
 
         elapsedTime++;
+
+        //ガードモーション中は動かない
+        if(animator.GetBool("Guard"))
+        {
+            isRigor = true;
+        }
+        else
+        {
+            isRigor = false;
+        }
 
         if(isRigor)
         {

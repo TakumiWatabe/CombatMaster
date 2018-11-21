@@ -143,7 +143,12 @@ public class PlayerController : MonoBehaviour
         //gameObject.transform.position = new Vector3(gameObject.transform.position.x + speed, 0, 0);
 
         SetDirection();
-        InputKey();
+
+        //コントローラーがAIじゃないなら入力を検知する
+        if (controllerName != "AI")
+        {
+            InputKey();
+        }
 
         switch (state)
         {
@@ -1127,5 +1132,25 @@ public class PlayerController : MonoBehaviour
             audio.PlayOneShot(sound);
         }
 
+    }
+
+    public void SetInputDKey(int dir)
+    {
+        inputDKey = dir;
+    }
+
+    public void SetPunchKey(bool b)
+    {
+        punchKey = b;
+    }
+
+    public void SetKickKey(bool b)
+    {
+        kickKey = b;
+    }
+
+    public void SetControllerName(string name)
+    {
+        controllerName = name;
     }
 }
