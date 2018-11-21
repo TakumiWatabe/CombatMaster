@@ -101,11 +101,11 @@ public class PlayerControllerTest : MonoBehaviour {
         {
             case "P1":
                 enemy = InScript.Fighter(1);
-                controller = 2;
+                controller = 1;
                 break;
             case "P2":
                 enemy = InScript.Fighter(0);
-                controller = 0;
+                controller = 2;
                 this.transform.position = new Vector3(1, this.transform.position.y, this.transform.position.z);
                 break;
             default:

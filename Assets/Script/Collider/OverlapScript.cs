@@ -516,8 +516,14 @@ public class OverlapScript : MonoBehaviour {
     //-------------------------------------------------------
     void HStandOver()
     {
+        //押し合い判定初期化
+        PushColliderActive();
         //基本押し合い判定
         PushCollider[0].SetActive(true);
+
+        SetBoxState(PushBox[0],
+            new Vector3(0, 0.78f, 0),
+            new Vector3(CSizeZ, 1.55f, 0.4f));
     }
 
     //-------------------------------------------------------
@@ -571,8 +577,14 @@ public class OverlapScript : MonoBehaviour {
     //------------------------------------------------------
     void HSitOver()
     {
+        //押し合い判定初期化
+        PushColliderActive();
         //基本押し合い判定
         PushCollider[0].SetActive(true);
+
+        SetBoxState(PushBox[0],
+            new Vector3(0, 0.78f, 0),
+            new Vector3(CSizeZ, 1.55f, 0.4f));
     }
 
     //------------------------------------------------------
