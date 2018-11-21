@@ -807,7 +807,25 @@ Prefab:
         type: 2}
       propertyPath: effect
       value: 
-      objectReference: {fileID: 198539348391018750, guid: b553b46c70ade4141b6057ee00937929,
+      objectReference: {fileID: 1848129787870010, guid: b553b46c70ade4141b6057ee00937929,
+        type: 2}
+    - target: {fileID: 114016056705326048, guid: be3f37450f691be4c9efb25f491c0a20,
+        type: 2}
+      propertyPath: effectWeak
+      value: 
+      objectReference: {fileID: 1848129787870010, guid: b553b46c70ade4141b6057ee00937929,
+        type: 2}
+    - target: {fileID: 114016056705326048, guid: be3f37450f691be4c9efb25f491c0a20,
+        type: 2}
+      propertyPath: effectMid
+      value: 
+      objectReference: {fileID: 1289611684772068, guid: fc854581da1f3304894bfa4569d0f5d0,
+        type: 2}
+    - target: {fileID: 114016056705326048, guid: be3f37450f691be4c9efb25f491c0a20,
+        type: 2}
+      propertyPath: effectStr
+      value: 
+      objectReference: {fileID: 1680862758961744, guid: c2bf0a45094d9104e99b781a60a29764,
         type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: be3f37450f691be4c9efb25f491c0a20, type: 2}
@@ -1539,7 +1557,25 @@ Prefab:
         type: 2}
       propertyPath: effect
       value: 
-      objectReference: {fileID: 198539348391018750, guid: b553b46c70ade4141b6057ee00937929,
+      objectReference: {fileID: 1848129787870010, guid: b553b46c70ade4141b6057ee00937929,
+        type: 2}
+    - target: {fileID: 114016056705326048, guid: be3f37450f691be4c9efb25f491c0a20,
+        type: 2}
+      propertyPath: effectWeak
+      value: 
+      objectReference: {fileID: 1848129787870010, guid: b553b46c70ade4141b6057ee00937929,
+        type: 2}
+    - target: {fileID: 114016056705326048, guid: be3f37450f691be4c9efb25f491c0a20,
+        type: 2}
+      propertyPath: effectMid
+      value: 
+      objectReference: {fileID: 1289611684772068, guid: fc854581da1f3304894bfa4569d0f5d0,
+        type: 2}
+    - target: {fileID: 114016056705326048, guid: be3f37450f691be4c9efb25f491c0a20,
+        type: 2}
+      propertyPath: effectStr
+      value: 
+      objectReference: {fileID: 1680862758961744, guid: c2bf0a45094d9104e99b781a60a29764,
         type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: be3f37450f691be4c9efb25f491c0a20, type: 2}
