@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ColliderEvent : MonoBehaviour {
+public class ColliderEvent : MonoBehaviour
+{
 
     //--------------------------------------
     //あたり判定設定
@@ -23,6 +24,9 @@ public class ColliderEvent : MonoBehaviour {
     BoxCollider AtkBox;
     BoxCollider PushBox;
 
+    List<BoxCollider> HitBoxs = new List<BoxCollider>();
+    List<BoxCollider> AtkBoxs = new List<BoxCollider>();
+
     //あたり判定の数
     int HCnum;
     int ACnum;
@@ -33,13 +37,24 @@ public class ColliderEvent : MonoBehaviour {
     private BattleDirector.AtkVal[] attackV = new BattleDirector.AtkVal[(int)BattleDirector.AtkVal.ATK_NUM];
 
     // Use this for initialization
-    void Start ()
+    void Start()
     {
         //あたり判定の数
         HCnum = HitCollider.Count;
         ACnum = AtkCollider.Count;
         PCnum = PushCollider.Count;
-	}
+
+        //あたり判定のコライダーを格納
+        for (int i = 0; i < HCnum; i++)
+        {
+            HitBoxs.Add(HitCollider[i].GetComponent<BoxCollider>());
+        }
+
+        for (int i = 0; i < ACnum; i++)
+        {
+            AtkBoxs.Add(AtkCollider[i].GetComponent<BoxCollider>());
+        }
+    }
 
     //-------------------------------------------------------------------------------------------------------------------
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -1552,4 +1567,7 @@ public class ColliderEvent : MonoBehaviour {
     public List<GameObject> HClid { get { return HitCollider; } }
     public List<GameObject> AClid { get { return AtkCollider; } }
     public List<GameObject> PClid { get { return PushCollider; } }
+    public List<BoxCollider> GetHitBoxs { get { return HitBoxs; } }
+    public List<BoxCollider> GetAtkBoxs { get { return AtkBoxs; } }
 }
+

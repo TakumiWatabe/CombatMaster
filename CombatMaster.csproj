@@ -463,6 +463,7 @@
     <Compile Include="Assets\Prefab\Effect\PostProcessing\Runtime\Utils\RenderTextureFactory.cs" />
     <Compile Include="Assets\Prefab\Effect\PostProcessing\Utilities\CustomMotionTexture\ExampleWheelController.cs" />
     <Compile Include="Assets\Script\AI\EnemyAI.cs" />
+    <Compile Include="Assets\Script\AutoDestroy.cs" />
     <Compile Include="Assets\Script\Collider\BattleDirector.cs" />
     <Compile Include="Assets\Script\Collider\ColliderEvent.cs" />
     <Compile Include="Assets\Script\Collider\ColliderReact.cs" />

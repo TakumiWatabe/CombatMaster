@@ -9,6 +9,13 @@ public class TestChar : MonoBehaviour {
     [SerializeField]
     GameObject ogj;
 
+    [SerializeField]
+    GameObject effectStr;
+    [SerializeField]
+    GameObject effectMid;
+    [SerializeField]
+    GameObject effectWeak;
+
     //バトルディレクター
     [SerializeField]
     GameObject dir;
@@ -47,6 +54,8 @@ public class TestChar : MonoBehaviour {
         }
 
         charcterJudg(this.gameObject.tag);
+
+        //effect.Stop();
     }
 	
 	// Update is called once per frame
@@ -59,10 +68,10 @@ public class TestChar : MonoBehaviour {
         switch (numID)
         {
             case (int)BattleDirector.FightChar.CHARA_1:
-                hitJudg(1);
+                hitJudg((int)BattleDirector.FightChar.CHARA_2);
                 break;
             case (int)BattleDirector.FightChar.CHARA_2:
-                hitJudg(0);
+                hitJudg((int)BattleDirector.FightChar.CHARA_1);
                 break;
             default:
                 break;
@@ -129,7 +138,65 @@ public class TestChar : MonoBehaviour {
                             //判定した攻撃の威力分ダメージを受ける
                             HPDir.hitDmage(BtDir.Fattack(0, j));
                             react[i].hiting = false;
+
+                            //Vector3 p = new Vector3(this.transform.parent.transform.position.x , Mathf.Abs(transform.position.y), transform.position.z);
+                            Vector3 p = new Vector3(this.transform.parent.transform.position.x, this.transform.parent.transform.position.y, this.transform.parent.transform.position.z);
+
+                            
+                            Vector3 fi = GetComponent<ColliderEvent>().GetHitBoxs[i].center + this.transform.parent.transform.position;
+                            Vector3 oo = new Vector3(0,0,0);
+                            for (int l = 0; l < GetComponent<ColliderEvent>().AClid.Count; l++)
+                            {
+                                if (react[i].CObj.name == GetComponent<ColliderEvent>().GetAtkBoxs[l].name)
+                                {
+                                    Debug.Log(GetComponent<ColliderEvent>().GetAtkBoxs[l].name);
+                                    oo = GetComponent<ColliderEvent>().GetAtkBoxs[l].center + this.transform.parent.transform.position;
+                                }
+                                //if (react[i].CObj == BtDir.Fcollider(charNum, j, k).GetComponent<ColliderEvent>().GetAtkBoxs[l])
+                                //{
+                                //    oo = BtDir.Fcollider(charNum, j, k).GetComponent<ColliderEvent>().GetAtkBoxs[l].center;
+                                //}
+
+                            }
+
+                            Debug.DrawLine(fi, oo, Color.cyan,10);
+                            //攻撃判定の場所
+                            Vector3 pos1 = BtDir.Fcollider(charNum, j, k).GetComponent<Collider>().ClosestPointOnBounds(p);
+                            //Debug.DrawLine(BtDir.Fcollider(charNum, j, k).GetComponent<Collider>()., BtDir.Fcollider(charNum, j, k).GetComponent<Collider>().ClosestPointOnBounds(p), Color.cyan, Vector3.Distance(BtDir.Fcollider(charNum, j, k).GetComponent<Collider>().transform.position, BtDir.Fcollider(charNum, j, k).GetComponent<Collider>().ClosestPointOnBounds(p)));
+                            //エフェクト発生場所
+                            Vector3 effectPos = (fi + oo) / 2;
+
+                            //Debug.Log("今のは" + effectPos);
+                            //Debug.Log("今のcharNumは" + charNum);
+                            //Debug.Log("今の攻撃コライダーは" + BtDir.Fcollider(charNum, j, k).GetComponent<Collider>());
+                            //Debug.Log("今当たったコライダーは" + this.transform.position);
+                            //Debug.Log("positionしてるボケは" + this.transform.name + "、そのクソ親は" + this.transform.parent.name);
+                            //Debug.Log("くそう" + this.transform.parent.transform.position);
+
+                            //エフェクト発生
+                            //Instantiate(effect, effectPos, Quaternion.identity);
+
+                            if (BtDir.Fattack(0, j) > 1000)  Instantiate(effectStr, effectPos, Quaternion.identity);
+                            else if (BtDir.Fattack(0, j) > 700) Instantiate(effectMid, effectPos, Quaternion.identity);
+                            else if (BtDir.Fattack(0, j) <= 700) Instantiate(effectWeak, effectPos, Quaternion.identity);
+
+
+                            //GameObject eff = Instantiate(effect, effectPos, Quaternion.identity) as GameObject;
+
+
+                                //effect = this.GetComponent<ParticleSystem>();
+
+                                //effect.Play();
+
+                                //effect.Stop();
+
+                                //Destroy(effect.gameObject);
+
+
                             GetComponent<PlayerController>().HitDamage(BtDir.Fattack(0, j));
+
+                            //Destroy(eff);
+
                         }
                     }
                 }
