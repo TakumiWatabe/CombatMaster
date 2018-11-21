@@ -31,7 +31,6 @@ public class TimerImageScript : MonoBehaviour {
     void Update ()
     {
         limitTime = (int)TScript.GetGameTimer();
-        Debug.Log(limit[0].transform.position);
 
         if (nowTime != limitTime)
         {

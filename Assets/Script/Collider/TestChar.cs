@@ -5,11 +5,9 @@ using UnityEngine;
 public class TestChar : MonoBehaviour {
 
     //攻撃ヒット時処理スクリプト
-    [SerializeField]
-    GameObject ogj;
 
     //バトルディレクター
-    [SerializeField]
+    //[SerializeField]
     GameObject dir;
     BattleDirector BtDir;
     //コライダーイベント
@@ -30,11 +28,16 @@ public class TestChar : MonoBehaviour {
     //経過時間
     private float timecCnt = 0;
 
+    void Awake()
+    {
+        dir = GameObject.Find("BattleDirecter");
+        BtDir = dir.GetComponent<BattleDirector>();
+    }
+
     // Use this for initialization
     void Start()
     {
         //ディレクタースクリプト取得
-        BtDir = dir.GetComponent<BattleDirector>();
         CEvent = this.GetComponent<ColliderEvent>();
         HPDir = this.GetComponent<HPDirectorScript>();
 
@@ -51,8 +54,7 @@ public class TestChar : MonoBehaviour {
 	// Update is called once per frame
 	void Update ()
     {
-        Debug.Log(this.name + " HP:" + HPDir.NowHPState);
-        Debug.Log(timecCnt);
+        Debug.Log(this.transform.root.tag + " HP:" + HPDir.NowHPState);
 
         //キャラクター番号から相手キャラクターを判別
         switch (numID)

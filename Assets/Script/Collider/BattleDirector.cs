@@ -25,14 +25,18 @@ public class BattleDirector : MonoBehaviour {
         public int playNumber;
     };
 
-
-    //キャラクターオブジェクト
+    //キャラクター生成オブジェクト
     [SerializeField]
-    private List<GameObject> character;
+    private GameObject contl;
+    private InstanceScript InScript;
+
+    ////キャラクターオブジェクト
+    //[SerializeField]
+    private GameObject[] character = new GameObject[2];
     private const int act = 10;
 
     //プレイヤーネーム(大文字)
-    [SerializeField]
+    //[SerializeField]
     private string player1Name,player2Name;
 
     //キャラクタースクリプト
@@ -47,9 +51,33 @@ public class BattleDirector : MonoBehaviour {
     //技データ集
     private Dictionary<string, ReadCSV.CharaData>[] artsData = new Dictionary<string, ReadCSV.CharaData>[2];
 
+    void Awake()
+    {
+        InScript = contl.GetComponent<InstanceScript>();
+    }
+
     // Use this for initialization
     void Start ()
     {
+        for (int i = 0; i < 2; i++)
+        {
+            character[i] = InScript.Fighter(i);
+            switch(InScript.charName(i))
+            {
+                case "Aoi":
+                    player1Name = "AOI";
+                    player2Name = "AOI";
+                    break;
+                //case "Hikari":
+                //    player1Name = "HIKARI";
+                //    player2Name = "HIKARI";
+                //    break;
+                default:
+                    break;
+            }
+        }
+
+
         //スクリプト取得
         //Aoi
         CEvent[0] = character[(int)ValueScript.FightChar.CHARA_1].GetComponent<ColliderEvent>();
@@ -91,7 +119,6 @@ public class BattleDirector : MonoBehaviour {
             {
                 //威力設定
                 f[i, j].ac = artsData[i][csv.Skills[j]].damage;
-                Debug.Log(artsData[i][csv.Skills[j]].damage);
             }
         }
     }

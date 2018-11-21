@@ -16,7 +16,7 @@ public class ColliderReact : MonoBehaviour {
     };
 
     //CSV読み込みオブジェクト
-    [SerializeField]
+    //[SerializeField]
     private GameObject dir;
     private ReadCSV csv;
 
@@ -61,6 +61,8 @@ public class ColliderReact : MonoBehaviour {
 
     void Awake()
     {
+        dir = GameObject.Find("BattleDirecter");
+        csv = dir.GetComponent<ReadCSV>();
         colliderTag = this.gameObject.tag;
     }
 

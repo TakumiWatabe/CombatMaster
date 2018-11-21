@@ -22,12 +22,26 @@ public class HPDirectorScript : MonoBehaviour {
 
     public bool hitFlag = false;
 
-	// Use this for initialization
-	void Start ()
+    // Use this for initialization
+    void Start()
     {
+        switch(this.tag)
+        {
+            case "P1":
+                hpImage = GameObject.Find("1PHP").GetComponent<Image>();
+                dmageImage= GameObject.Find("1PDamage").GetComponent<Image>();
+                break;
+            case "P2":
+                hpImage = GameObject.Find("2PHP").GetComponent<Image>();
+                dmageImage = GameObject.Find("2PDamage").GetComponent<Image>();
+                break;
+            default:
+                break;
+        }
+
         nowHP = maxHP;
         script = opponent.GetComponent<PlayerController>();
-	}
+    }
 
     public void hitDmage(int dmage)
     {

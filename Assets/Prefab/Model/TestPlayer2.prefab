@@ -482,7 +482,7 @@ GameObject:
   - component: {fileID: 114534253825509410}
   m_Layer: 0
   m_Name: TestPlayer2
-  m_TagString: Untagged
+  m_TagString: P2
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3502,6 +3502,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2e8913cf80c8e1041bf93c6058035296, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  dir: {fileID: 0}
+  playerName: 
 --- !u!114 &114097573920028892
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3513,7 +3515,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: adf0ff7cc3a1d894eb90aff7f39a326c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 0.03
+  walkSpeed: 0.03
+  dashSpeed: 0.08
   gravity: 0.008
   state: Stand
   specialState: 
@@ -3521,11 +3524,13 @@ MonoBehaviour:
   numInputHistory: 10
   controller: 2
   damage: 0
+  controllerName: 
   enemy: {fileID: 0}
   distanceToGuard: 0.7
   isModel: 0
-  Ldmg: {fileID: 0}
-  Mdmg: {fileID: 0}
+  largeDmg: {fileID: 0}
+  midiumDmg: {fileID: 0}
+  lowDmg: {fileID: 0}
   history: []
 --- !u!114 &114138653529103150
 MonoBehaviour:
@@ -3538,7 +3543,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc575b4f4da87554681ac773b2b50274, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ogj: {fileID: 0}
   dir: {fileID: 0}
   time: 30
 --- !u!114 &114184929202615410
@@ -3552,6 +3556,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2e8913cf80c8e1041bf93c6058035296, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  dir: {fileID: 0}
+  playerName: 
 --- !u!114 &114186740020281814
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3563,6 +3569,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2e8913cf80c8e1041bf93c6058035296, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  dir: {fileID: 0}
+  playerName: 
 --- !u!114 &114188781807484390
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3574,6 +3582,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2e8913cf80c8e1041bf93c6058035296, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  dir: {fileID: 0}
+  playerName: 
 --- !u!114 &114219117221593750
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3585,6 +3595,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2e8913cf80c8e1041bf93c6058035296, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  dir: {fileID: 0}
+  playerName: 
 --- !u!114 &114222646620944462
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3618,6 +3630,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2e8913cf80c8e1041bf93c6058035296, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  dir: {fileID: 0}
+  playerName: 
 --- !u!114 &114274985135130496
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3629,6 +3643,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2e8913cf80c8e1041bf93c6058035296, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  dir: {fileID: 0}
+  playerName: 
 --- !u!114 &114327621792321628
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3640,6 +3656,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2e8913cf80c8e1041bf93c6058035296, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  dir: {fileID: 0}
+  playerName: 
 --- !u!114 &114334175728779200
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3651,6 +3669,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2e8913cf80c8e1041bf93c6058035296, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  dir: {fileID: 0}
+  playerName: 
 --- !u!114 &114373185400967942
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3662,6 +3682,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2e8913cf80c8e1041bf93c6058035296, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  dir: {fileID: 0}
+  playerName: 
 --- !u!114 &114404075721133610
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3673,7 +3695,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: adf0ff7cc3a1d894eb90aff7f39a326c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 0.1
+  walkSpeed: 0.03
+  dashSpeed: 0.08
   gravity: 0.1
   state: Stand
   specialState: 
@@ -3681,11 +3704,13 @@ MonoBehaviour:
   numInputHistory: 10
   controller: 2
   damage: 0
+  controllerName: 
   enemy: {fileID: 0}
   distanceToGuard: 0.7
   isModel: 1
-  Ldmg: {fileID: 0}
-  Mdmg: {fileID: 0}
+  largeDmg: {fileID: 0}
+  midiumDmg: {fileID: 0}
+  lowDmg: {fileID: 0}
   history: []
 --- !u!114 &114431210636719532
 MonoBehaviour:
@@ -3698,6 +3723,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2e8913cf80c8e1041bf93c6058035296, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  dir: {fileID: 0}
+  playerName: 
 --- !u!114 &114441570952208798
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3709,6 +3736,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2e8913cf80c8e1041bf93c6058035296, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  dir: {fileID: 0}
+  playerName: 
 --- !u!114 &114500692447211224
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3720,6 +3749,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2e8913cf80c8e1041bf93c6058035296, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  dir: {fileID: 0}
+  playerName: 
 --- !u!114 &114513699314800642
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3731,6 +3762,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2e8913cf80c8e1041bf93c6058035296, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  dir: {fileID: 0}
+  playerName: 
 --- !u!114 &114534253825509410
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3832,6 +3865,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2e8913cf80c8e1041bf93c6058035296, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  dir: {fileID: 0}
+  playerName: 
 --- !u!114 &114634040842617750
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3843,6 +3878,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2e8913cf80c8e1041bf93c6058035296, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  dir: {fileID: 0}
+  playerName: 
 --- !u!114 &114641857926821338
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3854,6 +3891,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2e8913cf80c8e1041bf93c6058035296, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  dir: {fileID: 0}
+  playerName: 
 --- !u!114 &114668272449502150
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3865,6 +3904,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2e8913cf80c8e1041bf93c6058035296, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  dir: {fileID: 0}
+  playerName: 
 --- !u!114 &114726813474036272
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3876,6 +3917,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2e8913cf80c8e1041bf93c6058035296, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  dir: {fileID: 0}
+  playerName: 
 --- !u!114 &114727301432211584
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3887,6 +3930,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2e8913cf80c8e1041bf93c6058035296, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  dir: {fileID: 0}
+  playerName: 
 --- !u!114 &114732336620490440
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3898,6 +3943,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2e8913cf80c8e1041bf93c6058035296, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  dir: {fileID: 0}
+  playerName: 
 --- !u!114 &114740091648487502
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3909,6 +3956,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2e8913cf80c8e1041bf93c6058035296, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  dir: {fileID: 0}
+  playerName: 
 --- !u!114 &114763545472901336
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3920,6 +3969,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2e8913cf80c8e1041bf93c6058035296, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  dir: {fileID: 0}
+  playerName: 
 --- !u!114 &114793901762213538
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3931,6 +3982,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2e8913cf80c8e1041bf93c6058035296, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  dir: {fileID: 0}
+  playerName: 
 --- !u!114 &114823002314820364
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3959,6 +4012,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2e8913cf80c8e1041bf93c6058035296, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  dir: {fileID: 0}
+  playerName: 
 --- !u!114 &114849522303164804
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3970,6 +4025,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2e8913cf80c8e1041bf93c6058035296, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  dir: {fileID: 0}
+  playerName: 
 --- !u!114 &114884106980574122
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3981,6 +4038,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2e8913cf80c8e1041bf93c6058035296, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  dir: {fileID: 0}
+  playerName: 
 --- !u!114 &114893812778659282
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3992,6 +4051,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2e8913cf80c8e1041bf93c6058035296, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  dir: {fileID: 0}
+  playerName: 
 --- !u!114 &114911425026029498
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4003,6 +4064,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2e8913cf80c8e1041bf93c6058035296, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  dir: {fileID: 0}
+  playerName: 
 --- !u!114 &114918320861381974
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4014,6 +4077,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2e8913cf80c8e1041bf93c6058035296, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  dir: {fileID: 0}
+  playerName: 
 --- !u!114 &114951267583949802
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4025,6 +4090,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2e8913cf80c8e1041bf93c6058035296, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  dir: {fileID: 0}
+  playerName: 
 --- !u!114 &114985103538052022
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4036,6 +4103,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2e8913cf80c8e1041bf93c6058035296, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  dir: {fileID: 0}
+  playerName: 
 --- !u!137 &137360683520005686
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 1
