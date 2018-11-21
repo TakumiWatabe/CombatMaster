@@ -19,6 +19,8 @@ public class ColliderReact : MonoBehaviour {
     //[SerializeField]
     private GameObject dir;
     private ReadCSV csv;
+    private GameObject contl;
+    private InstanceScript InScript;
 
     //プレイヤーネーム(大文字)
     [SerializeField]
@@ -63,19 +65,23 @@ public class ColliderReact : MonoBehaviour {
     {
         dir = GameObject.Find("BattleDirecter");
         csv = dir.GetComponent<ReadCSV>();
+        contl= GameObject.Find("FighterComtrol");
+        InScript = contl.GetComponent<InstanceScript>();
         colliderTag = this.gameObject.tag;
     }
 
     // Use this for initialization
     void Start()
     {
+        //CSV読み込みスクリプト取得
+        csv = dir.GetComponent<ReadCSV>();
+        //Debug.Log(this.transform.root.tag);
+        //キャラクターの技データ集を取得
+        artsData = csv.readCSVData(playerName);
+    
+
         if (colliderTag == "Attack")
         {
-            //CSV読み込みスクリプト取得
-            csv = dir.GetComponent<ReadCSV>();
-
-            //キャラクターの技データ集を取得
-            artsData = csv.readCSVData(playerName);
 
             //データ設定
             Data(this.gameObject.layer - act);
