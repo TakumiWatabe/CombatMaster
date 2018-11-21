@@ -231,6 +231,11 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Plugins\DynamicBone\Demo\DynamicBoneDemo1.cs" />
+    <Compile Include="Assets\Plugins\DynamicBone\Scripts\DynamicBone.cs" />
+    <Compile Include="Assets\Plugins\DynamicBone\Scripts\DynamicBoneCollider.cs" />
+    <Compile Include="Assets\Plugins\DynamicBone\Scripts\DynamicBoneColliderBase.cs" />
+    <Compile Include="Assets\Plugins\DynamicBone\Scripts\DynamicBonePlaneCollider.cs" />
     <Compile Include="Assets\Plugins\Pixelplacement\iTween\iTween.cs" />
     <Compile Include="Assets\Plugins\Pixelplacement\iTween\Sample\MoveSample.cs" />
     <Compile Include="Assets\Plugins\Pixelplacement\iTween\Sample\RotateSample.cs" />
@@ -254,6 +259,7 @@
     <None Include="Assets\Model\VRM\UniGLTF\Resources\Shaders\Dxt5Decoder.shader" />
     <None Include="Assets\Model\VRM\UniGLTF\Resources\Shaders\StandardVColor.shader" />
     <None Include="Assets\Model\VRM\UniGLTF\UniUnlit\Resources\UniUnlit.shader" />
+    <None Include="Assets\Plugins\DynamicBone\ReadMe.txt" />
     <None Include="Assets\Plugins\Pixelplacement\iTween\ReadMe!\ReadMe!.txt" />
     <None Include="Assets\Prefab\Effect\Hologram\Shader\Hologram.shader" />
     <None Include="Assets\Prefab\Effect\PostProcessing\Editor Resources\Monitors\HistogramCompute.compute" />
