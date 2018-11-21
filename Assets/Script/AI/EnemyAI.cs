@@ -51,7 +51,7 @@ public class EnemyAI : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-	}
+    }
 
     public void Initialize()
     {
