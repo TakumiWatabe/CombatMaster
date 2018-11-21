@@ -771,12 +771,12 @@ Prefab:
     - target: {fileID: 114421129777116824, guid: be3f37450f691be4c9efb25f491c0a20,
         type: 2}
       propertyPath: controller
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 114100271038045210, guid: be3f37450f691be4c9efb25f491c0a20,
         type: 2}
       propertyPath: controller
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 114100271038045210, guid: be3f37450f691be4c9efb25f491c0a20,
         type: 2}
@@ -803,6 +803,30 @@ Prefab:
       propertyPath: lowDmg
       value: 
       objectReference: {fileID: 8300000, guid: cc88295c5ac5bc44a92bdef9ee67ce7c, type: 3}
+    - target: {fileID: 114016056705326048, guid: be3f37450f691be4c9efb25f491c0a20,
+        type: 2}
+      propertyPath: effect
+      value: 
+      objectReference: {fileID: 1848129787870010, guid: b553b46c70ade4141b6057ee00937929,
+        type: 2}
+    - target: {fileID: 114016056705326048, guid: be3f37450f691be4c9efb25f491c0a20,
+        type: 2}
+      propertyPath: effectWeak
+      value: 
+      objectReference: {fileID: 1848129787870010, guid: b553b46c70ade4141b6057ee00937929,
+        type: 2}
+    - target: {fileID: 114016056705326048, guid: be3f37450f691be4c9efb25f491c0a20,
+        type: 2}
+      propertyPath: effectMid
+      value: 
+      objectReference: {fileID: 1289611684772068, guid: fc854581da1f3304894bfa4569d0f5d0,
+        type: 2}
+    - target: {fileID: 114016056705326048, guid: be3f37450f691be4c9efb25f491c0a20,
+        type: 2}
+      propertyPath: effectStr
+      value: 
+      objectReference: {fileID: 1680862758961744, guid: c2bf0a45094d9104e99b781a60a29764,
+        type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: be3f37450f691be4c9efb25f491c0a20, type: 2}
   m_IsPrefabParent: 0
@@ -899,7 +923,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 8f039fec647c5b446a4a30c5ecaba035, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -1430,12 +1454,12 @@ Prefab:
     - target: {fileID: 114421129777116824, guid: be3f37450f691be4c9efb25f491c0a20,
         type: 2}
       propertyPath: controller
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 114100271038045210, guid: be3f37450f691be4c9efb25f491c0a20,
         type: 2}
       propertyPath: controller
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 1232789282315678, guid: be3f37450f691be4c9efb25f491c0a20, type: 2}
       propertyPath: m_Layer
@@ -1529,6 +1553,30 @@ Prefab:
       propertyPath: lowDmg
       value: 
       objectReference: {fileID: 8300000, guid: cc88295c5ac5bc44a92bdef9ee67ce7c, type: 3}
+    - target: {fileID: 114016056705326048, guid: be3f37450f691be4c9efb25f491c0a20,
+        type: 2}
+      propertyPath: effect
+      value: 
+      objectReference: {fileID: 1848129787870010, guid: b553b46c70ade4141b6057ee00937929,
+        type: 2}
+    - target: {fileID: 114016056705326048, guid: be3f37450f691be4c9efb25f491c0a20,
+        type: 2}
+      propertyPath: effectWeak
+      value: 
+      objectReference: {fileID: 1848129787870010, guid: b553b46c70ade4141b6057ee00937929,
+        type: 2}
+    - target: {fileID: 114016056705326048, guid: be3f37450f691be4c9efb25f491c0a20,
+        type: 2}
+      propertyPath: effectMid
+      value: 
+      objectReference: {fileID: 1289611684772068, guid: fc854581da1f3304894bfa4569d0f5d0,
+        type: 2}
+    - target: {fileID: 114016056705326048, guid: be3f37450f691be4c9efb25f491c0a20,
+        type: 2}
+      propertyPath: effectStr
+      value: 
+      objectReference: {fileID: 1680862758961744, guid: c2bf0a45094d9104e99b781a60a29764,
+        type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: be3f37450f691be4c9efb25f491c0a20, type: 2}
   m_IsPrefabParent: 0

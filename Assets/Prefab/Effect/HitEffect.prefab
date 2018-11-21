@@ -90,6 +90,7 @@ GameObject:
   - component: {fileID: 198539348391018750}
   - component: {fileID: 199219118519347786}
   - component: {fileID: 114835442707010940}
+  - component: {fileID: 114616926157049748}
   m_Layer: 0
   m_Name: HitEffect
   m_TagString: Untagged
@@ -166,6 +167,18 @@ Transform:
   m_Father: {fileID: 4630187046422872}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: -177.139, y: 2.4519958, z: -2.571991}
+--- !u!114 &114616926157049748
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1848129787870010}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: badfd6000ff9f8a47925cce3bf39cc9b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  time: 10
 --- !u!114 &114835442707010940
 MonoBehaviour:
   m_ObjectHideFlags: 1
