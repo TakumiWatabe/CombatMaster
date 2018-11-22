@@ -8,6 +8,8 @@ TagManager:
   - Attack
   - P1
   - P2
+  - icon1
+  - icon2
   layers:
   - Default
   - TransparentFX

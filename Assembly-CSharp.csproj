@@ -291,10 +291,13 @@
      <Compile Include="Assets\Script\System\GetCenterPoint.cs" />
      <Compile Include="Assets\Script\System\GetGameScript.cs" />
      <Compile Include="Assets\Script\System\HPDirectorScript.cs" />
+     <Compile Include="Assets\Script\System\IconEvent.cs" />
      <Compile Include="Assets\Script\System\PauseScript.cs" />
      <Compile Include="Assets\Script\System\SceneManagement.cs" />
+     <Compile Include="Assets\Script\System\SceneTransition.cs" />
      <Compile Include="Assets\Script\System\TimerScript.cs" />
      <Compile Include="Assets\Script\UI\AlphaScript.cs" />
+     <Compile Include="Assets\Script\UI\CharacterSelect.cs" />
      <Compile Include="Assets\Script\UI\FadeScript.cs" />
      <Compile Include="Assets\Script\UI\ItweenCamera.cs" />
      <Compile Include="Assets\Script\UI\TextGenerator.cs" />
