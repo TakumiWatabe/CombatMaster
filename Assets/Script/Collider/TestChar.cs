@@ -28,6 +28,11 @@ public class TestChar : MonoBehaviour {
     //経過時間
     private float timecCnt = 0;
 
+    [SerializeField, Range(1, 100)]
+    float Ts = 10;
+    float TsC = 0;
+    bool hitatk = false;
+
     void Awake()
     {
         dir = GameObject.Find("BattleDirecter");
@@ -69,7 +74,22 @@ public class TestChar : MonoBehaviour {
                 break;
         }
 
-	}
+        //hitStop(hitatk);
+
+        if(hitatk)
+        {
+            TsC++;
+            Time.timeScale = 0;
+        }
+
+        if (TsC >= Ts)
+        {
+            hitatk = false;
+            TsC = 0;
+            Time.timeScale = 1;
+        }
+
+    }
 
     //攻撃ヒット判定
     private void hitJudg(int charNum)
@@ -93,6 +113,7 @@ public class TestChar : MonoBehaviour {
                             //判定した攻撃の威力分ダメージを受ける
                             HPDir.hitDmage(BtDir.Fattack(0, j));
                             react[i].hiting = false;
+                            hitatk = true;
                             GetComponent<PlayerController>().HitDamage(BtDir.Fattack(0, j));
                         }
                     }

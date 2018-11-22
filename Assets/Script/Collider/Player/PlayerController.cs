@@ -96,7 +96,9 @@ public class PlayerController : MonoBehaviour
     // Use this for initialization
     void Start()
     {
+
         enemyScript = enemy.GetComponent<PlayerController>();
+
 
         animator = GetComponent<Animator>();
 
@@ -116,10 +118,10 @@ public class PlayerController : MonoBehaviour
         inputDKey = 5;
         inputDKeyOld = inputDKey;
 
-        //if(controller > 0)controllerName = Input.GetJoystickNames()[controller - 1];
+        if(controller > 0)controllerName = Input.GetJoystickNames()[controller - 1];
 
-        //Debug.Log(Input.GetJoystickNames()[0]);
-        //Debug.Log(Input.GetJoystickNames()[1]);
+        Debug.Log(Input.GetJoystickNames()[0]);
+        Debug.Log(Input.GetJoystickNames()[1]);
 
 
 
@@ -461,8 +463,6 @@ public class PlayerController : MonoBehaviour
         {
             state = "Sit";
         }
-
-
 
         // 移動する向きを求める
         finalMove = new Vector3(move, 0, 0).normalized * speed;
@@ -1009,7 +1009,7 @@ public class PlayerController : MonoBehaviour
             state = "Kick";
         }
 
-        if (inputDKey == 5)
+        if (inputDKey == 5 || inputDKey == 4)
         {
             state = "Stand";
             animator.SetBool("Dash", false);
@@ -1070,10 +1070,12 @@ public class PlayerController : MonoBehaviour
     {
         //最終的な移動
         Vector3 finalPos = finalMove + gameObject.transform.position;
-        gameObject.transform.position = finalPos;
+        if (finalPos.x <= 3.0f && finalPos.x >= -3.0f)
+        {
+            gameObject.transform.position = finalPos;
 
-        if (state != "Jump") gameObject.transform.position = new Vector3(gameObject.transform.position.x, 0, 0);
-
+            if (state != "Jump") gameObject.transform.position = new Vector3(gameObject.transform.position.x, 0, 0);
+        }
     }
 
     /// <summary>
@@ -1134,23 +1136,73 @@ public class PlayerController : MonoBehaviour
 
     }
 
-    public void SetInputDKey(int dir)
+    public int InputDKey
     {
-        inputDKey = dir;
+        get {
+            return inputDKey;
+        }
+        set {
+            inputDKey = value;
+        }
     }
 
-    public void SetPunchKey(bool b)
+    public bool PunchKey
     {
-        punchKey = b;
+        get {
+            return punchKey;
+        }
+        set {
+            punchKey = value;
+        }
     }
 
-    public void SetKickKey(bool b)
+    public bool KickKey
     {
-        kickKey = b;
+        get {
+            return kickKey;
+        }
+        set {
+            kickKey = value;
+        }
     }
 
-    public void SetControllerName(string name)
+    public string ControllerName
     {
-        controllerName = name;
+        get {
+            return controllerName;
+        }
+        set {
+            controllerName = value;
+        }
+    }
+
+    public string State
+    {
+        get {
+            return state;
+        }
+        set {
+            state = value;
+        }
+    }
+
+    public string SpecialState
+    {
+        get {
+            return specialState;
+        }
+        set {
+            specialState = value;
+        }
+    }
+
+    public int Direction
+    {
+        get {
+            return direction;
+        }
+        set {
+            direction = value;
+        }
     }
 }

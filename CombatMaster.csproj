@@ -484,6 +484,7 @@
     <Compile Include="Assets\Script\System\Instance\InstanceScript.cs" />
     <Compile Include="Assets\Script\System\PauseScript.cs" />
     <Compile Include="Assets\Script\System\SceneManagement.cs" />
+    <Compile Include="Assets\Script\System\TimeManager.cs" />
     <Compile Include="Assets\Script\System\TimerImageScript.cs" />
     <Compile Include="Assets\Script\System\TimerScript.cs" />
     <Compile Include="Assets\Script\System\ValueScript.cs" />

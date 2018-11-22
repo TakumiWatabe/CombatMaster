@@ -142,7 +142,7 @@ public class PlayerControllerTest : MonoBehaviour {
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         SetDirection();
         InputKey();

@@ -21,7 +21,7 @@ public class TimerScript : MonoBehaviour
 	void Update ()
     {
         // ゲーム内の時間制限用タイマー
-        timer += Time.deltaTime;
+        timer += Time.unscaledDeltaTime;
 
         // ゲームが始まっていたら
         if(stopFlag)
@@ -30,7 +30,7 @@ public class TimerScript : MonoBehaviour
             if (gameTimer >= 0)
             {
                 // 制限時間を減少
-                gameTimer -= Time.deltaTime;
+                gameTimer -= Time.unscaledDeltaTime;
             }
         }
         //text.text = gameTimer.ToString("F0");
