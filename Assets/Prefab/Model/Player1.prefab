@@ -3786,6 +3786,7 @@ MonoBehaviour:
   controller: 1
   damage: 0
   enemy: {fileID: 0}
+  ogj: {fileID: 0}
   distanceToGuard: 0.7
   isModel: 1
   Ldmg: {fileID: 0}
@@ -4147,6 +4148,7 @@ MonoBehaviour:
   controller: 1
   damage: 0
   enemy: {fileID: 0}
+  ogj: {fileID: 0}
   distanceToGuard: 0.7
   isModel: 0
   Ldmg: {fileID: 0}
