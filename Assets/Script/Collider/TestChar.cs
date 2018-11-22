@@ -123,9 +123,9 @@ public class TestChar : MonoBehaviour {
                             Vector3 effectPos = (body + attack) / 2;
 
                             //エフェクト発生
-                            if (BtDir.Fattack(0, j) > 1000) Instantiate(effectStr, effectPos, Quaternion.identity);
-                            else if (BtDir.Fattack(0, j) > 700) Instantiate(effectMid, effectPos, Quaternion.identity);
-                            else if (BtDir.Fattack(0, j) <= 700) Instantiate(effectWeak, effectPos, Quaternion.identity);
+                            if (BtDir.Fattack(0, j) > 800) Instantiate(effectStr, effectPos, Quaternion.identity);
+                            else if (BtDir.Fattack(0, j) > 500) Instantiate(effectMid, effectPos, Quaternion.identity);
+                            else if (BtDir.Fattack(0, j) <= 500) Instantiate(effectWeak, effectPos, Quaternion.identity);
 
                             GetComponent<PlayerController>().HitDamage(BtDir.Fattack(0, j));
                         }

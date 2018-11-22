@@ -26,6 +26,11 @@ public class PlayerController : MonoBehaviour
     private int controller = 0;
     //ダメージ
     public int damage = 0;
+    //ジャンプのスピード
+    public float jumpSpeed = 0.15f;
+    //昇竜のスピード
+    public float syoryuSpeed = 0.175f;
+
     //ダメージ受けたときに下がる距離
     float backDistance = 0;
     float backingDistance = 0;
@@ -42,6 +47,11 @@ public class PlayerController : MonoBehaviour
     int direction = 1;
     //相手
     private GameObject enemy;
+
+    //は同県
+    [SerializeField]
+    private GameObject hadokenObject;
+
     //相手スクリプト
     PlayerController enemyScript;
 
@@ -92,6 +102,8 @@ public class PlayerController : MonoBehaviour
     BattleDirector battleDirector;
 
     GameObject parent;
+
+    bool wasStand = false;
 
     //キャラクター生成オブジェクト
     private GameObject contl;
@@ -222,7 +234,9 @@ public class PlayerController : MonoBehaviour
             case "Damage":
                 Damage();
                 break;
-
+            case "JumpingDamage":
+                JumpingDamage();
+                break;
         }
 
         
@@ -501,6 +515,7 @@ public class PlayerController : MonoBehaviour
         animator.SetBool("Punch", false);
         animator.SetBool("Kick", false);
         animator.SetBool("Dash", false);
+        animator.SetInteger("Damage", 0);
 
         //上が押されたらジャンプ
         if (inputDKey >= 7)
@@ -535,6 +550,7 @@ public class PlayerController : MonoBehaviour
         animator.SetBool("Sit", true);
         animator.SetBool("Punch", false);
         animator.SetBool("Kick", false);
+        animator.SetInteger("Damage", 0);
         gameObject.transform.position = new Vector3(gameObject.transform.position.x, 0, 0);
         finalMove = new Vector3(0, 0, 0);
 
@@ -707,6 +723,8 @@ public class PlayerController : MonoBehaviour
                 
                 finalMove = new Vector3(0, 0, 0);
                 animator.SetInteger("Special", 2);
+                //JumpSyoryu();
+                //JumpingSyoryu();
                 break;
         }
         //アニメ終了でもどる
@@ -724,7 +742,7 @@ public class PlayerController : MonoBehaviour
     /// </summary>
     void Jumping()
     {
-
+        animator.SetInteger("Damage", 0);
         //ジャンプしているときに地面に触っておらず一定時間経過していたら終了
         bool jumpEnd = gameObject.transform.position.y <= 0 && jumpCount > jumpTime;
         if (jumpEnd)
@@ -742,7 +760,7 @@ public class PlayerController : MonoBehaviour
         if (state == "Jump")
         {
             animator.SetBool("Jump", true);
-            ySpeed = 0.15f;
+            ySpeed = jumpSpeed;
 
             //ジャンプキック
             if (punchKey && !animator.GetBool("Punch") && !animator.GetBool("Kick"))
@@ -852,7 +870,7 @@ public class PlayerController : MonoBehaviour
     void HadokenCommand()
     {
         //は同県
-        if (state != "Special")
+        if (state != "Special" && animator.GetInteger("Damage") == 0)
         {
             string[] hadoken = new string[4];
             hadoken[0] = "2";
@@ -880,6 +898,17 @@ public class PlayerController : MonoBehaviour
                             }
                             Debug.Log("波動拳");
 
+                            if (isModel)
+                            {
+                                GameObject hado = Instantiate(hadokenObject, GetComponent<ColliderEvent>().GetHitBoxs[9].center + this.transform.parent.transform.position, Quaternion.identity);
+                                if (direction == 1) hado.transform.Rotate(0, 0, 0);
+                                else hado.transform.Rotate(0, 180, 0);
+
+                                hado.GetComponent<HadouController>().direction = direction;
+                                
+                            } 
+
+                            //Instantiate(hadokenObject, GetComponent<ColliderEvent>().GetHitBoxs[9].center + this.transform.parent.transform.position, Quaternion.identity);
                         }
                         return;
                     }
@@ -894,7 +923,7 @@ public class PlayerController : MonoBehaviour
     void SyoryukenCommand()
     {
         //昇竜拳
-        if (state != "Special")
+        if (state != "Special" && animator.GetInteger("Damage") == 0)
         {
             string[] syoryu = new string[4];
             syoryu[0] = "6";
@@ -921,6 +950,7 @@ public class PlayerController : MonoBehaviour
                                 history.Add("");
                             }
                             Debug.Log("昇龍拳");
+                            nowGravity = 0;
                             //break;
                         }
                         return;
@@ -1043,6 +1073,126 @@ public class PlayerController : MonoBehaviour
     }
 
     /// <summary>
+    /// ジャンプする昇竜
+    /// </summary>
+    void JumpSyoryu()
+    {
+        jumpCount++;
+    }
+
+    /// <summary>
+    /// ジャンプ中にダメージ受けたとき
+    /// </summary>++;
+    void JumpingDamage()
+    {
+        jumpCount++;
+        damageCount++;
+
+
+        animator.SetInteger("Move", 0);
+        animator.SetInteger("Special", 0);
+        animator.SetBool("Guard", false);
+        //animator.SetBool("Sit", false);
+        animator.SetBool("Punch", false);
+        animator.SetBool("Kick", false);
+        animator.SetBool("Dash", false);
+        animator.SetBool("Jump", false);
+
+
+        //ジャンプしているときに地面に触っておらず一定時間経過していたら終了
+        bool jumpEnd = gameObject.transform.position.y <= 0 && jumpCount > jumpTime && damageCount >= damageTime;
+        if (jumpEnd)
+        {
+            jumpCount = 0;
+            state = "Stand";
+        }
+        //ジャンプしているときに重力をかける
+        bool jumping = gameObject.transform.position.y >= 0 && state == "JumpingDamage";
+        if (jumping) nowGravity -= gravity;
+
+        //ジャンプしたときのアニメ、ジャンプする動作
+        if (state == "JumpingDamage")
+        {
+            //animator.SetBool("Jump", true);
+            ySpeed = jumpSpeed;
+        }
+        else
+        {
+            //ジャンプ終わり
+            damageCount = 0;
+            animator.SetInteger("Damage", 0);
+            ySpeed = 0;
+            gameObject.transform.position = new Vector3(gameObject.transform.position.x, 0, 0);
+            state = "Stand";
+            Debug.Log("aaaaaa");
+        }
+
+        finalMove.y = ySpeed + nowGravity;
+
+
+
+    }
+
+    /// <summary>
+    /// ジャンプ中の昇竜
+    /// </summary>
+    void JumpingSyoryu()
+    {
+
+        //ジャンプしているときに地面に触っておらず一定時間経過していたら終了
+        bool jumpEnd = gameObject.transform.position.y <= 0 && jumpCount > jumpTime;
+        if (jumpEnd)
+        {
+            jumpCount = 0;
+            state = "Stand";
+            //freeze = true;
+            //recoveryState = "JumpEnd";
+        }
+        //ジャンプしているときに重力をかける
+        bool jumping = gameObject.transform.position.y >= 0 && state == "Special" && specialState == "Syoryuken";
+        if (jumping) nowGravity -= gravity;
+
+        //ジャンプしたときのアニメ、ジャンプする動作
+        if (state == "Special" && specialState == "Syoryuken")
+        {
+            //animator.SetBool("Jump", true);
+            ySpeed = jumpSpeed;
+        }
+        else
+        {
+            //ジャンプ終わり
+            animator.SetInteger("Special", 0);
+            ySpeed = 0;
+            gameObject.transform.position = new Vector3(gameObject.transform.position.x, 0, 0);
+        }
+
+        finalMove.y = ySpeed + nowGravity;
+
+        ////ジャンプしているときに地面に触っておらず一定時間経過していたら終了
+        //bool jumpEnd = gameObject.transform.position.y <= 0 && jumpCount > jumpTime;
+        //if (jumpEnd)
+        //{
+        //    jumpCount = 0;
+        //    state = "Stand";
+        //}
+        ////ジャンプしているときに重力をかける
+        //bool jumping = gameObject.transform.position.y >= 0;
+        //if (jumping) nowGravity -= gravity;
+
+        //ySpeed = syoryuSpeed;
+
+        //if (state == "Stand")
+        //{
+        //    //ジャンプ終わり
+        //    animator.SetInteger("Special", 0);
+        //    ySpeed = 0;
+        //    gameObject.transform.position = new Vector3(gameObject.transform.position.x, 0, 0);
+        //}
+
+        //finalMove.y = ySpeed + nowGravity;
+    }
+
+    /// <summary>
     /// ガードできるかチェック
     /// </summary>
     void CheckGuard()
@@ -1100,7 +1250,9 @@ public class PlayerController : MonoBehaviour
         {
             gameObject.transform.position = finalPos;
 
-            if (state != "Jump") gameObject.transform.position = new Vector3(gameObject.transform.position.x, 0, 0);
+            if (jumpCount == 0 && state != "JumpingDamage") gameObject.transform.position = new Vector3(gameObject.transform.position.x, 0, 0);
+
+            if(gameObject.transform.position.y <= 0) gameObject.transform.position = new Vector3(gameObject.transform.position.x, 0, gameObject.transform.position.z);
         }
     }
 
@@ -1142,9 +1294,19 @@ public class PlayerController : MonoBehaviour
 
             Debug.Log(state);
             animator.SetInteger("Damage", dmg);
-            state = "Damage";
-            
-            parent.GetComponent<PlayerController>().state = "Damage";
+            if(jumpCount == 0)
+            {
+                state = "Damage";
+
+                parent.GetComponent<PlayerController>().state = "Damage";
+            }
+            else
+            {
+                state = "JumpingDamage";
+
+                parent.GetComponent<PlayerController>().state = "JumpingDamage";
+            }
+
             backDistance = dmg;
             damageTime = dmg / 500 + 15;
             damageDir = direction * -1;
@@ -1154,8 +1316,8 @@ public class PlayerController : MonoBehaviour
             AudioClip sound;
 
             sound = lowDmg;
-            if (dmg > 700) sound = midiumDmg;
-            if (dmg > 1000) sound = largeDmg;
+            if (dmg > 500) sound = midiumDmg;
+            if (dmg > 800) sound = largeDmg;
 
             audio.PlayOneShot(sound);
         }
