@@ -1,8 +1,1 @@
-sceneSetups:
-<<<<<<< HEAD
-- path: Assets/Scene/SelectScene.unity
-=======
-- path: Assets/Scene/PlayMenuScene.unity
->>>>>>> 771a4dc03c4b12d9882d68296cdd3e1b82eb108e
-  isLoaded: 1
-  isActive: 1
+sceneSetups: []
