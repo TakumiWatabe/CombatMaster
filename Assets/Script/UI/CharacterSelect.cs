@@ -11,13 +11,33 @@ public class CharacterSelect : MonoBehaviour {
     //　アイコンが1秒間に何ピクセル移動するか
     [SerializeField]
     private float iconSpeed = Screen.width;
+    //コントローラーの名前
+    [SerializeField]
+    public string controllerName = "";
+    [SerializeField]
+    GameObject aoiModel;
+    [SerializeField]
+    GameObject hikariModel;
+    [SerializeField]
+    GameObject aoiModel2;
+    [SerializeField]
+    GameObject hikariModel2;
+    float modelPosX = 7.5f;
+    float modelPosY = -3.5f;
     //　アイコンのサイズ取得で使用
     private RectTransform rect;
     //　アイコンが画面内に収まる為のオフセット値
     private Vector2 offset;
-    GamepadState state;
-    GamepadState state1;
-    GamepadState state2;
+    private GamepadState state;
+    private GamepadState state1;
+    private GamepadState state2;
+    private Vector2 pos;
+    private string charName = "";
+    private bool controlFlag1P;
+    private bool controlFlag2P;
+    private SceneManagement scene;
+    private bool sceneFlag1 = true;
+    private bool sceneFlag2 = true;
     Vector2[] framePos = new Vector2[7]
     {
         new Vector2( -70.0f, 140.0f),
@@ -30,56 +50,190 @@ public class CharacterSelect : MonoBehaviour {
     };
     void Start()
     {
-        if(controller==1)
-        {
-            state = GamePad.GetState(GamePad.Index.One);
-        }
-        else if(controller==2)
-        {
-            state = GamePad.GetState(GamePad.Index.Two);
-        }
-        state1 = GamePad.GetState(GamePad.Index.One);
-        state2= GamePad.GetState(GamePad.Index.Two);
+        sceneFlag1 = true;
+        sceneFlag2 = true;
+        controlFlag1P = true;
+        controlFlag2P = true;
         rect = GetComponent<RectTransform>();
         //　オフセット値をアイコンのサイズの半分で設定
         offset = new Vector2(rect.sizeDelta.x / 2f, rect.sizeDelta.y / 2f);
+
+        if (controller > 0) controllerName = Input.GetJoystickNames()[controller - 1];
     }
 
     void Update()
     {
-
-        if (controller == 1)
+        if (controllerName == "Arcade Stick (MadCatz FightStick Neo)")
         {
-            //　移動キーを押していなければ何もしない
-            if (Input.GetAxis("Horizontal") == 0f && Input.GetAxis("Vertical") == 0f)
+            if (controller == 1)
             {
-                return;
-            }
-            //　移動先を計算
-            var pos = rect.anchoredPosition + new Vector2(Input.GetAxis("Horizontal") * iconSpeed, -Input.GetAxis("Vertical") * iconSpeed) * Time.deltaTime;
+                if(controlFlag1P)
+                {
+                    if (Input.GetButtonDown("AButton"))
+                    {
+                        controlFlag1P = false;
+                        if (GetCharName() == "Aoi")
+                        {
+                            aoiModel.transform.position = new Vector3(-modelPosX, modelPosY, 0);
+                            Instantiate(aoiModel);
+                        }
+                        else if (GetCharName() == "Hikari")
+                        {
+                            hikariModel2.transform.position = new Vector3(-modelPosX, modelPosY, 0);
+                            Instantiate(hikariModel);
 
-            //　アイコンが画面外に出ないようにする
-            pos.x = Mathf.Clamp(pos.x, -Screen.width * 0.5f + offset.x, Screen.width * 0.5f - offset.x);
-            pos.y = Mathf.Clamp(pos.y, -Screen.height * 0.5f + offset.y, Screen.height * 0.5f - offset.y);
-            //　アイコン位置を設定
-            rect.anchoredPosition = pos;
+                        }
+                        else//if(GetCharName()== "None")
+                        {
+                            controlFlag1P = true;
+                        }
+                    }
+
+                    //　移動キーを押していなければ何もしない
+                    if (Input.GetAxis("Horizontal") == 0.0f && Input.GetAxis("Vertical") == 0.0f)
+                    {
+                        return;
+                    }
+                    //　移動先を計算
+                    pos += new Vector2(Input.GetAxis("Horizontal") * iconSpeed, Input.GetAxis("Vertical") * iconSpeed) * Time.deltaTime;
+                    //　アイコン位置を設定
+                    transform.localPosition = pos;
+                }
+            }
+            else if (controller == 2)
+            {
+                if(controlFlag2P)
+                {
+
+                    if (Input.GetButtonDown("AButton2"))
+                    {
+
+                        controlFlag2P = false;
+                        if (GetCharName() == "Aoi")
+                        {
+                            aoiModel2.transform.position = new Vector3(modelPosX, modelPosY, 0);
+                            Instantiate(aoiModel2);
+                            Debug.Log("2PAOI");
+                            controlFlag2P = false;
+                        }
+                        else if (GetCharName() == "Hikari")
+                        {
+                            hikariModel2.transform.position = new Vector3(modelPosX, modelPosY, 0);
+                            Instantiate(hikariModel2);
+                            Debug.Log("2PHIAKRI");
+                            controlFlag2P = false;
+                            Debug.Log(controlFlag2P);
+                        }
+                        else//if (GetCharName() == "None")
+                        {
+                            controlFlag2P = true;
+                            //Debug.Log("TURURUになったｙｐ");
+                        }
+
+                    }
+
+                    //　移動キーを押していなければ何もしない
+                    if (Input.GetAxis("Horizontal2") == 0.0f && Input.GetAxis("Vertical2") == 0.0f)
+                    {
+                        return;
+                    }
+                    //　移動先を計算
+                    pos += new Vector2(Input.GetAxis("Horizontal2") * iconSpeed, Input.GetAxis("Vertical2") * iconSpeed) * Time.deltaTime;
+                    //　アイコン位置を設定
+                    transform.localPosition = pos;
+                }
+            }
         }
-        else if (controller == 2)
+        else
         {
-            //　移動キーを押していなければ何もしない
-            if (Input.GetAxis("Horizontal2") == 0f && Input.GetAxis("Vertical2") == 0f)
+            if (controller == 1)
             {
-                return;
-            }
-            //　移動先を計算
-            var pos = rect.anchoredPosition + new Vector2(Input.GetAxis("Horizontal2") * iconSpeed, -Input.GetAxis("Vertical2") * iconSpeed) * Time.deltaTime;
+                if(controlFlag1P)
+                {
+                    if (Input.GetButtonDown("AButton"))
+                    {
+                        controlFlag1P = false;
+                        if(GetCharName()=="Aoi")
+                        {
+                            aoiModel.transform.position = new Vector3(-modelPosX, modelPosY, 0);
+                            Instantiate(aoiModel);
+                        }
+                        else if (GetCharName() == "Hikari")
+                        {
+                            hikariModel2.transform.position = new Vector3(-modelPosX, modelPosY, 0);
+                            Instantiate(hikariModel);
+                            
+                        }
+                        else//if(GetCharName()== "None")
+                        {
+                            controlFlag1P = true;
+                        }
+                    }
 
-            //　アイコンが画面外に出ないようにする
-            pos.x = Mathf.Clamp(pos.x, -Screen.width * 0.5f + offset.x, Screen.width * 0.5f - offset.x);
-            pos.y = Mathf.Clamp(pos.y, -Screen.height * 0.5f + offset.y, Screen.height * 0.5f - offset.y);
-            //　アイコン位置を設定
-            rect.anchoredPosition = pos;
+                    //　移動キーを押していなければ何もしない
+                    if (Input.GetAxis("Horizontal") >= -0.5f && Input.GetAxis("Vertical") >= -0.5f && Input.GetAxis("Horizontal") <= 0.5f && Input.GetAxis("Vertical") <= 0.5f)
+                    {
+                        return;
+                    }
+                    //　移動先を計算
+                    pos += new Vector2(Input.GetAxis("Horizontal") * iconSpeed, -Input.GetAxis("Vertical") * iconSpeed) * Time.deltaTime;
+                    //　アイコン位置を設定
+                    transform.localPosition = pos;
+                }
+                else
+                {
+                    sceneFlag1 = false;
+                }
+
+            }
+            else if (controller == 2)
+            {
+                if(controlFlag2P)
+                {
+                    if (Input.GetButtonDown("AButton2"))
+                    {
+                        
+                        controlFlag2P = false;
+                        if (GetCharName() == "Aoi")
+                        {
+                            aoiModel2.transform.position = new Vector3(modelPosX, modelPosY, 0);
+                            Instantiate(aoiModel2);
+                            Debug.Log("2PAOI");
+                            controlFlag2P = false;
+                        }
+                        else if (GetCharName() == "Hikari")
+                        {
+                            hikariModel2.transform.position = new Vector3(modelPosX, modelPosY, 0);
+                            Instantiate(hikariModel2);
+                            Debug.Log("2PHIAKRI");
+                            controlFlag2P = false;
+                            Debug.Log(controlFlag2P);
+                        }
+                        else//if (GetCharName() == "None")
+                        {
+                            controlFlag2P = true;
+                            //Debug.Log("TURURUになったｙｐ");
+                        }
+
+                    }
+
+                    //　移動キーを押していなければ何もしない
+                    if (Input.GetAxis("Horizontal2") >= -0.5f && Input.GetAxis("Vertical2") >= -0.5f && Input.GetAxis("Horizontal2") <= 0.5f && Input.GetAxis("Vertical2") <= 0.5f)
+                    {
+                        return;
+                    }
+                    //　移動先を計算
+                    pos += new Vector2(Input.GetAxis("Horizontal2") * iconSpeed, -Input.GetAxis("Vertical2") * iconSpeed) * Time.deltaTime;
+                    //　アイコン位置を設定
+                    transform.localPosition = pos;
+                }
+                else
+                {
+                    sceneFlag2 = false;
+                }
+            }
         }
+        Debug.Log("updateEND"+controlFlag2P);
     }
     public Vector2 GetFramePos(string name)
     {
@@ -88,26 +242,47 @@ public class CharacterSelect : MonoBehaviour {
         {
             case "char1":
                 pos = framePos[0];
+                charName = "Aoi";
                 break;
             case "char2":
                 pos = framePos[1];
+                charName = "None";
                 break;
             case "char3":
                 pos = framePos[2];
+                charName = "None";
                 break;
             case "char4":
                 pos = framePos[3];
+                charName = "Hikari";
                 break;
             case "char5":
                 pos = framePos[4];
+                charName = "None";
                 break;
             case "char6":
                 pos = framePos[5];
+                charName = "None";
                 break;
             case "random":
                 pos = framePos[6];
+                charName = "None";
                 break;
         }
         return pos;
+    }
+    public string GetCharName()
+    {
+        return charName;
+    }
+    public bool GetP1Frag()
+    {
+        //Debug.Log("1Pフラグ" + controlFlag1P);
+        return sceneFlag1;
+    }
+    public bool GetP2Frag()
+    {
+        //Debug.Log("2Pフラグ" + controlFlag2P);
+        return sceneFlag2;
     }
 }

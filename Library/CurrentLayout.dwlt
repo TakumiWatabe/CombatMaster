@@ -13,19 +13,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_PixelRect:
     serializedVersion: 2
-    x: 0
+    x: -1920
     y: 43
-    width: 1280
-    height: 637
+    width: 1827
+    height: 1037
   m_ShowMode: 4
   m_Title: 
-<<<<<<< HEAD
-  m_RootView: {fileID: 3}
-  m_MinSize: {x: 950, y: 392}
-=======
   m_RootView: {fileID: 2}
-  m_MinSize: {x: 950, y: 492}
->>>>>>> Scene遷移
+  m_MinSize: {x: 950, y: 471}
   m_MaxSize: {x: 10000, y: 10000}
 --- !u!114 &2
 MonoBehaviour:
@@ -44,26 +39,12 @@ MonoBehaviour:
   - {fileID: 4}
   m_Position:
     serializedVersion: 2
-<<<<<<< HEAD
-    x: 756
-    y: 0
-    width: 234
-    height: 587
-  m_MinSize: {x: 234, y: 271}
-  m_MaxSize: {x: 10004, y: 10021}
-  m_ActualView: {fileID: 16}
-  m_Panes:
-  - {fileID: 16}
-  m_Selected: 0
-  m_LastSelected: 0
-=======
     x: 0
     y: 0
-    width: 1280
-    height: 646
-  m_MinSize: {x: 950, y: 492}
+    width: 1827
+    height: 1037
+  m_MinSize: {x: 950, y: 471}
   m_MaxSize: {x: 10000, y: 10000}
->>>>>>> Scene遷移
 --- !u!114 &3
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -72,32 +53,19 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 1
-<<<<<<< HEAD
-  m_Script: {fileID: 12008, guid: 0000000000000000e000000000000000, type: 0}
-=======
   m_Script: {fileID: 12011, guid: 0000000000000000e000000000000000, type: 0}
->>>>>>> Scene遷移
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Children:
-  - {fileID: 4}
-  - {fileID: 6}
-  - {fileID: 5}
+  m_Children: []
   m_Position:
     serializedVersion: 2
     x: 0
     y: 0
-    width: 1280
-<<<<<<< HEAD
-    height: 637
-  m_MinSize: {x: 950, y: 392}
-  m_MaxSize: {x: 10000, y: 10000}
-=======
+    width: 1827
     height: 30
   m_MinSize: {x: 0, y: 0}
   m_MaxSize: {x: 0, y: 0}
   m_LastLoadedLayoutName: 
->>>>>>> Scene遷移
 --- !u!114 &4
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -106,31 +74,18 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 1
-<<<<<<< HEAD
-  m_Script: {fileID: 12011, guid: 0000000000000000e000000000000000, type: 0}
-=======
   m_Script: {fileID: 12042, guid: 0000000000000000e000000000000000, type: 0}
->>>>>>> Scene遷移
   m_Name: 
   m_EditorClassIdentifier: 
   m_Children: []
   m_Position:
     serializedVersion: 2
     x: 0
-<<<<<<< HEAD
-    y: 0
-    width: 1280
-    height: 30
-  m_MinSize: {x: 0, y: 0}
-  m_MaxSize: {x: 0, y: 0}
-  m_LastLoadedLayoutName: 
-=======
-    y: 626
-    width: 1280
+    y: 1017
+    width: 1827
     height: 20
   m_MinSize: {x: 0, y: 0}
   m_MaxSize: {x: 0, y: 0}
->>>>>>> Scene遷移
 --- !u!114 &5
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -139,11 +94,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 1
-<<<<<<< HEAD
-  m_Script: {fileID: 12042, guid: 0000000000000000e000000000000000, type: 0}
-=======
   m_Script: {fileID: 12010, guid: 0000000000000000e000000000000000, type: 0}
->>>>>>> Scene遷移
   m_Name: 
   m_EditorClassIdentifier: 
   m_Children:
@@ -154,21 +105,13 @@ MonoBehaviour:
   m_Position:
     serializedVersion: 2
     x: 0
-<<<<<<< HEAD
-    y: 617
-    width: 1280
-    height: 20
-  m_MinSize: {x: 0, y: 0}
-  m_MaxSize: {x: 0, y: 0}
-=======
     y: 30
-    width: 1280
-    height: 596
-  m_MinSize: {x: 917, y: 442}
-  m_MaxSize: {x: 22012, y: 10021}
+    width: 1827
+    height: 987
+  m_MinSize: {x: 913, y: 421}
+  m_MaxSize: {x: 22008, y: 10000}
   vertical: 0
-  controlID: 62
->>>>>>> Scene遷移
+  controlID: 10966
 --- !u!114 &6
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -182,33 +125,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Children:
   - {fileID: 7}
-<<<<<<< HEAD
-  - {fileID: 10}
-  - {fileID: 2}
-  - {fileID: 11}
-  m_Position:
-    serializedVersion: 2
-    x: 0
-    y: 30
-    width: 1280
-    height: 587
-  m_MinSize: {x: 917, y: 342}
-  m_MaxSize: {x: 22012, y: 10021}
-  vertical: 0
-  controlID: 139
-=======
   - {fileID: 8}
   m_Position:
     serializedVersion: 2
     x: 0
     y: 0
-    width: 528
-    height: 596
-  m_MinSize: {x: 202, y: 442}
-  m_MaxSize: {x: 4002, y: 8042}
+    width: 687
+    height: 987
+  m_MinSize: {x: 202, y: 421}
+  m_MaxSize: {x: 4002, y: 8021}
   vertical: 1
-  controlID: 76
->>>>>>> Scene遷移
+  controlID: 10921
 --- !u!114 &7
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -220,27 +147,13 @@ MonoBehaviour:
   m_Script: {fileID: 12006, guid: 0000000000000000e000000000000000, type: 0}
   m_Name: 
   m_EditorClassIdentifier: 
-<<<<<<< HEAD
-  m_Children:
-  - {fileID: 8}
-  - {fileID: 9}
-=======
   m_Children: []
->>>>>>> Scene遷移
   m_Position:
     serializedVersion: 2
     x: 0
     y: 0
-<<<<<<< HEAD
-    width: 522
-    height: 587
-  m_MinSize: {x: 202, y: 342}
-  m_MaxSize: {x: 4002, y: 8042}
-  vertical: 1
-  controlID: 33
-=======
-    width: 528
-    height: 317
+    width: 687
+    height: 506
   m_MinSize: {x: 202, y: 221}
   m_MaxSize: {x: 4002, y: 4021}
   m_ActualView: {fileID: 13}
@@ -248,8 +161,7 @@ MonoBehaviour:
   - {fileID: 13}
   - {fileID: 14}
   m_Selected: 0
-  m_LastSelected: 0
->>>>>>> Scene遷移
+  m_LastSelected: 1
 --- !u!114 &8
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -265,28 +177,15 @@ MonoBehaviour:
   m_Position:
     serializedVersion: 2
     x: 0
-<<<<<<< HEAD
-    y: 0
-    width: 522
-    height: 293
-  m_MinSize: {x: 102, y: 121}
-  m_MaxSize: {x: 4002, y: 4021}
-  m_ActualView: {fileID: 14}
-  m_Panes:
-  - {fileID: 13}
-  - {fileID: 14}
-  m_Selected: 1
-=======
-    y: 317
-    width: 528
-    height: 279
+    y: 506
+    width: 687
+    height: 481
   m_MinSize: {x: 202, y: 221}
   m_MaxSize: {x: 4002, y: 4021}
   m_ActualView: {fileID: 12}
   m_Panes:
   - {fileID: 12}
   m_Selected: 0
->>>>>>> Scene遷移
   m_LastSelected: 0
 --- !u!114 &9
 MonoBehaviour:
@@ -302,27 +201,15 @@ MonoBehaviour:
   m_Children: []
   m_Position:
     serializedVersion: 2
-<<<<<<< HEAD
-    x: 0
-    y: 293
-    width: 522
-    height: 294
-  m_MinSize: {x: 200, y: 200}
-  m_MaxSize: {x: 4000, y: 4000}
-  m_ActualView: {fileID: 12}
-  m_Panes:
-  - {fileID: 12}
-=======
-    x: 528
+    x: 687
     y: 0
-    width: 215
-    height: 596
+    width: 295
+    height: 987
   m_MinSize: {x: 204, y: 221}
   m_MaxSize: {x: 4004, y: 4021}
   m_ActualView: {fileID: 15}
   m_Panes:
   - {fileID: 15}
->>>>>>> Scene遷移
   m_Selected: 0
   m_LastSelected: 0
 --- !u!114 &10
@@ -339,27 +226,15 @@ MonoBehaviour:
   m_Children: []
   m_Position:
     serializedVersion: 2
-<<<<<<< HEAD
-    x: 522
+    x: 982
     y: 0
-    width: 234
-    height: 587
-  m_MinSize: {x: 204, y: 221}
-  m_MaxSize: {x: 4004, y: 4021}
-  m_ActualView: {fileID: 15}
-  m_Panes:
-  - {fileID: 15}
-=======
-    x: 743
-    y: 0
-    width: 246
-    height: 596
+    width: 435
+    height: 987
   m_MinSize: {x: 234, y: 271}
   m_MaxSize: {x: 10004, y: 10021}
   m_ActualView: {fileID: 16}
   m_Panes:
   - {fileID: 16}
->>>>>>> Scene遷移
   m_Selected: 0
   m_LastSelected: 0
 --- !u!114 &11
@@ -376,17 +251,10 @@ MonoBehaviour:
   m_Children: []
   m_Position:
     serializedVersion: 2
-<<<<<<< HEAD
-    x: 990
+    x: 1417
     y: 0
-    width: 290
-    height: 587
-=======
-    x: 989
-    y: 0
-    width: 291
-    height: 596
->>>>>>> Scene遷移
+    width: 410
+    height: 987
   m_MinSize: {x: 277, y: 71}
   m_MaxSize: {x: 4002, y: 4021}
   m_ActualView: {fileID: 17}
@@ -416,20 +284,12 @@ MonoBehaviour:
   m_DepthBufferBits: 32
   m_Pos:
     serializedVersion: 2
-    x: 0
-<<<<<<< HEAD
-    y: 385
-    width: 520
-    height: 273
-  m_PersistentViewDataDictionary: {fileID: 0}
-  m_MaximizeOnPlay: 0
-=======
-    y: 409
-    width: 526
-    height: 258
+    x: -1920
+    y: 598
+    width: 685
+    height: 460
   m_PersistentViewDataDictionary: {fileID: 0}
   m_MaximizeOnPlay: 1
->>>>>>> Scene遷移
   m_Gizmos: 0
   m_Stats: 0
   m_SelectedSizes: 05000000000000000000000000000000000000000000000000000000000000000000000000000000
@@ -437,17 +297,10 @@ MonoBehaviour:
   m_ZoomArea:
     m_HRangeLocked: 0
     m_VRangeLocked: 0
-<<<<<<< HEAD
-    m_HBaseRangeMin: -227.55556
-    m_HBaseRangeMax: 227.55556
-    m_VBaseRangeMin: -128
-    m_VBaseRangeMax: 128
-=======
-    m_HBaseRangeMin: -214.22223
-    m_HBaseRangeMax: 214.22223
-    m_VBaseRangeMin: -120.5
-    m_VBaseRangeMax: 120.5
->>>>>>> Scene遷移
+    m_HBaseRangeMin: -342.5
+    m_HBaseRangeMax: 342.5
+    m_VBaseRangeMin: -192.65625
+    m_VBaseRangeMax: 192.65625
     m_HAllowExceedBaseRangeMin: 1
     m_HAllowExceedBaseRangeMax: 1
     m_VAllowExceedBaseRangeMin: 1
@@ -464,43 +317,25 @@ MonoBehaviour:
       serializedVersion: 2
       x: 0
       y: 17
-<<<<<<< HEAD
-      width: 520
-      height: 256
+      width: 685
+      height: 443
     m_Scale: {x: 1, y: 1}
-    m_Translation: {x: 260, y: 128}
-=======
-      width: 526
-      height: 241
-    m_Scale: {x: 1, y: 1}
-    m_Translation: {x: 263, y: 120.5}
->>>>>>> Scene遷移
+    m_Translation: {x: 342.5, y: 221.5}
     m_MarginLeft: 0
     m_MarginRight: 0
     m_MarginTop: 0
     m_MarginBottom: 0
     m_LastShownAreaInsideMargins:
       serializedVersion: 2
-<<<<<<< HEAD
-      x: -260
-      y: -128
-      width: 520
-      height: 256
-=======
-      x: -263
-      y: -120.5
-      width: 526
-      height: 241
->>>>>>> Scene遷移
+      x: -342.5
+      y: -221.5
+      width: 685
+      height: 443
     m_MinimalGUI: 1
   m_defaultScale: 1
   m_TargetTexture: {fileID: 0}
   m_CurrentColorSpace: 0
-<<<<<<< HEAD
-  m_LastWindowPixelSize: {x: 520, y: 273}
-=======
-  m_LastWindowPixelSize: {x: 526, y: 258}
->>>>>>> Scene遷移
+  m_LastWindowPixelSize: {x: 685, y: 460}
   m_ClearInEditMode: 1
   m_NoCameraWarning: 1
   m_LowResolutionForAspectRatios: 01000000000100000100
@@ -526,34 +361,20 @@ MonoBehaviour:
   m_DepthBufferBits: 32
   m_Pos:
     serializedVersion: 2
-    x: 0
+    x: -1920
     y: 92
-<<<<<<< HEAD
-    width: 520
-    height: 272
+    width: 685
+    height: 485
   m_PersistentViewDataDictionary: {fileID: 0}
   m_SceneLighting: 1
-  lastFramingTime: 604.143177568977
-=======
-    width: 526
-    height: 296
-  m_PersistentViewDataDictionary: {fileID: 0}
-  m_SceneLighting: 1
-  lastFramingTime: 2976.5845822227548
->>>>>>> Scene遷移
+  lastFramingTime: 40451.41137962667
   m_2DMode: 0
   m_isRotationLocked: 0
   m_AudioPlay: 0
   m_Position:
-<<<<<<< HEAD
-    m_Target: {x: 2.4086754, y: 3.5235121, z: 1.1240234}
+    m_Target: {x: -12.199537, y: 1.2622347, z: 0.04709053}
     speed: 2
-    m_Value: {x: 2.4086754, y: 3.5235121, z: 1.1240234}
-=======
-    m_Target: {x: -34.234375, y: -2.6660156, z: -36.53125}
-    speed: 2
-    m_Value: {x: -34.234375, y: -2.6660156, z: -36.53125}
->>>>>>> Scene遷移
+    m_Value: {x: -12.199537, y: 1.2622347, z: 0.04709053}
   m_RenderMode: 0
   m_ValidateTrueMetals: 0
   m_SceneViewState:
@@ -569,39 +390,25 @@ MonoBehaviour:
       speed: 2
       m_Value: 0
     yGrid:
-      m_Target: 0
-      speed: 2
-      m_Value: 0
-    zGrid:
-<<<<<<< HEAD
       m_Target: 1
       speed: 2
       m_Value: 1
-  m_Rotation:
-    m_Target: {x: 0, y: 0, z: 0, w: -1}
-    speed: 2
-    m_Value: {x: 0, y: 0, z: 0, w: -1}
-  m_Size:
-    m_Target: 2.5305972
-    speed: 2
-    m_Value: 2.5305972
-=======
+    zGrid:
       m_Target: 0
       speed: 2
       m_Value: 0
   m_Rotation:
-    m_Target: {x: -0.020858662, y: 0.11521781, z: 0.002419554, w: 0.99311996}
+    m_Target: {x: 0.00416598, y: 0.99522877, z: -0.04930407, w: 0.084093146}
     speed: 2
-    m_Value: {x: 0.020858662, y: -0.115217805, z: -0.0024195537, w: -0.99311996}
+    m_Value: {x: 0.0041659805, y: 0.99522877, z: -0.049304076, w: 0.08409315}
   m_Size:
-    m_Target: 274.34427
+    m_Target: 7.0285244
     speed: 2
-    m_Value: 274.34427
->>>>>>> Scene遷移
+    m_Value: 7.0285244
   m_Ortho:
-    m_Target: 1
+    m_Target: 0
     speed: 2
-    m_Value: 1
+    m_Value: 0
   m_ShowGlobalGrid: 1
   m_LastSceneViewRotation: {x: 0, y: 0, z: 0, w: 0}
   m_LastSceneViewOrtho: 0
@@ -616,7 +423,6 @@ MonoBehaviour:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 0}
   m_Enabled: 1
-<<<<<<< HEAD
   m_EditorHideFlags: 0
   m_Script: {fileID: 12914, guid: 0000000000000000e000000000000000, type: 0}
   m_Name: 
@@ -632,23 +438,57 @@ MonoBehaviour:
   m_DepthBufferBits: 0
   m_Pos:
     serializedVersion: 2
-    x: 0
+    x: -1920
     y: 92
-    width: 520
-    height: 272
+    width: 685
+    height: 485
   m_PersistentViewDataDictionary: {fileID: 0}
   m_ViewTransforms:
     m_KeySerializationHelper:
-    - {fileID: 1107903308968630596, guid: 18a87bcbeed66d7428defb8fb23e7717, type: 2}
+    - {fileID: 1107135789244648330, guid: 24c766b757aefe04bbcf541e85962b88, type: 2}
+    - {fileID: 1107684480553704000, guid: 0fb4f3d42fd084443b69afc9bf71b408, type: 2}
+    - {fileID: 1107296676955987784, guid: 60b3efb8068e10a48b6ad00b45f13f37, type: 2}
     m_ValueSerializationHelper:
-    - e00: 0.17634855
+    - e00: 0.5092105
       e01: 0
       e02: 0
-      e03: 84.83402
+      e03: -10.460541
       e10: 0
-      e11: 0.17634855
+      e11: 0.5092105
       e12: 0
-      e13: 93.98755
+      e13: 176.625
+      e20: 0
+      e21: 0
+      e22: 1
+      e23: 0
+      e30: 0
+      e31: 0
+      e32: 0
+      e33: 1
+    - e00: 0.5718085
+      e01: 0
+      e02: 0
+      e03: -13.590424
+      e10: 0
+      e11: 0.5718085
+      e12: 0
+      e13: 170.67819
+      e20: 0
+      e21: 0
+      e22: 1
+      e23: 0
+      e30: 0
+      e31: 0
+      e32: 0
+      e33: 1
+    - e00: 0.23463687
+      e01: 0
+      e02: 0
+      e03: 90.986725
+      e10: 0
+      e11: 0.23463687
+      e12: 0
+      e13: 51.603348
       e20: 0
       e21: 0
       e22: 1
@@ -667,7 +507,7 @@ MonoBehaviour:
   m_AutoLiveLink: 1
   m_MiniTool: 0
   m_SerializedLocked: 0
-  m_CurrentEditor: 1
+  m_CurrentEditor: 0
   m_LayerEditor:
     m_SelectedLayerIndex: 0
 --- !u!114 &15
@@ -679,10 +519,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 1
   m_Script: {fileID: 12061, guid: 0000000000000000e000000000000000, type: 0}
-=======
-  m_EditorHideFlags: 1
-  m_Script: {fileID: 12111, guid: 0000000000000000e000000000000000, type: 0}
->>>>>>> Scene遷移
   m_Name: 
   m_EditorClassIdentifier: 
   m_AutoRepaintOnSceneChange: 0
@@ -696,50 +532,16 @@ MonoBehaviour:
   m_DepthBufferBits: 0
   m_Pos:
     serializedVersion: 2
-    x: 524
+    x: -1231
     y: 92
-    width: 230
-    height: 566
+    width: 291
+    height: 966
   m_PersistentViewDataDictionary: {fileID: 0}
-<<<<<<< HEAD
-=======
---- !u!114 &15
-MonoBehaviour:
-  m_ObjectHideFlags: 52
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 1
-  m_Script: {fileID: 12061, guid: 0000000000000000e000000000000000, type: 0}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_AutoRepaintOnSceneChange: 0
-  m_MinSize: {x: 200, y: 200}
-  m_MaxSize: {x: 4000, y: 4000}
-  m_TitleContent:
-    m_Text: Hierarchy
-    m_Image: {fileID: -590624980919486359, guid: 0000000000000000d000000000000000,
-      type: 0}
-    m_Tooltip: 
-  m_DepthBufferBits: 0
-  m_Pos:
-    serializedVersion: 2
-    x: 530
-    y: 92
-    width: 211
-    height: 575
-  m_PersistentViewDataDictionary: {fileID: 0}
->>>>>>> Scene遷移
   m_TreeViewState:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-<<<<<<< HEAD
-    m_ExpandedIDs: 28f1ffff00000000
-=======
-    m_ExpandedIDs: 84fbffff00000000
->>>>>>> Scene遷移
+    m_ExpandedIDs: 7646f3fff058f3ff02c5f3ff78faf3ff4e3af4ff006cf4ffde75f6ff768bf6ff5a1efbffa48efbffb88efbff9efbffff000000004a33000094330000586c0000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -755,17 +557,10 @@ MonoBehaviour:
       m_IsRenaming: 0
       m_OriginalEventType: 11
       m_IsRenamingFilename: 0
-<<<<<<< HEAD
-      m_ClientGUIView: {fileID: 10}
-    m_SearchString: 
-  m_ExpandedScenes:
-  - TestScene
-=======
       m_ClientGUIView: {fileID: 9}
     m_SearchString: 
   m_ExpandedScenes:
   - SelectScene
->>>>>>> Scene遷移
   m_CurrenRootInstanceID: 0
   m_Locked: 0
   m_CurrentSortingName: TransformSorting
@@ -791,17 +586,10 @@ MonoBehaviour:
   m_DepthBufferBits: 0
   m_Pos:
     serializedVersion: 2
-<<<<<<< HEAD
-    x: 758
+    x: -936
     y: 92
-    width: 230
-    height: 566
-=======
-    x: 745
-    y: 92
-    width: 242
-    height: 575
->>>>>>> Scene遷移
+    width: 431
+    height: 966
   m_PersistentViewDataDictionary: {fileID: 0}
   m_SearchFilter:
     m_NameFilter: 
@@ -815,25 +603,47 @@ MonoBehaviour:
     m_ShowAllHits: 0
     m_SearchArea: 0
     m_Folders:
-    - Assets/Prefab/Model
-  m_ViewMode: 0
-  m_StartGridSize: 64
+    - Assets/Prefab/Model/IdleModel
+  m_ViewMode: 1
+  m_StartGridSize: 16
   m_LastFolders:
-  - Assets
-  m_LastFoldersGridSize: -1
-  m_LastProjectPath: C:\Users\s162029\Documents\CombatMaster
+  - Assets/Prefab/Model/IdleModel
+  m_LastFoldersGridSize: 16
+  m_LastProjectPath: C:\Users\s162211\Desktop\CombatMaster
   m_IsLocked: 0
   m_FolderTreeState:
     scrollPos: {x: 0, y: 0}
-<<<<<<< HEAD
-    m_SelectedIDs: 94380000
-    m_LastClickedID: 14484
-    m_ExpandedIDs: 00000000d23100001c3200001e320000443200009c320000bc320000be320000a63300005c34000082340000d8340000e03400005c3500005e3500006a36000082360000e6360000ec360000ac3700000e380000483800005c380000f63d0000f83d0000fa3d0000fc3d0000fe3d0000003e0000023e0000043e0000063e0000
-=======
-    m_SelectedIDs: 24320000
-    m_LastClickedID: 12836
-    m_ExpandedIDs: 00000000c42a0000162b0000cc2b0000482d0000982d0000102e0000182e0000662e0000982e0000f42f000070300000243200008433000086330000883300008a3300008c3300008e330000903300009233000000ca9a3bffffff7f
->>>>>>> Scene遷移
+    m_SelectedIDs: d62a0000
+    m_LastClickedID: 10966
+    m_ExpandedIDs: 00000000962a0000ea2a0000ec2a00001c2b0000842b0000ac2b0000ae2b0000b02c0000882d0000d42d0000da2d0000fc2d0000522e00005a2e0000e42e0000363000003a30000054300000d2300000d8300000be31000028320000763200008a3200001e34000020340000223400002434000026340000283400002a3400002c34000000ca9a3bffffff7f
+    m_RenameOverlay:
+      m_UserAcceptedRename: 0
+      m_Name: 
+      m_OriginalName: 
+      m_EditFieldRect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 0
+        height: 0
+      m_UserData: 0
+      m_IsWaitingForDelay: 0
+      m_IsRenaming: 0
+      m_OriginalEventType: 11
+      m_IsRenamingFilename: 1
+      m_ClientGUIView: {fileID: 10}
+    m_SearchString: 
+    m_CreateAssetUtility:
+      m_EndAction: {fileID: 0}
+      m_InstanceID: 0
+      m_Path: 
+      m_Icon: {fileID: 0}
+      m_ResourceFile: 
+  m_AssetTreeState:
+    scrollPos: {x: 0, y: 0}
+    m_SelectedIDs: 
+    m_LastClickedID: 0
+    m_ExpandedIDs: 00000000962a0000ea2a0000ec2a00001c2b0000842b0000ac2b0000ae2b0000b02c0000882d0000d42d0000da2d0000fc2d0000522e00005a2e0000e42e0000363000003a30000054300000d2300000d8300000be31000028320000763200008a3200001e34000020340000223400002434000026340000283400002a3400002c34000000ca9a3bffffff7f
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -857,47 +667,11 @@ MonoBehaviour:
       m_Path: 
       m_Icon: {fileID: 0}
       m_ResourceFile: 
-  m_AssetTreeState:
-    scrollPos: {x: 0, y: 1200}
-    m_SelectedIDs: 
-    m_LastClickedID: 0
-<<<<<<< HEAD
-    m_ExpandedIDs: 00000000e82f0000d23100001c3200001e320000443200009c320000bc320000be320000a63300005c34000082340000d8340000e03400005c3500005e3500006a36000082360000e6360000ec360000ac3700000e380000483800005c380000f63d0000f83d0000fa3d0000fc3d0000fe3d0000003e0000023e0000043e0000063e0000
-=======
-    m_ExpandedIDs: 00000000c42a0000162b0000cc2b0000482d0000982d0000102e0000182e0000662e0000982e0000f42f000070300000243200008433000086330000883300008a3300008c3300008e3300009033000092330000
->>>>>>> Scene遷移
-    m_RenameOverlay:
-      m_UserAcceptedRename: 0
-      m_Name: 
-      m_OriginalName: 
-      m_EditFieldRect:
-        serializedVersion: 2
-        x: 0
-        y: 0
-        width: 0
-        height: 0
-      m_UserData: 0
-      m_IsWaitingForDelay: 0
-      m_IsRenaming: 0
-      m_OriginalEventType: 11
-      m_IsRenamingFilename: 1
-      m_ClientGUIView: {fileID: 10}
-    m_SearchString: 
-    m_CreateAssetUtility:
-      m_EndAction: {fileID: 0}
-      m_InstanceID: 0
-      m_Path: 
-      m_Icon: {fileID: 0}
-      m_ResourceFile: 
   m_ListAreaState:
     m_SelectedInstanceIDs: 
     m_LastClickedInstanceID: 0
     m_HadKeyboardFocusLastEvent: 0
-<<<<<<< HEAD
-    m_ExpandedInstanceIDs: 
-=======
-    m_ExpandedInstanceIDs: c62300008c2b0000
->>>>>>> Scene遷移
+    m_ExpandedInstanceIDs: 803100000c55f4ff
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -921,15 +695,9 @@ MonoBehaviour:
       m_Icon: {fileID: 0}
       m_ResourceFile: 
     m_NewAssetIndexInList: -1
-<<<<<<< HEAD
     m_ScrollPosition: {x: 0, y: 0}
-    m_GridSize: 64
-  m_DirectoriesAreaWidth: 80
-=======
-    m_ScrollPosition: {x: 0, y: 38}
     m_GridSize: 16
-  m_DirectoriesAreaWidth: 108
->>>>>>> Scene遷移
+  m_DirectoriesAreaWidth: 177
 --- !u!114 &17
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -952,22 +720,15 @@ MonoBehaviour:
   m_DepthBufferBits: 0
   m_Pos:
     serializedVersion: 2
-<<<<<<< HEAD
-    x: 992
+    x: -501
     y: 92
-    width: 288
-    height: 566
-=======
-    x: 991
-    y: 92
-    width: 289
-    height: 575
->>>>>>> Scene遷移
+    width: 408
+    height: 966
   m_PersistentViewDataDictionary: {fileID: 0}
   m_ScrollPosition: {x: 0, y: 0}
   m_InspectorMode: 0
   m_PreviewResizer:
-    m_CachedPref: 121
+    m_CachedPref: -160
     m_ControlHash: -371814159
     m_PrefName: Preview_InspectorPreview
   m_PreviewWindow: {fileID: 0}

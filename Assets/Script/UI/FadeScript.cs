@@ -113,4 +113,8 @@ public class FadeScript : MonoBehaviour
     {
         return isFadeOut;
     }
+    public float GetAlpha()
+    {
+        return alfa;
+    }
 }

@@ -1,8 +1,4 @@
 sceneSetups:
-<<<<<<< HEAD
-- path: Assets/Scene/TestScene.unity
-=======
 - path: Assets/Scene/SelectScene.unity
->>>>>>> Scene遷移
   isLoaded: 1
   isActive: 1
