@@ -1717,6 +1717,7 @@ GameObject:
   - component: {fileID: 114835155868013696}
   - component: {fileID: 54633542102782860}
   - component: {fileID: 114936224281100454}
+  - component: {fileID: 82108494540048716}
   m_Layer: 0
   m_Name: Aoi
   m_TagString: P2
@@ -3776,6 +3777,86 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.25, y: 0.8, z: 0.9}
   m_Center: {x: 0, y: 0.5, z: 0}
+--- !u!82 &82108494540048716
+AudioSource:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1950020390803814}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - serializedVersion: 2
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
 --- !u!95 &95466302322956808
 Animator:
   serializedVersion: 3
@@ -4038,7 +4119,10 @@ MonoBehaviour:
   commandCount: 20
   numInputHistory: 10
   damage: 0
+  jumpSpeed: 0.15
+  syoryuSpeed: 0.175
   controllerName: 
+  hadokenObject: {fileID: 0}
   distanceToGuard: 0.7
   isModel: 0
   largeDmg: {fileID: 0}
@@ -4457,12 +4541,16 @@ MonoBehaviour:
   commandCount: 20
   numInputHistory: 10
   damage: 0
+  jumpSpeed: 0.15
+  syoryuSpeed: 0.175
   controllerName: 
+  hadokenObject: {fileID: 1870906395412772, guid: 1acc25e935595a34096faa936e5f8026,
+    type: 2}
   distanceToGuard: 0.7
   isModel: 1
-  largeDmg: {fileID: 0}
-  midiumDmg: {fileID: 0}
-  lowDmg: {fileID: 0}
+  largeDmg: {fileID: 8300000, guid: 400b7139a329b2e49b13ad10b6884ef6, type: 3}
+  midiumDmg: {fileID: 8300000, guid: 04f35937fa3609547bec39e596a72818, type: 3}
+  lowDmg: {fileID: 8300000, guid: cc88295c5ac5bc44a92bdef9ee67ce7c, type: 3}
   history: []
 --- !u!114 &114953590172092078
 MonoBehaviour:

@@ -470,6 +470,7 @@
     <Compile Include="Assets\Script\Collider\ComboScript.cs" />
     <Compile Include="Assets\Script\Collider\HikariEvent.cs" />
     <Compile Include="Assets\Script\Collider\OverlapScript.cs" />
+    <Compile Include="Assets\Script\Collider\Player\HadouController.cs" />
     <Compile Include="Assets\Script\Collider\Player\PlayerController.cs" />
     <Compile Include="Assets\Script\Collider\Player\PlayerControllerTest.cs" />
     <Compile Include="Assets\Script\Collider\TestChar.cs" />
