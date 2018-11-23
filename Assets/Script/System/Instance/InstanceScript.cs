@@ -18,7 +18,7 @@ public class InstanceScript : MonoBehaviour {
     private string[] names = new string[3]
     {
         "Aoi" ,
-        "Hikari" ,
+        "Aoi" ,
         "none"
     };
 

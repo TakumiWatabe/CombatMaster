@@ -342,10 +342,9 @@ public class ColliderEvent : MonoBehaviour {
             new Vector3(0, 1.5f, 0.3f),
             new Vector3(0.25f, 0.3f, 0.4f));
 
-        AtkCollider[3].SetActive(true);
-        AtkCollider[4].SetActive(true);
-        AtkCollider[5].SetActive(true);
-        AtkCollider[6].SetActive(true);
+        //AtkCollider[4].SetActive(true);
+        //AtkCollider[5].SetActive(true);
+        //AtkCollider[6].SetActive(true);
     }
     void BasicHadouCollider3()
     {
@@ -1782,6 +1781,7 @@ public class ColliderEvent : MonoBehaviour {
             //判定非動作
             HitCollider[i].SetActive(false);
         }
+
     }
 
     //攻撃判定初期化関数
@@ -1792,6 +1792,8 @@ public class ColliderEvent : MonoBehaviour {
             //判定非動作
             AtkCollider[i].SetActive(false);
         }
+
+        AtkCollider[3].SetActive(true);
     }
 
     //あたり判定設定関数

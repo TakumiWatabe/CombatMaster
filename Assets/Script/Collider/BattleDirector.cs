@@ -66,7 +66,7 @@ public class BattleDirector : MonoBehaviour {
             {
                 case "Aoi":
                     player1Name = "AOI";
-                    //player2Name = "AOI";
+                    player2Name = "AOI";
                     break;
                 case "Hikari":
                     //player1Name = "HIKARI";

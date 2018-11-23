@@ -468,6 +468,7 @@
     <Compile Include="Assets\Script\Collider\ColliderEvent.cs" />
     <Compile Include="Assets\Script\Collider\ColliderReact.cs" />
     <Compile Include="Assets\Script\Collider\ComboScript.cs" />
+    <Compile Include="Assets\Script\Collider\HadoCollid.cs" />
     <Compile Include="Assets\Script\Collider\HikariEvent.cs" />
     <Compile Include="Assets\Script\Collider\OverlapScript.cs" />
     <Compile Include="Assets\Script\Collider\Player\HadouController.cs" />
@@ -491,6 +492,7 @@
     <Compile Include="Assets\Script\System\SceneManagement.cs" />
     <Compile Include="Assets\Script\System\SceneTransition.cs" />
     <Compile Include="Assets\Script\System\Singleton.cs" />
+    <Compile Include="Assets\Script\System\TimeManager.cs" />
     <Compile Include="Assets\Script\System\TimerImageScript.cs" />
     <Compile Include="Assets\Script\System\TimerScript.cs" />
     <Compile Include="Assets\Script\System\ValueScript.cs" />

@@ -4123,12 +4123,13 @@ MonoBehaviour:
   syoryuSpeed: 0.175
   charName: Aoi
   controllerName: 
-  hadokenObject: {fileID: 0}
+  hadokenObject: {fileID: 1870906395412772, guid: 1acc25e935595a34096faa936e5f8026,
+    type: 2}
   distanceToGuard: 0.7
   isModel: 0
-  largeDmg: {fileID: 0}
-  midiumDmg: {fileID: 0}
-  lowDmg: {fileID: 0}
+  largeDmg: {fileID: 8300000, guid: 400b7139a329b2e49b13ad10b6884ef6, type: 3}
+  midiumDmg: {fileID: 8300000, guid: 04f35937fa3609547bec39e596a72818, type: 3}
+  lowDmg: {fileID: 8300000, guid: cc88295c5ac5bc44a92bdef9ee67ce7c, type: 3}
   history: []
 --- !u!114 &114393275947154626
 MonoBehaviour:
@@ -4170,7 +4171,7 @@ MonoBehaviour:
   - {fileID: 1238003315464876}
   - {fileID: 1874439783121648}
   - {fileID: 1440865326543666}
-  - {fileID: 1253212120099546}
+  - {fileID: 1870906395412772, guid: 1acc25e935595a34096faa936e5f8026, type: 2}
   - {fileID: 1824848331607504}
   - {fileID: 1642564194609590}
   - {fileID: 1393544899292010}
@@ -4220,7 +4221,7 @@ MonoBehaviour:
   - {fileID: 1238003315464876}
   - {fileID: 1874439783121648}
   - {fileID: 1440865326543666}
-  - {fileID: 1253212120099546}
+  - {fileID: 1870906395412772, guid: 1acc25e935595a34096faa936e5f8026, type: 2}
   - {fileID: 1824848331607504}
   - {fileID: 1642564194609590}
   - {fileID: 1393544899292010}
@@ -4474,8 +4475,8 @@ MonoBehaviour:
   effectStr: {fileID: 1680862758961744, guid: c2bf0a45094d9104e99b781a60a29764, type: 2}
   effectMid: {fileID: 1289611684772068, guid: fc854581da1f3304894bfa4569d0f5d0, type: 2}
   effectWeak: {fileID: 1848129787870010, guid: b553b46c70ade4141b6057ee00937929, type: 2}
-  time: 12
-  Ts: 10
+  time: 15
+  slowTime: 10
 --- !u!114 &114874440859785866
 MonoBehaviour:
   m_ObjectHideFlags: 1

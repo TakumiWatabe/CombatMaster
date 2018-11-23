@@ -160,10 +160,10 @@ public class PlayerController : MonoBehaviour
         inputDKey = 5;
         inputDKeyOld = inputDKey;
 
-        if(controller > 0)controllerName = Input.GetJoystickNames()[controller - 1];
+        //if(controller > 0)controllerName = Input.GetJoystickNames()[controller - 1];
 
-        Debug.Log(Input.GetJoystickNames()[0]);
-        Debug.Log(Input.GetJoystickNames()[1]);
+        //Debug.Log(Input.GetJoystickNames()[0]);
+        //Debug.Log(Input.GetJoystickNames()[1]);
 
 
 
@@ -180,7 +180,7 @@ public class PlayerController : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         //text.text = "";
 
@@ -291,7 +291,6 @@ public class PlayerController : MonoBehaviour
             damageCount = 0;
             animator.SetInteger("Damage", 0);
             state = "Stand";
-            Debug.Log("ダダダ戻れたぞ");
         }
 
         damageCount++; 
@@ -792,28 +791,23 @@ public class PlayerController : MonoBehaviour
             animator.SetBool("Jump", true);
             ySpeed = jumpSpeed;
 
-            Debug.Log("じゃんぷ" + animator.GetBool("Jump"));
-
             //ジャンプキック
             if (punchKey && !animator.GetBool("Punch") && !animator.GetBool("Kick"))
             {
                 //animator.SetBool("Punch", true);
                 animator.SetBool("Punch", true);
                 damage = 300;
-                Debug.Log("じゃんぷP");
             }
             //ジャンプキック
             if (kickKey && !animator.GetBool("Punch") && !animator.GetBool("Kick"))
             {
                 animator.SetBool("Kick", true);
                 damage = 500;
-                Debug.Log("じゃんぷｋ");
             }
         }
         else
         {
             //ジャンプ終わり
-            Debug.Log("着地");
             animator.SetBool("Jump", false);
             ySpeed = 0;
             gameObject.transform.position = new Vector3(gameObject.transform.position.x, 0, 0);
@@ -931,13 +925,14 @@ public class PlayerController : MonoBehaviour
                             {
                                 history.Add("");
                             }
-                            Debug.Log("波動拳");
 
                             if (isModel)
                             {
                                 GameObject hado = Instantiate(hadokenObject, GetComponent<ColliderEvent>().GetHitBoxs[9].center + this.transform.parent.transform.position, Quaternion.identity);
                                 if (direction == 1) hado.transform.Rotate(0, 0, 0);
                                 else hado.transform.Rotate(0, 180, 0);
+                                hado.name = "HadoukenA";
+                                hado.transform.SetParent(this.transform);
 
                                 hado.GetComponent<HadouController>().direction = direction;
                                 
@@ -1335,8 +1330,6 @@ public class PlayerController : MonoBehaviour
         }
         else
         {
-
-            Debug.Log(state);
             animator.SetInteger("Damage", dmg);
             if(jumpCount == 0)
             {
