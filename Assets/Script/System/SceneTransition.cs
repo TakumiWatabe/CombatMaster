@@ -19,9 +19,12 @@ public class SceneTransition : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         scene = this.GetComponent<SceneManagement>();
-        select = GameObject.Find("P1Image").GetComponent<CharacterSelect>();
-        select2 = GameObject.Find("P2Image").GetComponent<CharacterSelect>();
         fade = GameObject.Find("FadePanel").GetComponent<FadeScript>();
+        if (SceneManager.GetActiveScene().name == "SelectScene")
+        {
+            select = GameObject.Find("P1Image").GetComponent<CharacterSelect>();
+            select2 = GameObject.Find("P2Image").GetComponent<CharacterSelect>();
+        }
     }
 
     // Update is called once per frame
@@ -56,9 +59,6 @@ public class SceneTransition : MonoBehaviour {
 
             }
         }
-
-        if (p1 != select.GetP1Frag()) Debug.Log(DateTime.Now.ToLongTimeString() + "1P変わった");
-        if (p2 != select.GetP2Frag()) Debug.Log(DateTime.Now.ToLongTimeString() + "2P変わった");
 
         p1 = select.GetP1Frag();
         p2 = select2.GetP2Frag();

@@ -10,7 +10,7 @@ public class SceneManagement : MonoBehaviour {
     // プレイシーン
     string playScene = "PlayScene";
     // キャラクターセレクトシーン
-    string characterSelectScene = "CharacterSelectScene";
+    string characterSelectScene = "SelectScene";
     // プレイメニューシーン
     string playMenuScene = "PlayMenuScene";
     // リザルトシーン
