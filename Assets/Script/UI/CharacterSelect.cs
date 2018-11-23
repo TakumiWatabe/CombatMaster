@@ -200,7 +200,7 @@ public class CharacterSelect : MonoBehaviour {
                     
                     if (controlFlag2P)
                     {
-                        if (Input.GetButtonDown("AButton"))
+                        if (Input.GetButtonDown("AButton2"))
                         {
 
                             controlFlag2P = false;
@@ -439,14 +439,15 @@ public class CharacterSelect : MonoBehaviour {
                     sceneFlag1 = false;
                     sceneFlag2 = false;
                 }
+                if (controller == 2 && pvcController == 1)
+                {
+                    controller = -1;
+                }
             }
 
         }
 
-        if(controller == 2 && pvcController == 1)
-        {
-            controller = -1;
-        }
+
         Debug.Log("sceneFlag1" + sceneFlag1 + "sceneFlag2" + sceneFlag2);
     }
     public Vector2 GetFramePos(string name)
