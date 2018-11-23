@@ -31,6 +31,10 @@ public class PlayerController : MonoBehaviour
     //昇竜のスピード
     public float syoryuSpeed = 0.175f;
 
+    //キャラ分別
+    [SerializeField]
+    string charName;
+
     //ダメージ受けたときに下がる距離
     float backDistance = 0;
     float backingDistance = 0;
@@ -720,20 +724,46 @@ public class PlayerController : MonoBehaviour
                 break;
             //必殺
             case "Syoryuken":
-                
-                finalMove = new Vector3(0, 0, 0);
-                animator.SetInteger("Special", 2);
-                //JumpSyoryu();
-                //JumpingSyoryu();
+                if(charName == "Aoi")
+                {
+                    finalMove = new Vector3(0, 0, 0);
+                    animator.SetInteger("Special", 2);
+                }
+                else
+                {
+                    animator.SetInteger("Special", 2);
+                    JumpSyoryu();
+                    JumpingSyoryu();
+                }
+
                 break;
         }
-        //アニメ終了でもどる
-        if (animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1 && animator.GetInteger("Special") != 0)
-        //if (animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1 && animator.GetInteger("Special") == 1)
+
+        if(charName == "Aoi")
         {
-            animator.SetInteger("Special", 0);
-            state = "Stand";
+            if (animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1 && animator.GetInteger("Special") != 0)
+            //if (animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1 && animator.GetInteger("Special") == 1)
+            {
+                animator.SetInteger("Special", 0);
+                state = "Stand";
+            }
         }
+        else
+        {
+            //if (animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1 && animator.GetInteger("Special") != 0)
+            if (animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1 && animator.GetInteger("Special") == 1)
+            {
+                animator.SetInteger("Special", 0);
+                state = "Stand";
+            }
+        }
+        ////アニメ終了でもどる
+        //if (animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1 && animator.GetInteger("Special") != 0)
+        ////if (animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1 && animator.GetInteger("Special") == 1)
+        //{
+        //    animator.SetInteger("Special", 0);
+        //    state = "Stand";
+        //}
 
     }
 
@@ -762,23 +792,28 @@ public class PlayerController : MonoBehaviour
             animator.SetBool("Jump", true);
             ySpeed = jumpSpeed;
 
+            Debug.Log("じゃんぷ" + animator.GetBool("Jump"));
+
             //ジャンプキック
             if (punchKey && !animator.GetBool("Punch") && !animator.GetBool("Kick"))
             {
                 //animator.SetBool("Punch", true);
                 animator.SetBool("Punch", true);
                 damage = 300;
+                Debug.Log("じゃんぷP");
             }
             //ジャンプキック
             if (kickKey && !animator.GetBool("Punch") && !animator.GetBool("Kick"))
             {
                 animator.SetBool("Kick", true);
                 damage = 500;
+                Debug.Log("じゃんぷｋ");
             }
         }
         else
         {
             //ジャンプ終わり
+            Debug.Log("着地");
             animator.SetBool("Jump", false);
             ySpeed = 0;
             gameObject.transform.position = new Vector3(gameObject.transform.position.x, 0, 0);
@@ -1252,7 +1287,16 @@ public class PlayerController : MonoBehaviour
 
             if (jumpCount == 0 && state != "JumpingDamage") gameObject.transform.position = new Vector3(gameObject.transform.position.x, 0, 0);
 
-            if(gameObject.transform.position.y <= 0) gameObject.transform.position = new Vector3(gameObject.transform.position.x, 0, gameObject.transform.position.z);
+            if(gameObject.transform.position.y <= 0 && jumpCount == 0) gameObject.transform.position = new Vector3(gameObject.transform.position.x, 0, gameObject.transform.position.z);
+        }
+        else
+        {
+            gameObject.transform.position = new Vector3(gameObject.transform.position.x, finalPos.y, finalPos.z);
+
+            if (jumpCount == 0 && state != "JumpingDamage") gameObject.transform.position = new Vector3(gameObject.transform.position.x, 0, 0);
+
+            if (gameObject.transform.position.y <= 0 && jumpCount == 0) gameObject.transform.position = new Vector3(gameObject.transform.position.x, 0, gameObject.transform.position.z);
+
         }
     }
 

@@ -18,7 +18,7 @@ public class InstanceScript : MonoBehaviour {
     private string[] names = new string[3]
     {
         "Aoi" ,
-        "Aoi" ,
+        "Hikari" ,
         "none"
     };
 
@@ -36,10 +36,10 @@ public class InstanceScript : MonoBehaviour {
                     fight[i].fighter = Instantiate(charcter[0]);
                     fight[i].playerTag = i + 1;
                     break;
-                //case "Hikari":
-                //    fight[i].fighter = charcter[1];
-                //    fight[i].playerTag = i + 1;
-                //    break;
+                case "Hikari":
+                    fight[i].fighter = Instantiate(charcter[1]);
+                    fight[i].playerTag = i + 1;
+                    break;
                 default:
                     fight[i].fighter = null;
                     fight[i].playerTag = 0;

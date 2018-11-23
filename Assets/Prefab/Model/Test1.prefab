@@ -4121,6 +4121,7 @@ MonoBehaviour:
   damage: 0
   jumpSpeed: 0.15
   syoryuSpeed: 0.175
+  charName: Aoi
   controllerName: 
   hadokenObject: {fileID: 0}
   distanceToGuard: 0.7
@@ -4543,6 +4544,7 @@ MonoBehaviour:
   damage: 0
   jumpSpeed: 0.15
   syoryuSpeed: 0.175
+  charName: Aoi
   controllerName: 
   hadokenObject: {fileID: 1870906395412772, guid: 1acc25e935595a34096faa936e5f8026,
     type: 2}
