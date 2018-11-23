@@ -50,12 +50,14 @@ public class EnemyAI : MonoBehaviour {
     private float shouryuKenDis = 0.0f;
     [SerializeField]
     private float shouryuKenHeight = 0.0f;
+    [SerializeField, Header("防御行動をする相手との距離")]
+    private float defendDis = 0.0f;
 
     // Use this for initialization
     void Start () {
         pc = gameObject.GetComponent<PlayerController>();
         cpc = gameObject.transform.GetChild(0).GetComponent<PlayerController>();
-        enemy = pc.enemy;
+        enemy = pc.fightEnemy;
         pc.ControllerName = "AI";
         cpc.ControllerName = "AI";
         animator = GetComponent<Animator>();
@@ -65,7 +67,7 @@ public class EnemyAI : MonoBehaviour {
     public void Initialize()
     {
         pc = gameObject.GetComponent<PlayerController>();
-        enemy = pc.enemy;
+        enemy = pc.fightEnemy;
         pc.ControllerName = "AI";
         //animator = GetComponent<Animator>();
     }
@@ -85,7 +87,7 @@ public class EnemyAI : MonoBehaviour {
         cpc.KickKey = false;
 
         //ガードモーション中は動かない
-        if (cAnimator.GetBool("Guard"))
+        if (pc.State == "StandGuard" || pc.State == "SitGuard")
         {
             isRigor = true;
         }
@@ -204,9 +206,20 @@ public class EnemyAI : MonoBehaviour {
     private bool JudgGuard()
     {
         //敵、または敵弾が範囲内にあるならガード
-        if (false)
+        if (enemyDis <= defendDis)
         {
             //20フレームガード継続
+            //立ちかしゃがみガード
+            if(Random.Range(0,2) == 0)
+            {
+                pc.InputDKey = 4;
+                cpc.InputDKey = 4;
+            }
+            else
+            {
+                pc.InputDKey = 1;
+                cpc.InputDKey = 1;
+            }
             elapsedTime = 0;
         }
         return false;

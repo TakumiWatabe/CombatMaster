@@ -5,7 +5,6 @@ using UnityEngine.UI; //パネルのイメージを操作するのに必要
 
 public class FadeScript : MonoBehaviour
 {
-
     //透明度が変わるスピード
     float fadeSpeed = 0.02f;
     //パネルの色、不透明度
@@ -39,8 +38,12 @@ public class FadeScript : MonoBehaviour
         {
             StartFadeOut();
         }
+
     }
 
+    /// <summary>
+    /// フェードイン処理
+    /// </summary>
     void StartFadeIn()
     {
         // 不透明度を徐々に下げる
@@ -56,6 +59,9 @@ public class FadeScript : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// フェードアウト処理
+    /// </summary>
     void StartFadeOut()
     {
         // パネルの表示をオンにする
@@ -70,16 +76,45 @@ public class FadeScript : MonoBehaviour
             isFadeOut = false;
         }
     }
+    /// <summary>
+    /// アルファ値の変更
+    /// </summary>
     void SetAlpha()
     {
         fadeImage.color = new Color(red, green, blue, alfa);
     }
+    /// <summary>
+    /// フェードインのフラグ切り替え
+    /// </summary>
     public void FadeInFlag()
     {
         isFadeIn = !isFadeIn;
     }
+    /// <summary>
+    /// フェードアウトのフラグ切り替え
+    /// </summary>
     public void FadeOutFlag()
     {
         isFadeOut = !isFadeOut;
+    }
+    /// <summary>
+    /// フェードインフラグの状態取得
+    /// </summary>
+    /// <returns></returns>
+    public bool GetFadeInFlag()
+    {
+        return isFadeIn;
+    }
+    /// <summary>
+    /// フェードアウトフラグの状態取得
+    /// </summary>
+    /// <returns></returns>
+    public bool GetFadeOutFlag()
+    {
+        return isFadeOut;
+    }
+    public float GetAlpha()
+    {
+        return alfa;
     }
 }

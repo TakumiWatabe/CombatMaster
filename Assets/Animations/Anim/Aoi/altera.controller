@@ -753,7 +753,7 @@ AnimatorStateTransition:
     m_EventTreshold: 0
   - m_ConditionMode: 3
     m_ConditionEvent: Damage
-    m_EventTreshold: 799
+    m_EventTreshold: 699
   - m_ConditionMode: 2
     m_ConditionEvent: Sit
     m_EventTreshold: 0
@@ -2088,7 +2088,7 @@ AnimatorStateTransition:
     m_EventTreshold: 0
   - m_ConditionMode: 4
     m_ConditionEvent: Damage
-    m_EventTreshold: 800
+    m_EventTreshold: 700
   - m_ConditionMode: 2
     m_ConditionEvent: Sit
     m_EventTreshold: 0

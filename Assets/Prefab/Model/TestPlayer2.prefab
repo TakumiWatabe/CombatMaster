@@ -3526,6 +3526,7 @@ MonoBehaviour:
   damage: 0
   controllerName: 
   enemy: {fileID: 0}
+  ogj: {fileID: 0}
   distanceToGuard: 0.7
   isModel: 0
   largeDmg: {fileID: 0}
@@ -3543,6 +3544,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc575b4f4da87554681ac773b2b50274, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ogj: {fileID: 0}
   dir: {fileID: 0}
   time: 30
 --- !u!114 &114184929202615410
@@ -3706,6 +3708,7 @@ MonoBehaviour:
   damage: 0
   controllerName: 
   enemy: {fileID: 0}
+  ogj: {fileID: 0}
   distanceToGuard: 0.7
   isModel: 1
   largeDmg: {fileID: 0}

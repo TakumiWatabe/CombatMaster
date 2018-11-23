@@ -53,4 +53,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   charcter:
   - {fileID: 1652017793905370, guid: 9c7a499a252b57b4b96d936f034a8fe8, type: 2}
-  - {fileID: 1329454335067816, guid: b56c0d77d8f32464dba7aea2ad59a52f, type: 2}
+  - {fileID: 1962318914727706, guid: c069ed7a6f9610c40a76314c199853ff, type: 2}

@@ -10,7 +10,7 @@ public class SceneManagement : MonoBehaviour {
     // プレイシーン
     string playScene = "PlayScene";
     // キャラクターセレクトシーン
-    string characterSelectScene = "CharacterSelectScene";
+    string characterSelectScene = "SelectScene";
     // プレイメニューシーン
     string playMenuScene = "PlayMenuScene";
     // リザルトシーン
@@ -56,19 +56,6 @@ public class SceneManagement : MonoBehaviour {
 
         SceneManager.LoadScene(sceneName);
     }
-    ////----------------------------------------------------------------------
-    ////! @brief シーン名取得
-    ////!
-    ////! @param[in] シーン名称
-    ////!
-    ////!            "title"  --- タイトルシーン
-    ////!            "menu"   --- プレイメニューシーン
-    ////!            "select" --- キャラクターセレクトシーン
-    ////!            "play"   --- プレイシーン
-    ////!            "result" --- リザルトシーン
-    ////!
-    ////! @return なし
-    ////----------------------------------------------------------------------
 }
 
 
