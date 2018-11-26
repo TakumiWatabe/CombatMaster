@@ -44,10 +44,16 @@ public class TestChar : MonoBehaviour {
 
     private bool hitatk = false;
 
+    private GameObject dirSys;
+    private TextGenerator textGene;
+    private GameObject BattleText;
     void Awake()
     {
         dir = GameObject.Find("BattleDirecter");
         BtDir = dir.GetComponent<BattleDirector>();
+        dirSys = GameObject.Find("TextFactory");
+        textGene = dirSys.GetComponent<TextGenerator>();
+        BattleText = GameObject.Find("GameText");
     }
 
     // Use this for initialization
@@ -83,7 +89,17 @@ public class TestChar : MonoBehaviour {
                 break;
         }
 
-        if(hitatk)
+        //if (textGene.gameStateNum != 1 || BattleText.activeSelf == true)
+        //{
+        //    Time.timeScale = 0;
+        //}
+        //else if (textGene.gameStateNum == 1)
+        //{
+        //    Time.timeScale = 1;
+        //}
+
+
+        if (hitatk)
         {
             elapsedTime++;
             Time.timeScale = 0;
@@ -146,15 +162,35 @@ public class TestChar : MonoBehaviour {
                             else if (BtDir.Fattack(0, j) > 500) Instantiate(effectMid, effectPos, Quaternion.identity);
                             else if (BtDir.Fattack(0, j) <= 500) Instantiate(effectWeak, effectPos, Quaternion.identity);
 
+                            Debug.Log(react[i].CObj.transform.root.GetChild(0).name);
+                            Debug.Log(BtDir.Fcollider(charNum, j, k).transform.root.GetChild(0).name);
+
                             if (BtDir.Fcollider(charNum, j, k).layer == 16)
                             {
                                 switch (numID)
                                 {
                                     case (int)ValueScript.FightChar.CHARA_1:
-                                        Destroy(BtDir.Fighter(1).transform.GetChild(0).GetChild(44).gameObject);
+                                        switch (react[i].CObj.transform.root.GetChild(0).name)
+                                        {
+                                            case "Aoi":
+                                                Destroy(BtDir.Fighter(1).transform.GetChild(0).GetChild(44).gameObject);
+                                                break;
+                                            case "Hikari":
+                                                Destroy(BtDir.Fighter(1).transform.GetChild(0).GetChild(39).gameObject);
+                                                break;
+                                        }
                                         break;
+
                                     case (int)ValueScript.FightChar.CHARA_2:
-                                        Destroy(BtDir.Fighter(0).transform.GetChild(0).GetChild(44).gameObject);
+                                        switch (react[i].CObj.transform.root.GetChild(0).name)
+                                        {
+                                            case "Aoi":
+                                                Destroy(BtDir.Fighter(0).transform.GetChild(0).GetChild(44).gameObject);
+                                                break;
+                                            case "Hikari":
+                                                Destroy(BtDir.Fighter(0).transform.GetChild(0).GetChild(39).gameObject);
+                                                break;
+                                        }
                                         break;
                                 }
                             }

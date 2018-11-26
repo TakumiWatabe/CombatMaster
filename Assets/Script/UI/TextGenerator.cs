@@ -28,13 +28,11 @@ public class TextGenerator : MonoBehaviour
     //  今後動的に適応できるようにする
     //=========================================
     // シーン上のプレイヤー1
-    [SerializeField]
+    //[SerializeField]
     GameObject playerObj1;
     // シーン上のプレイヤー2
-    [SerializeField]
+    //[SerializeField]
     GameObject playerObj2;
-    [SerializeField]
-    GameObject timerObj;
     //=========================================
 
     [SerializeField]
@@ -72,7 +70,9 @@ public class TextGenerator : MonoBehaviour
             "K.O",
             "Perfect!\n K.O.",
             "YOU WIN",
-            "YOU LOSE"
+            "YOU LOSE",
+            "TIME UP",
+            "DRAW"
     };
 
     //勝利プレイヤー判定用
@@ -80,18 +80,50 @@ public class TextGenerator : MonoBehaviour
     float test;
     bool gameSet;
     bool flag;
+
+    //キャラクター生成オブジェクト
+    private GameObject contl;
+    private InstanceScript InScript;
+    GameObject dir;
+    BattleDirector BtDir;
+
+    void Awake()
+    {
+        contl = GameObject.Find("FighterComtrol");
+        InScript = contl.GetComponent<InstanceScript>();
+        dir = GameObject.Find("BattleDirecter");
+        BtDir = dir.GetComponent<BattleDirector>();
+    }
+
     // Use this for initialization
     void Start()
     {
+        for (int i = 0; i < 2; i++)
+        {
+            //キャラクター設定
+            switch (InScript.Fighter(i).tag)
+            {
+                case "P1":
+                    playerObj1 = InScript.Fighter(0);
+                    break;
+                case "P2":
+                    playerObj2 = InScript.Fighter(1);
+                    break;
+                default:
+                    break;
+            }
+        }
+
         time = 0;
         winTime = 0;
         baseTime = 0;
         gameSet = true;
         flag = true;
+
         pause = playerObj1.GetComponent<PlayerController>();
-        hp1 = playerObj1.GetComponent<HPDirectorScript>();
-        hp2 = playerObj2.GetComponent<HPDirectorScript>();
-        timer = timerObj.GetComponent<TimerScript>();
+        hp1 = playerObj1.transform.GetChild(0).gameObject.GetComponent<HPDirectorScript>();
+        hp2 = playerObj2.transform.GetChild(0).gameObject.GetComponent<HPDirectorScript>();
+        timer = dir.GetComponent<TimerScript>();
         getGame = gameDirecter.GetComponent<GetGameScript>();
         directer = gameDirecter.GetComponent<GameDirector>();
         fade = fadePanel.GetComponent<FadeScript>();
@@ -218,6 +250,38 @@ public class TextGenerator : MonoBehaviour
             canvasText.SetActive(true);
         }
     }
+
+    public void TimeUpText(int hp, string[] text)
+    {
+        // プレイヤーの動きを止める
+        pause.enabled = false;
+        if (dir.GetComponent<TimerScript>().fightEnd == true)
+        {
+            canvasText.GetComponent<Text>().text = text[9];
+            //プレイヤー1のほうがHPが多いなら
+            if (directer.NowP1HP > directer.NowP2HP)
+            {
+                setRound(PLAYER1, hp1.NowHPState);
+                winChar = 2;
+                baseTime = timer.GetTimer();
+                directer.GameState(GAME_END);
+            }
+            // プレイヤー2の方がHPが多いなら
+            if (directer.NowP1HP > directer.NowP2HP)
+            {
+                setRound(PLAYER2, hp2.NowHPState);
+                winChar = 1;
+                baseTime = timer.GetTimer();
+                directer.GameState(GAME_END);
+            }
+            if (directer.NowP1HP == directer.NowP2HP)
+            {
+                baseTime = timer.GetTimer();
+                directer.GameState(GAME_END);
+            }
+        }
+
+    }
     /// <summary>
     /// 勝者の名前を表示
     /// </summary>
@@ -261,9 +325,16 @@ public class TextGenerator : MonoBehaviour
             }
         }
     }
-    public bool GetGameSet()
+    public bool gameState
     {
-        return gameSet;
+        get { return gameSet; }
+        set { gameSet = value; }
+    }
+
+    public int gameStateNum
+    {
+        get { return gameCount; }
+        set { gameCount = value; }
     }
     void AddGameCount(int cnt)
     {

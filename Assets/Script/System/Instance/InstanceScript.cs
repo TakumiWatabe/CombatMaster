@@ -18,32 +18,75 @@ public class InstanceScript : MonoBehaviour {
     private string[] names = new string[3]
     {
         "Aoi" ,
-        "Aoi" ,
+        "Hikari" ,
         "none"
     };
+
+    private DataRetention datas;
+    private string[] receive = new string[2];
 
 
     // Use this for initialization
     void Awake ()
     {
+        if (GameObject.Find("GameSystem") != null)
+        {
+            datas = GameObject.Find("GameSystem").GetComponent<DataRetention>();
+        }
+
+
         for (int i = 0; i < fight.Length; i++)
         {
-            //選択されたキャラクターの名前で検索
-            switch (names[i])
+            if (datas != null)
             {
-                //一致したキャラを登録
-                case "Aoi":
-                    fight[i].fighter = Instantiate(charcter[0]);
-                    fight[i].playerTag = i + 1;
-                    break;
-                case "Hikari":
-                    fight[i].fighter = Instantiate(charcter[1]);
-                    fight[i].playerTag = i + 1;
-                    break;
-                default:
-                    fight[i].fighter = null;
-                    fight[i].playerTag = 0;
-                    break;
+                receive[i] = datas.fighterName[i];
+            }
+
+            if (receive[i] != null)
+            {
+                switch (receive[i])
+                {
+                    //一致したキャラを登録
+                    case "Aoi":
+                        fight[i].fighter = Instantiate(charcter[0]);
+                        fight[i].playerTag = i + 1;
+                        Debug.Log("流法" + this.modes);
+                        if (this.modes == 1 && fight[i].playerTag == 2) fight[i].fighter.AddComponent<EnemyAI>();
+                        break;
+                    case "Hikari":
+                        fight[i].fighter = Instantiate(charcter[1]);
+                        fight[i].playerTag = i + 1;
+                        Debug.Log("流法" + this.modes);
+                        if (this.modes == 1 && fight[i].playerTag == 2) fight[i].fighter.AddComponent<EnemyAI>();
+                        break;
+                    default:
+                        fight[i].fighter = null;
+                        fight[i].playerTag = 0;
+                        break;
+                }
+            }
+            else
+            {
+                //選択されたキャラクターの名前で検索
+                switch (names[i])
+                {
+                    //一致したキャラを登録
+                    case "Aoi":
+                        fight[i].fighter = Instantiate(charcter[0]);
+                        fight[i].playerTag = i + 1;
+                        Debug.Log("流法" + this.modes);
+                        if(this.modes==1 && fight[i].playerTag == 2) fight[i].fighter.AddComponent<EnemyAI>();
+                        break;
+                    case "Hikari":
+                        fight[i].fighter = Instantiate(charcter[1]);
+                        fight[i].playerTag = i + 1;
+                        if (this.modes == 1 && fight[i].playerTag == 2) fight[i].fighter.AddComponent<EnemyAI>();
+                        break;
+                    default:
+                        fight[i].fighter = null;
+                        fight[i].playerTag = 0;
+                        break;
+                }
             }
 
             if (fight[i].fighter != null)
@@ -53,11 +96,13 @@ public class InstanceScript : MonoBehaviour {
             }
         }
     }
-	
+
     //キャラクターネーム
     public string charName(int ID) { return names[ID]; }
     //キャラクター取得用
     public GameObject Fighter(int ID) { return fight[ID].fighter; }
     //キャラクターID
     public int FighterID(int ID) { return fight[ID].playerTag; }
+
+    public int modes { get { return datas.Mode; } }
 }

@@ -986,7 +986,7 @@ public class ColliderEvent : MonoBehaviour {
             new Vector3(0, 1.2f, 0.4f),
             new Vector3(0.25f, 0.3f, 0.55f));
 
-        AtkCollider[0].SetActive(true);
+        //AtkCollider[0].SetActive(true);
     }
     void HBasicHadouCollider3()
     {
@@ -1791,9 +1791,11 @@ public class ColliderEvent : MonoBehaviour {
         {
             //判定非動作
             AtkCollider[i].SetActive(false);
+            if(AtkCollider[i].layer==16)
+            {
+                AtkCollider[i].SetActive(true);
+            }
         }
-
-        AtkCollider[3].SetActive(true);
     }
 
     //あたり判定設定関数

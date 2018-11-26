@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using GamepadInput;
 using System;
+using UnityEngine.SceneManagement;
 
 public class CharacterSelect : MonoBehaviour {
     [SerializeField]
@@ -57,6 +58,9 @@ public class CharacterSelect : MonoBehaviour {
         new Vector2(  70.0f,-140.0f),
         new Vector2(   0.0f,   0.0f)
     };
+
+    private string selectName = null;
+
     void Start()
     {
         gameData = GameObject.Find("GameSystem").GetComponent<DataRetention>();
@@ -81,37 +85,48 @@ public class CharacterSelect : MonoBehaviour {
             {
                 if (controller == 1)
                 {
-                    if (controlFlag1P)
+                    if (SceneManager.GetActiveScene().name == "SelectScene")
                     {
-                        if (Input.GetButtonDown("AButton"))
+                        if (controlFlag1P)
                         {
-                            controlFlag1P = false;
-                            if (GetCharName() == "Aoi")
+                            if (Input.GetButtonDown("AButton"))
                             {
-                                aoiModel.transform.position = new Vector3(-modelPosX, modelPosY, 0);
-                                Instantiate(aoiModel);
-                            }
-                            else if (GetCharName() == "Hikari")
-                            {
-                                hikariModel2.transform.position = new Vector3(-modelPosX, modelPosY, 0);
-                                Instantiate(hikariModel);
+                                controlFlag1P = false;
+                                if (GetCharName() == "Aoi")
+                                {
+                                    aoiModel.transform.position = new Vector3(-modelPosX, modelPosY, 0);
+                                    Instantiate(aoiModel);
+                                }
+                                else if (GetCharName() == "Hikari")
+                                {
+                                    hikariModel2.transform.position = new Vector3(-modelPosX, modelPosY, 0);
+                                    Instantiate(hikariModel);
 
+                                }
+                                else
+                                {
+                                    controlFlag1P = true;
+                                }
                             }
-                            else
+                            //　移動キーを押していなければ何もしない
+                            if (Input.GetAxis("Horizontal") == 0.0f && Input.GetAxis("Vertical") == 0.0f)
                             {
-                                controlFlag1P = true;
+                                return;
                             }
+                            //　移動先を計算
+                            pos += new Vector2(Input.GetAxis("Horizontal") * iconSpeed, Input.GetAxis("Vertical") * iconSpeed) * Time.deltaTime;
+                            //　アイコン位置を設定
+                            transform.localPosition = pos;
                         }
-                        //　移動キーを押していなければ何もしない
-                        if (Input.GetAxis("Horizontal") == 0.0f && Input.GetAxis("Vertical") == 0.0f)
+                        else
                         {
-                            return;
+                            sceneFlag1 = false;
                         }
-                        //　移動先を計算
-                        pos += new Vector2(Input.GetAxis("Horizontal") * iconSpeed, Input.GetAxis("Vertical") * iconSpeed) * Time.deltaTime;
-                        //　アイコン位置を設定
-                        transform.localPosition = pos;
+ 
                     }
+                }
+                else
+                {
                     if (controlFlag2P)
                     {
                         if (Input.GetButtonDown("AButton2"))
@@ -151,7 +166,10 @@ public class CharacterSelect : MonoBehaviour {
                         //　アイコン位置を設定
                         transform.localPosition = pos;
                     }
-
+                    else
+                    {
+                        sceneFlag2 = false;
+                    }
                 }
             }
             else
@@ -397,7 +415,7 @@ public class CharacterSelect : MonoBehaviour {
                             {
                                 aoiModel2.transform.position = new Vector3(modelPosX, modelPosY, 0);
                                 Instantiate(aoiModel2);
-                                Debug.Log("2PAOI");
+                                //Debug.Log("2PAOI");
                                 controlFlag2P = false;
                                 pvcController = 2;
                             }
@@ -405,7 +423,7 @@ public class CharacterSelect : MonoBehaviour {
                             {
                                 hikariModel2.transform.position = new Vector3(modelPosX, modelPosY, 0);
                                 Instantiate(hikariModel2);
-                                Debug.Log("2PHIAKRI");
+                                //Debug.Log("2PHIAKRI");
                                 controlFlag2P = false;
                                 Debug.Log(controlFlag2P);
                                 pvcController = 2;
@@ -447,8 +465,15 @@ public class CharacterSelect : MonoBehaviour {
 
         }
 
+        if(Input.GetButtonDown("AButton"))
+        {
+            if (charName != "None" && selectName == null)
+            {
+                selectName = charName;
+            }
+        }
 
-        Debug.Log("sceneFlag1" + sceneFlag1 + "sceneFlag2" + sceneFlag2);
+        //Debug.Log("sceneFlag1" + sceneFlag1 + "sceneFlag2" + sceneFlag2);
     }
     public Vector2 GetFramePos(string name)
     {
@@ -500,4 +525,6 @@ public class CharacterSelect : MonoBehaviour {
         //Debug.Log("2Pフラグ" + controlFlag2P);
         return sceneFlag2;
     }
+
+    public string GetSelectName { get { return selectName; } }
 }

@@ -1,15 +1,16 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameDirector : MonoBehaviour {
     public const int NONE = 0;
     public const int PLAYER1_WIN = 1;
     public const int PLAYER2_WIN = 2;
 
-    [SerializeField]
+    //[SerializeField]
     GameObject player1;
-    [SerializeField]
+    //[SerializeField]
     GameObject player2;
 
     HPDirectorScript HP1, HP2;
@@ -21,26 +22,81 @@ public class GameDirector : MonoBehaviour {
     SceneManagement sceneManager;
     [SerializeField]
     Sprite image;
+    [SerializeField]
+    Sprite AoiImage;
+    [SerializeField]
+    Sprite HikariImage;
+    [SerializeField]
+    Image P1Image;
+    [SerializeField]
+    Image P2Image;
+
 
     float timer;
     bool hp;
     // ゲームの状態(0 = ゲーム開始時 , 1 = ゲームプレイ中 , 2 = ゲーム終了)
     int gameState;
-	// Use this for initialization
-	void Start ()
+
+    //キャラクター生成オブジェクト
+    private GameObject contl;
+    private InstanceScript InScript;
+
+    void Awake()
     {
-        timer = 0;
+        contl = GameObject.Find("FighterComtrol");
+        InScript = contl.GetComponent<InstanceScript>();
+
         gameState = 0;
-        player1.transform.position = new Vector3(-3, -4.2f, gameObject.transform.position.z);
-        player2.transform.position = new Vector3(3, -1.5f, gameObject.transform.position.z);
+    }
+
+    // Use this for initialization
+    void Start ()
+    {
+        for (int i = 0; i < 2; i++)
+        {
+            //キャラクター設定
+            switch (InScript.Fighter(i).tag)
+            {
+                case "P1":
+                    player1 = InScript.Fighter(0);
+                    switch(player1.transform.GetChild(0).gameObject.name)
+                    {
+                        case "Aoi":
+                            P1Image.sprite = AoiImage;
+                            break;
+                        case "Hikari":
+                            P1Image.sprite = HikariImage;
+                            break;
+                    }
+                    break;
+                case "P2":
+                    player2 = InScript.Fighter(1);
+                    switch (player2.transform.GetChild(0).gameObject.name)
+                    {
+                        case "Aoi":
+                            P2Image.sprite = AoiImage;
+                            break;
+                        case "Hikari":
+                            P2Image.sprite = HikariImage;
+                            break;
+                    }
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        timer = 0;
         textScript = GameObject.Find("TextFactory").GetComponent<TextGenerator>();
         sceneManager = GameObject.Find("SceneManager").GetComponent<SceneManagement>();
 
-        HP1 = player1.GetComponent<HPDirectorScript>();
-        HP2 = player2.GetComponent<HPDirectorScript>();
+        HP1 = player1.transform.GetChild(0).gameObject.GetComponent<HPDirectorScript>();
+        HP2 = player2.transform.GetChild(0).gameObject.GetComponent<HPDirectorScript>();
 
         initPos1 = player1.transform.position;
         initPos2 = player2.transform.position;
+        player1.transform.position = initPos1;
+        player2.transform.position = initPos2;
 
         comboScript = GetComponent<ComboScript>();
         gameScript = GetComponent<GetGameScript>();
@@ -49,9 +105,9 @@ public class GameDirector : MonoBehaviour {
     // Update is called once per frame
     void Update()
     {
-        if (textScript.GetGameSet() == false && gameScript.GetPlayerWin() == 0)
+        if (textScript.gameState == false && gameScript.GetPlayerWin() == 0)
         {
-            timer += Time.deltaTime;
+            timer += Time.unscaledDeltaTime;
             if (timer >= 3.0f)
             {
                 sceneManager.SceneChange("play");
@@ -59,9 +115,11 @@ public class GameDirector : MonoBehaviour {
         }
         if (gameScript.GetPlayerWin() == 1 || gameScript.GetPlayerWin() == 2)
         {
-            timer += Time.deltaTime;
+            timer += Time.unscaledDeltaTime;
             if (timer >= 5.0f)
             {
+                gameScript.ResetGame(gameScript.winImages.sprite);
+                textScript.gameStateNum = 1;
                 sceneManager.SceneChange("title");
             }
         }
@@ -82,6 +140,7 @@ public class GameDirector : MonoBehaviour {
             comboScript.NoneCombo();
             gameScript.ResetGame(image);
         }
+
     }
     // 決着が着いた(どちらが勝ったか)
     public int GameSet()
@@ -113,4 +172,7 @@ public class GameDirector : MonoBehaviour {
     {
         gameState = 0;
     }
+
+    public int NowP1HP { get { return HP1.NowHPState; } }
+    public int NowP2HP { get { return HP2.NowHPState; } }
 }

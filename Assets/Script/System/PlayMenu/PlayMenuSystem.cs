@@ -60,12 +60,12 @@ public class PlayMenuSystem : MonoBehaviour {
                 ChangeSprite();
             }
 
-            //ボタンを押すとシーンチェンジ
-            if(GamePad.GetButtonDown(GamePad.Button.A, GamePad.Index.One))
-            {
-                dr.Mode = choiceMenu;
-                sm.SceneChange("select");
-            }
+            ////ボタンを押すとシーンチェンジ
+            //if(GamePad.GetButtonDown(GamePad.Button.A, GamePad.Index.One))
+            //{
+            //    dr.Mode = choiceMenu;
+            //    sm.SceneChange("select");
+            //}
 
             //トリガー処理
             oldStick = GamePad.GetAxis(GamePad.Axis.LeftStick, GamePad.Index.One).y;
@@ -98,12 +98,12 @@ public class PlayMenuSystem : MonoBehaviour {
                 ChangeSprite();
             }
 
-            //ボタンを押すとシーンチェンジ
-            if (GamePad.GetButtonDown(GamePad.Button.B, GamePad.Index.Two))
-            {
-                dr.Mode = choiceMenu;
-                sm.SceneChange("select");
-            }
+            ////ボタンを押すとシーンチェンジ
+            //if (GamePad.GetButtonDown(GamePad.Button.B, GamePad.Index.Two))
+            //{
+            //    dr.Mode = choiceMenu;
+            //    sm.SceneChange("select");
+            //}
 
             //トリガー処理
             oldStick = GamePad.GetAxis(GamePad.Axis.LeftStick, GamePad.Index.One).y;
@@ -123,4 +123,6 @@ public class PlayMenuSystem : MonoBehaviour {
 
         selectMenuComand[choiceMenu].GetComponent<Image>().sprite = selectMenuSprite[choiceMenu];
     }
+
+    public int menuType { get { return choiceMenu; } }
 }

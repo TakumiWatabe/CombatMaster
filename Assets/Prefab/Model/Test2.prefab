@@ -23,7 +23,7 @@ GameObject:
   - component: {fileID: 114919387420846918}
   m_Layer: 0
   m_Name: HitCollider(Sh1)
-  m_TagString: Untagged
+  m_TagString: Hit
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -55,7 +55,7 @@ GameObject:
   - component: {fileID: 114663244577292968}
   m_Layer: 0
   m_Name: HitCollider(JW2)
-  m_TagString: Untagged
+  m_TagString: Hit
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -87,7 +87,7 @@ GameObject:
   - component: {fileID: 114966969783794810}
   m_Layer: 0
   m_Name: HitCollider(JW1)
-  m_TagString: Untagged
+  m_TagString: Hit
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -164,7 +164,7 @@ GameObject:
   - component: {fileID: 114136448137473182}
   m_Layer: 0
   m_Name: HitCollider(SS2)
-  m_TagString: Untagged
+  m_TagString: Hit
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -254,9 +254,9 @@ GameObject:
   - component: {fileID: 4822739624321832}
   - component: {fileID: 65188185909901694}
   - component: {fileID: 114804067206737692}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: AtkCollider(JK)
-  m_TagString: Untagged
+  m_TagString: Attack
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -271,9 +271,9 @@ GameObject:
   - component: {fileID: 4839951683197186}
   - component: {fileID: 65014030357687412}
   - component: {fileID: 114603969568150498}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: AtkCollider(SW)
-  m_TagString: Untagged
+  m_TagString: Attack
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -305,7 +305,7 @@ GameObject:
   - component: {fileID: 114318264844846774}
   m_Layer: 0
   m_Name: HitCollider(SS1)
-  m_TagString: Untagged
+  m_TagString: Hit
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -337,7 +337,7 @@ GameObject:
   - component: {fileID: 114651568782063236}
   m_Layer: 0
   m_Name: HitCollider(N)
-  m_TagString: Untagged
+  m_TagString: Hit
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -354,7 +354,7 @@ GameObject:
   - component: {fileID: 114721342973058038}
   m_Layer: 0
   m_Name: HitCollider(J2)
-  m_TagString: Untagged
+  m_TagString: Hit
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -431,7 +431,7 @@ GameObject:
   - component: {fileID: 114863990276929180}
   m_Layer: 0
   m_Name: HitCollider(St2)
-  m_TagString: Untagged
+  m_TagString: Hit
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -553,7 +553,7 @@ GameObject:
   - component: {fileID: 114402057502774244}
   m_Layer: 0
   m_Name: HitCollider(SW1)
-  m_TagString: Untagged
+  m_TagString: Hit
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -570,7 +570,7 @@ GameObject:
   - component: {fileID: 114997602733871252}
   m_Layer: 0
   m_Name: HitCollider(JK2)
-  m_TagString: Untagged
+  m_TagString: Hit
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -798,7 +798,7 @@ GameObject:
   - component: {fileID: 114535042835529038}
   m_Layer: 0
   m_Name: HitCollider(JK1)
-  m_TagString: Untagged
+  m_TagString: Hit
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -846,7 +846,7 @@ GameObject:
   - component: {fileID: 114879859570403492}
   m_Layer: 0
   m_Name: HitCollider(St1)
-  m_TagString: Untagged
+  m_TagString: Hit
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -863,7 +863,7 @@ GameObject:
   - component: {fileID: 114745997966188280}
   m_Layer: 0
   m_Name: HitCollider(D1)
-  m_TagString: Untagged
+  m_TagString: Hit
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -895,7 +895,7 @@ GameObject:
   - component: {fileID: 114035843327762246}
   m_Layer: 0
   m_Name: HitCollider(SW2)
-  m_TagString: Untagged
+  m_TagString: Hit
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -940,9 +940,9 @@ GameObject:
   - component: {fileID: 4146449974244492}
   - component: {fileID: 65612808552403318}
   - component: {fileID: 114529703489821778}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: AtkCollider(P)
-  m_TagString: Untagged
+  m_TagString: Attack
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1040,9 +1040,9 @@ GameObject:
   - component: {fileID: 4364253162207248}
   - component: {fileID: 65426621484029112}
   - component: {fileID: 114591849144020538}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: AtkCollider(H)
-  m_TagString: Untagged
+  m_TagString: Attack
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1074,7 +1074,7 @@ GameObject:
   - component: {fileID: 114605704021833610}
   m_Layer: 0
   m_Name: HitCollider(SD)
-  m_TagString: Untagged
+  m_TagString: Hit
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1122,7 +1122,7 @@ GameObject:
   - component: {fileID: 114555275802564456}
   m_Layer: 0
   m_Name: HitCollider(D2)
-  m_TagString: Untagged
+  m_TagString: Hit
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1139,7 +1139,7 @@ GameObject:
   - component: {fileID: 114893118496823738}
   m_Layer: 0
   m_Name: HitCollider(SR1)
-  m_TagString: Untagged
+  m_TagString: Hit
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1156,7 +1156,7 @@ GameObject:
   - component: {fileID: 114262382383448640}
   m_Layer: 0
   m_Name: HitCollider(SR2)
-  m_TagString: Untagged
+  m_TagString: Hit
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1201,9 +1201,9 @@ GameObject:
   - component: {fileID: 4312683898538070}
   - component: {fileID: 65383922791902750}
   - component: {fileID: 114631296696452260}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: AtkCollider(JW)
-  m_TagString: Untagged
+  m_TagString: Attack
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1220,7 +1220,7 @@ GameObject:
   - component: {fileID: 114500403384824998}
   m_Layer: 0
   m_Name: HitCollider(H)
-  m_TagString: Untagged
+  m_TagString: Hit
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1282,7 +1282,7 @@ GameObject:
   - component: {fileID: 114972075992918414}
   m_Layer: 0
   m_Name: HitCollider(J1)
-  m_TagString: Untagged
+  m_TagString: Hit
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1359,7 +1359,7 @@ GameObject:
   - component: {fileID: 114656980283340776}
   m_Layer: 0
   m_Name: HitCollider(S)
-  m_TagString: Untagged
+  m_TagString: Hit
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1374,9 +1374,9 @@ GameObject:
   - component: {fileID: 4043034880495520}
   - component: {fileID: 65565708379021648}
   - component: {fileID: 114629332478539072}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: AtkCollider(St)
-  m_TagString: Untagged
+  m_TagString: Attack
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1408,7 +1408,7 @@ GameObject:
   - component: {fileID: 114052030548224948}
   m_Layer: 0
   m_Name: HitCollider(SU)
-  m_TagString: Untagged
+  m_TagString: Hit
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1423,9 +1423,9 @@ GameObject:
   - component: {fileID: 4302698656542940}
   - component: {fileID: 65453593319895418}
   - component: {fileID: 114993576999098404}
-  m_Layer: 0
+  m_Layer: 17
   m_Name: AtkCollider(Sh)
-  m_TagString: Untagged
+  m_TagString: Attack
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1440,9 +1440,9 @@ GameObject:
   - component: {fileID: 4989825267043904}
   - component: {fileID: 65195019361034632}
   - component: {fileID: 114037806791643608}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: AtkCollider(SS)
-  m_TagString: Untagged
+  m_TagString: Attack
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1586,7 +1586,7 @@ GameObject:
   - component: {fileID: 114957230233216764}
   m_Layer: 0
   m_Name: HitCollider(Sh2)
-  m_TagString: Untagged
+  m_TagString: Hit
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1603,7 +1603,7 @@ GameObject:
   - component: {fileID: 114451726166174576}
   m_Layer: 0
   m_Name: HitCollider(P)
-  m_TagString: Untagged
+  m_TagString: Hit
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3161,7 +3161,7 @@ BoxCollider:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1233826859008306}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 0.25, y: 0.45, z: 0.6}
@@ -3173,7 +3173,7 @@ BoxCollider:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1429110484440454}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 0.25, y: 1.1, z: 0.5}
@@ -3185,7 +3185,7 @@ BoxCollider:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1730281641580816}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 0.25, y: 0.5, z: 1.65}
@@ -3197,7 +3197,7 @@ BoxCollider:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1424816577539514}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 0.25, y: 1.1, z: 0.6}
@@ -3209,7 +3209,7 @@ BoxCollider:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1376903171108552}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 0.25, y: 0.85, z: 1.2}
@@ -3221,7 +3221,7 @@ BoxCollider:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1589128514079094}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 0.25, y: 0.6, z: 0.8}
@@ -3245,7 +3245,7 @@ BoxCollider:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1272893549429440}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 0.25, y: 0.7, z: 0.5}
@@ -3257,7 +3257,7 @@ BoxCollider:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1974550540088794}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 0.25, y: 0.3, z: 0.5}
@@ -3269,7 +3269,7 @@ BoxCollider:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1771466701526456}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 0.25, y: 0.3, z: 0.3}
@@ -3281,7 +3281,7 @@ BoxCollider:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1893341685688478}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 0.25, y: 1.1, z: 0.6}
@@ -3293,7 +3293,7 @@ BoxCollider:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1923579314899376}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 0.25, y: 1.65, z: 0.65}
@@ -3305,7 +3305,7 @@ BoxCollider:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1220494944650918}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 0.25, y: 0.3, z: 0.85}
@@ -3317,7 +3317,7 @@ BoxCollider:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1930039709227038}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 0.25, y: 0.25, z: 0.8}
@@ -3329,7 +3329,7 @@ BoxCollider:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1004151918905252}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 0.25, y: 1.35, z: 0.7}
@@ -3341,7 +3341,7 @@ BoxCollider:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1829262141152178}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 0.25, y: 0.55, z: 0.8}
@@ -3353,7 +3353,7 @@ BoxCollider:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1732631488574338}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 0.25, y: 0.6, z: 0.6}
@@ -3365,7 +3365,7 @@ BoxCollider:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1706048714814452}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 0.25, y: 1.2, z: 0.65}
@@ -3377,7 +3377,7 @@ BoxCollider:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1770646889211066}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 0.25, y: 0.3, z: 0.5}
@@ -3389,7 +3389,7 @@ BoxCollider:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1692195262570476}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 0.25, y: 0.6, z: 0.4}
@@ -3401,7 +3401,7 @@ BoxCollider:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1927404570534834}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 0.25, y: 0.5, z: 0.4}
@@ -3413,7 +3413,7 @@ BoxCollider:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1123784751626478}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 0.25, y: 0.4, z: 0.8}
@@ -3425,7 +3425,7 @@ BoxCollider:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1726242902970500}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 0.25, y: 0.8, z: 0.6}
@@ -3437,7 +3437,7 @@ BoxCollider:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1617183303564538}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 0.25, y: 0.3, z: 0.5}
@@ -3449,7 +3449,7 @@ BoxCollider:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1899204276143596}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 0.25, y: 0.35, z: 0.65}
@@ -3461,7 +3461,7 @@ BoxCollider:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1635896105633724}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 0.25, y: 0.4, z: 0.6}
@@ -3485,7 +3485,7 @@ BoxCollider:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1333813840637496}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 0.25, y: 0.9, z: 0.6}
@@ -3497,7 +3497,7 @@ BoxCollider:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1972151307740634}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 0.25, y: 1.1, z: 0.5}
@@ -3509,7 +3509,7 @@ BoxCollider:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1300622722417132}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 0.25, y: 1.55, z: 0.65}
@@ -3521,7 +3521,7 @@ BoxCollider:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1012378603620544}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 0.25, y: 0.85, z: 0.55}
@@ -3533,7 +3533,7 @@ BoxCollider:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1027646486246554}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 0.25, y: 0.65, z: 0.8}
@@ -3545,7 +3545,7 @@ BoxCollider:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1593760038739034}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 0.25, y: 0.5, z: 0.9}
@@ -3557,7 +3557,7 @@ BoxCollider:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1597076881791836}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 0.25, y: 0.8, z: 0.6}
@@ -3763,8 +3763,7 @@ MonoBehaviour:
   dmageImage: {fileID: 0}
   maxHP: 10000
   moveHP: 10000
-  opponent: {fileID: 0}
-  hitFlag: 0
+  opponent: {fileID: 1651637560306960}
 --- !u!114 &114240961182680834
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3845,7 +3844,7 @@ MonoBehaviour:
   - {fileID: 1972151307740634}
   - {fileID: 1974550540088794}
   AtkCollider:
-  - {fileID: 1692195262570476}
+  - {fileID: 1870906395412772, guid: 1acc25e935595a34096faa936e5f8026, type: 2}
   - {fileID: 1220494944650918}
   - {fileID: 1770646889211066}
   - {fileID: 1930039709227038}
@@ -3902,12 +3901,13 @@ MonoBehaviour:
   syoryuSpeed: 0.175
   charName: Hikari
   controllerName: 
-  hadokenObject: {fileID: 0}
+  hadokenObject: {fileID: 1870906395412772, guid: 1acc25e935595a34096faa936e5f8026,
+    type: 2}
   distanceToGuard: 0.7
   isModel: 0
-  largeDmg: {fileID: 0}
-  midiumDmg: {fileID: 0}
-  lowDmg: {fileID: 0}
+  largeDmg: {fileID: 8300000, guid: 400b7139a329b2e49b13ad10b6884ef6, type: 3}
+  midiumDmg: {fileID: 8300000, guid: 04f35937fa3609547bec39e596a72818, type: 3}
+  lowDmg: {fileID: 8300000, guid: cc88295c5ac5bc44a92bdef9ee67ce7c, type: 3}
   history: []
 --- !u!114 &114402057502774244
 MonoBehaviour:
@@ -3983,7 +3983,8 @@ MonoBehaviour:
   effectStr: {fileID: 1680862758961744, guid: c2bf0a45094d9104e99b781a60a29764, type: 2}
   effectMid: {fileID: 1289611684772068, guid: fc854581da1f3304894bfa4569d0f5d0, type: 2}
   effectWeak: {fileID: 1848129787870010, guid: b553b46c70ade4141b6057ee00937929, type: 2}
-  time: 30
+  time: 17
+  slowTime: 10
 --- !u!114 &114555275802564456
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4162,8 +4163,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PushCollider:
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 1983922181771756}
+  - {fileID: 1964870321825540}
 --- !u!114 &114863990276929180
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4249,7 +4250,7 @@ MonoBehaviour:
   - {fileID: 1972151307740634}
   - {fileID: 1974550540088794}
   AtkCollider:
-  - {fileID: 1692195262570476}
+  - {fileID: 1870906395412772, guid: 1acc25e935595a34096faa936e5f8026, type: 2}
   - {fileID: 1220494944650918}
   - {fileID: 1770646889211066}
   - {fileID: 1930039709227038}

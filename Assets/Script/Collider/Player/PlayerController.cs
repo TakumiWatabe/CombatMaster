@@ -160,10 +160,10 @@ public class PlayerController : MonoBehaviour
         inputDKey = 5;
         inputDKeyOld = inputDKey;
 
-        //if(controller > 0)controllerName = Input.GetJoystickNames()[controller - 1];
+        if (controller > 0) controllerName = Input.GetJoystickNames()[controller - 1];
 
-        //Debug.Log(Input.GetJoystickNames()[0]);
-        //Debug.Log(Input.GetJoystickNames()[1]);
+        Debug.Log(Input.GetJoystickNames()[0]);
+        Debug.Log(Input.GetJoystickNames()[1]);
 
 
 

@@ -20,8 +20,6 @@ public class HPDirectorScript : MonoBehaviour {
     private GameObject opponent;
     PlayerController script;
 
-    public bool hitFlag = false;
-
     // Use this for initialization
     void Start()
     {

@@ -416,6 +416,7 @@
     <Compile Include="Assets\Model\VRM\UniGLTF\UniJSON\Scripts\JsonValue.cs" />
     <Compile Include="Assets\Model\VRM\UniGLTF\UniJSON\Scripts\SimpleJSON.cs" />
     <Compile Include="Assets\Model\VRM\UniGLTF\UniJSON\Scripts\StringSegment.cs" />
+    <Compile Include="Assets\None.cs" />
     <Compile Include="Assets\NumberText.cs" />
     <Compile Include="Assets\Prefab\Effect\PostProcessing\Runtime\Attributes\GetSetAttribute.cs" />
     <Compile Include="Assets\Prefab\Effect\PostProcessing\Runtime\Attributes\MinAttribute.cs" />
@@ -487,6 +488,7 @@
     <Compile Include="Assets\Script\System\HPDirectorScript.cs" />
     <Compile Include="Assets\Script\System\IconEvent.cs" />
     <Compile Include="Assets\Script\System\Instance\InstanceScript.cs" />
+    <Compile Include="Assets\Script\System\NameReceiveScript.cs" />
     <Compile Include="Assets\Script\System\PauseScript.cs" />
     <Compile Include="Assets\Script\System\PlayMenu\PlayMenuSystem.cs" />
     <Compile Include="Assets\Script\System\SceneManagement.cs" />
@@ -503,6 +505,7 @@
     <Compile Include="Assets\Script\UI\TextGenerator.cs" />
     <Compile Include="Assets\Script\UI\UIAnime.cs" />
     <Compile Include="Assets\test.cs" />
+    <Compile Include="Assets\testscript.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Almgp_particle_vol_1\README.txt" />

@@ -66,7 +66,7 @@ public class BattleDirector : MonoBehaviour {
             {
                 case "Aoi":
                     player1Name = "AOI";
-                    player2Name = "AOI";
+                    ////player2Name = "AOI";
                     break;
                 case "Hikari":
                     //player1Name = "HIKARI";
@@ -108,6 +108,15 @@ public class BattleDirector : MonoBehaviour {
         fp[(int)ValueScript.FightChar.CHARA_1].playNumber = (int)ValueScript.FightChar.CHARA_1;
         fp[(int)ValueScript.FightChar.CHARA_2].fightCharacter = character[(int)ValueScript.FightChar.CHARA_2];
         fp[(int)ValueScript.FightChar.CHARA_2].playNumber = (int)ValueScript.FightChar.CHARA_2;
+
+        for (int i = 0; i < (int)ValueScript.FightChar.CHARA_NUM; i++)
+        {
+            for (int j = 0; j < (int)ValueScript.AtkVal.ATK_NUM; j++)
+            {
+
+                Debug.Log(f[i, j].co.Count);
+            }
+        }
     }
 
     //技の威力を設定する関数
