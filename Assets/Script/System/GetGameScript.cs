@@ -30,8 +30,17 @@ public class GetGameScript : MonoBehaviour {
 
     TextGenerator textScript;
 
-    // Use this for initialization
-    void Start ()
+    GameObject dir;
+    BattleDirector BtDir;
+
+    void Awake()
+    {
+        dir = GameObject.Find("BattleDirecter");
+        BtDir = dir.GetComponent<BattleDirector>();
+    }
+
+        // Use this for initialization
+        void Start ()
     {
         game_P1 = new Image[gameNum];
         game_P2 = new Image[gameNum];
@@ -97,6 +106,9 @@ public class GetGameScript : MonoBehaviour {
 
     public void ResetGame(Sprite image)
     {
+        wins1 = 0;
+        wins2 = 0;
+
         for (int i = 0; i < gameNum; i++)
         {
             game_P1[i].sprite = image;
@@ -117,4 +129,10 @@ public class GetGameScript : MonoBehaviour {
         }
         return playerWin;
     }
+
+
+    public int P1win { get { return wins1; } }
+    public int P2win { get { return wins2; } }
+
+    public Image winImages { get { return gameFub; } }
 }

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class AlphaScript : MonoBehaviour {
     public Text Qtext;
@@ -15,21 +16,24 @@ public class AlphaScript : MonoBehaviour {
     // Update is called once per frame
     void Update()
     {
-        //テキストの透明度を変更する
-        Qtext.color = new Color(0, 0, 0, a_color);
-        if (flag_G)
-            a_color -= Time.deltaTime;
-        else
-            a_color += Time.deltaTime;
-        if (a_color < 0)
+        if (SceneManager.GetActiveScene().name == "TitleScene")
         {
-            a_color = 0;
-            flag_G = false;
-        }
-        else if (a_color > 1)
-        {
-            a_color = 1;
-            flag_G = true;
+            //テキストの透明度を変更する
+            Qtext.color = new Color(0, 0, 0, a_color);
+            if (flag_G)
+                a_color -= Time.deltaTime;
+            else
+                a_color += Time.deltaTime;
+            if (a_color < 0)
+            {
+                a_color = 0;
+                flag_G = false;
+            }
+            else if (a_color > 1)
+            {
+                a_color = 1;
+                flag_G = true;
+            }
         }
     }
 }

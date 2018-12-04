@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class UIAnime : MonoBehaviour {
     public const int MAXSIZE =2000;
@@ -25,28 +26,33 @@ public class UIAnime : MonoBehaviour {
     // Update is called once per frame
     void Update ()
     {
-        if (uiSize1 <= MAXSIZE)
+        if (SceneManager.GetActiveScene().name == "TitleScene")
         {
-            uiSize1 += 2.0f;
-        }
-        else
-        {
-            uiSize1 = 0.0f;
-        }
-        if (uiSize1 >= MAXSIZE / 2.0f)
-        {
-            animeFlag = 1;
-        }
 
-        if (uiSize2 <= MAXSIZE && animeFlag != 0) 
-        {
-            uiSize2 += 2.0f;
+            if (uiSize1 <= MAXSIZE)
+            {
+                uiSize1 += 2.0f;
+            }
+            else
+            {
+                uiSize1 = 0.0f;
+            }
+            if (uiSize1 >= MAXSIZE / 2.0f)
+            {
+                animeFlag = 1;
+            }
+
+            if (uiSize2 <= MAXSIZE && animeFlag != 0)
+            {
+                uiSize2 += 2.0f;
+            }
+            else
+            {
+                uiSize2 = 0.0f;
+            }
+
+            ui.sizeDelta = new Vector2(uiSize1, uiSize1);
+            ui2.sizeDelta = new Vector2(uiSize2, uiSize2);
         }
-        else
-        {
-            uiSize2 = 0.0f;
-        }
-        ui.sizeDelta = new Vector2(uiSize1, uiSize1);
-        ui2.sizeDelta = new Vector2(uiSize2, uiSize2);
     }
 }

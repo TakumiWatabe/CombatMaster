@@ -690,9 +690,9 @@ GameObject:
   - component: {fileID: 4328594848724800}
   - component: {fileID: 65279226684201574}
   - component: {fileID: 114536981666025106}
-  m_Layer: 16
+  m_Layer: 0
   m_Name: AtkCollider(H4)
-  m_TagString: Attack
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1037,9 +1037,9 @@ GameObject:
   - component: {fileID: 4321082925828162}
   - component: {fileID: 65151415513356694}
   - component: {fileID: 114128364977749624}
-  m_Layer: 16
+  m_Layer: 0
   m_Name: AtkCollider(H3)
-  m_TagString: Attack
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1457,9 +1457,9 @@ GameObject:
   - component: {fileID: 4646539333654800}
   - component: {fileID: 65158612166556364}
   - component: {fileID: 114553925113846256}
-  m_Layer: 16
+  m_Layer: 0
   m_Name: AtkCollider(H2)
-  m_TagString: Attack
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3376,7 +3376,7 @@ BoxCollider:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1642564194609590}
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 0.25, y: 0.7, z: 0.6}
@@ -3388,7 +3388,7 @@ BoxCollider:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1824848331607504}
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 0.25, y: 0.5, z: 1.2}
@@ -3508,7 +3508,7 @@ BoxCollider:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1393544899292010}
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 0.25, y: 0.2, z: 0.5}
@@ -3902,7 +3902,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2e8913cf80c8e1041bf93c6058035296, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerName: 
+  playerName: AOI
 --- !u!114 &114075177414589980
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4065,7 +4065,6 @@ MonoBehaviour:
   maxHP: 10000
   moveHP: 10000
   opponent: {fileID: 1950020390803814}
-  hitFlag: 0
 --- !u!114 &114285792191460382
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4123,12 +4122,13 @@ MonoBehaviour:
   syoryuSpeed: 0.175
   charName: Aoi
   controllerName: 
-  hadokenObject: {fileID: 0}
+  hadokenObject: {fileID: 1870906395412772, guid: 1acc25e935595a34096faa936e5f8026,
+    type: 2}
   distanceToGuard: 0.7
   isModel: 0
-  largeDmg: {fileID: 0}
-  midiumDmg: {fileID: 0}
-  lowDmg: {fileID: 0}
+  largeDmg: {fileID: 8300000, guid: 400b7139a329b2e49b13ad10b6884ef6, type: 3}
+  midiumDmg: {fileID: 8300000, guid: 04f35937fa3609547bec39e596a72818, type: 3}
+  lowDmg: {fileID: 8300000, guid: cc88295c5ac5bc44a92bdef9ee67ce7c, type: 3}
   history: []
 --- !u!114 &114393275947154626
 MonoBehaviour:
@@ -4170,7 +4170,7 @@ MonoBehaviour:
   - {fileID: 1238003315464876}
   - {fileID: 1874439783121648}
   - {fileID: 1440865326543666}
-  - {fileID: 1253212120099546}
+  - {fileID: 1870906395412772, guid: 1acc25e935595a34096faa936e5f8026, type: 2}
   - {fileID: 1824848331607504}
   - {fileID: 1642564194609590}
   - {fileID: 1393544899292010}
@@ -4220,7 +4220,7 @@ MonoBehaviour:
   - {fileID: 1238003315464876}
   - {fileID: 1874439783121648}
   - {fileID: 1440865326543666}
-  - {fileID: 1253212120099546}
+  - {fileID: 1870906395412772, guid: 1acc25e935595a34096faa936e5f8026, type: 2}
   - {fileID: 1824848331607504}
   - {fileID: 1642564194609590}
   - {fileID: 1393544899292010}
@@ -4253,7 +4253,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2e8913cf80c8e1041bf93c6058035296, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerName: 
+  playerName: AOI
 --- !u!114 &114405031464142164
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4474,7 +4474,8 @@ MonoBehaviour:
   effectStr: {fileID: 1680862758961744, guid: c2bf0a45094d9104e99b781a60a29764, type: 2}
   effectMid: {fileID: 1289611684772068, guid: fc854581da1f3304894bfa4569d0f5d0, type: 2}
   effectWeak: {fileID: 1848129787870010, guid: b553b46c70ade4141b6057ee00937929, type: 2}
-  time: 12
+  time: 17
+  slowTime: 10
 --- !u!114 &114874440859785866
 MonoBehaviour:
   m_ObjectHideFlags: 1

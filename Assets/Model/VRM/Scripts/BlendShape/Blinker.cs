@@ -65,7 +65,7 @@ namespace VRM
                 var closeSpeed = 1.0f / m_closeSeconds;
                 while (true)
                 {
-                    value += Time.deltaTime * closeSpeed;
+                    value += Time.unscaledDeltaTime * closeSpeed;
                     if (value >= 1.0f)
                     {
                         break;
@@ -84,7 +84,7 @@ namespace VRM
                 var openSpeed = 1.0f / m_openingSeconds;
                 while (true)
                 {
-                    value -= Time.deltaTime * openSpeed;
+                    value -= Time.unscaledDeltaTime * openSpeed;
                     if (value < 0)
                     {
                         break;

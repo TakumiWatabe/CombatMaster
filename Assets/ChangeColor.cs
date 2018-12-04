@@ -55,7 +55,6 @@ public class ChangeColor : MonoBehaviour
     // Update is called once per frame
     void Update ()
     {
-        Debug.Log(red + MAX_COLOR);
         if (red >= MAX_COLOR / MAX_COLOR && blue == green)
         {
             blue += 1.0f / MAX_COLOR;

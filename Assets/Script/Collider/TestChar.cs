@@ -37,10 +37,23 @@ public class TestChar : MonoBehaviour {
     //経過時間
     private float timecCnt = 0;
 
+    //時間を遅くしている時間
+    [SerializeField, Range(1, 100)]
+    private float slowTime = 10;
+    private float elapsedTime = 0;
+
+    private bool hitatk = false;
+
+    private GameObject dirSys;
+    private TextGenerator textGene;
+    private GameObject BattleText;
     void Awake()
     {
         dir = GameObject.Find("BattleDirecter");
         BtDir = dir.GetComponent<BattleDirector>();
+        dirSys = GameObject.Find("TextFactory");
+        textGene = dirSys.GetComponent<TextGenerator>();
+        BattleText = GameObject.Find("GameText");
     }
 
     // Use this for initialization
@@ -63,8 +76,6 @@ public class TestChar : MonoBehaviour {
 	// Update is called once per frame
 	void Update ()
     {
-        Debug.Log(this.transform.root.tag + " HP:" + HPDir.NowHPState);
-
         //キャラクター番号から相手キャラクターを判別
         switch (numID)
         {
@@ -76,6 +87,29 @@ public class TestChar : MonoBehaviour {
                 break;
             default:
                 break;
+        }
+
+        //if (textGene.gameStateNum != 1 || BattleText.activeSelf == true)
+        //{
+        //    Time.timeScale = 0;
+        //}
+        //else if (textGene.gameStateNum == 1)
+        //{
+        //    Time.timeScale = 1;
+        //}
+
+
+        if (hitatk)
+        {
+            elapsedTime++;
+            Time.timeScale = 0;
+        }
+
+        if(slowTime<=elapsedTime)
+        {
+            hitatk = false;
+            elapsedTime = 0;
+            Time.timeScale = 1;
         }
 
 	}
@@ -111,7 +145,6 @@ public class TestChar : MonoBehaviour {
                             {
                                 if (react[i].CObj.name == GetComponent<ColliderEvent>().GetAtkBoxs[l].name)
                                 {
-                                    Debug.Log(GetComponent<ColliderEvent>().GetAtkBoxs[l].name);
                                     attack = GetComponent<ColliderEvent>().GetAtkBoxs[l].center + this.transform.parent.transform.position;
                                 }
 
@@ -122,10 +155,45 @@ public class TestChar : MonoBehaviour {
                             //エフェクト発生場所
                             Vector3 effectPos = (body + attack) / 2;
 
+                            hitatk = true;
+
                             //エフェクト発生
                             if (BtDir.Fattack(0, j) > 800) Instantiate(effectStr, effectPos, Quaternion.identity);
                             else if (BtDir.Fattack(0, j) > 500) Instantiate(effectMid, effectPos, Quaternion.identity);
                             else if (BtDir.Fattack(0, j) <= 500) Instantiate(effectWeak, effectPos, Quaternion.identity);
+
+                            Debug.Log(react[i].CObj.transform.root.GetChild(0).name);
+                            Debug.Log(BtDir.Fcollider(charNum, j, k).transform.root.GetChild(0).name);
+
+                            if (BtDir.Fcollider(charNum, j, k).layer == 16)
+                            {
+                                switch (numID)
+                                {
+                                    case (int)ValueScript.FightChar.CHARA_1:
+                                        switch (react[i].CObj.transform.root.GetChild(0).name)
+                                        {
+                                            case "Aoi":
+                                                Destroy(BtDir.Fighter(1).transform.GetChild(0).GetChild(44).gameObject);
+                                                break;
+                                            case "Hikari":
+                                                Destroy(BtDir.Fighter(1).transform.GetChild(0).GetChild(39).gameObject);
+                                                break;
+                                        }
+                                        break;
+
+                                    case (int)ValueScript.FightChar.CHARA_2:
+                                        switch (react[i].CObj.transform.root.GetChild(0).name)
+                                        {
+                                            case "Aoi":
+                                                Destroy(BtDir.Fighter(0).transform.GetChild(0).GetChild(44).gameObject);
+                                                break;
+                                            case "Hikari":
+                                                Destroy(BtDir.Fighter(0).transform.GetChild(0).GetChild(39).gameObject);
+                                                break;
+                                        }
+                                        break;
+                                }
+                            }
 
                             GetComponent<PlayerController>().HitDamage(BtDir.Fattack(0, j));
                         }

@@ -512,89 +512,35 @@ public class OverlapScript : MonoBehaviour {
     //-------------------------------------------------------
     //立ち押し合い判定
     //
-    //使用モーション:立ち
+    //使用モーション:立ち,波動,しゃがみ中,弱,ジャンプ中,ダメージ
     //-------------------------------------------------------
     void HStandOver()
     {
+        //押し合い判定初期化
+        PushColliderActive();
         //基本押し合い判定
         PushCollider[0].SetActive(true);
+
+        SetBoxState(PushBox[0],
+            new Vector3(0, 0.78f, 0),
+            new Vector3(CSizeZ, 1.55f, 0.4f));
     }
 
-    //-------------------------------------------------------
-    //前進押し合い判定
-    //
-    //使用モーション:前進
-    //-------------------------------------------------------
-    void HFrontOver()
-    {
-        //基本押し合い判定
-        PushCollider[0].SetActive(true);
-    }
-
-    //-------------------------------------------------------
-    //後進押し合い判定
-    //
-    //使用モーション:後進
-    //-------------------------------------------------------
-    void HBackOver()
-    {
-        //基本押し合い判定
-        PushCollider[0].SetActive(true);
-    }
-
-    //-------------------------------------------------------
-    //立ちガード押し合い判定
-    //
-    //使用モーション:立ちガード
-    //-------------------------------------------------------
-    void HGuardOver()
-    {
-        //基本押し合い判定
-        PushCollider[0].SetActive(true);
-    }
-
-    //-------------------------------------------------------
-    //ダメージ押し合い判定
-    //
-    //使用モーション:ダメージ
-    //-------------------------------------------------------
-    void HDamageOver()
-    {
-        //基本押し合い判定
-        PushCollider[0].SetActive(true);
-    }
-
-    //------------------------------------------------------
+    //---------------------------------------------------------------
     //しゃがみ押し合い判定
     //
-    //使用モーション:しゃがみ
-    //------------------------------------------------------
+    //使用モーション:しゃがみ,しゃがみ中,しゃがみガード,しゃがみダメ
+    //---------------------------------------------------------------
     void HSitOver()
     {
+        //押し合い判定初期化
+        PushColliderActive();
         //基本押し合い判定
         PushCollider[0].SetActive(true);
-    }
 
-    //------------------------------------------------------
-    //しゃがみガード押し合い判定
-    //
-    //使用モーション:しゃがみガード
-    //------------------------------------------------------
-    void HSitGuardOver()
-    {
-        //基本押し合い判定
-        PushCollider[0].SetActive(true);
-    }
-
-    //------------------------------------------------------
-    //しゃがみダメージ押し合い判定
-    //
-    //使用モーション:しゃがみダメ
-    //------------------------------------------------------
-    void HSitDamegeOver()
-    {
-        //基本押し合い判定
-        PushCollider[0].SetActive(true);
+        SetBoxState(PushBox[0],
+            new Vector3(0, 1f, 0),
+            new Vector3(CSizeZ, 1.1f, 0.4f));
     }
 
     //--------------------------------
@@ -604,19 +550,20 @@ public class OverlapScript : MonoBehaviour {
     //--------------------------------
     void HDashOver()
     {
-        //基本押し合い判定
-        PushCollider[0].SetActive(true);
-    }
+        //押し合い判定初期化
+        PushColliderActive();
 
-    //--------------------------------
-    //波動コマンド押し合い判定
-    //
-    //使用モーション:波動
-    //--------------------------------
-    void HHadouOver()
-    {
         //基本押し合い判定
         PushCollider[0].SetActive(true);
+        SetBoxState(PushBox[0],
+            new Vector3(0, 1.2f, 0.2f),
+            new Vector3(CSizeZ, 0.6f, 0.45f));
+
+        //基本押し合い判定
+        PushCollider[1].SetActive(true);
+        SetBoxState(PushBox[1],
+            new Vector3(0, 0.5f, 0.05f),
+            new Vector3(CSizeZ, 0.9f, 0.4f));
     }
  
     //-----------------------------------------
@@ -626,19 +573,14 @@ public class OverlapScript : MonoBehaviour {
     //-----------------------------------------
     void HJumpOver()
     {
-        //基本押し合い判定
-        PushCollider[0].SetActive(true);
-    }
+        //押し合い判定初期化
+        PushColliderActive();
 
-    //-----------------------------------------
-    //ジャンプ中押し合い判定
-    //
-    //使用モーション:ジャンプ中
-    //-----------------------------------------
-    void HJumpingOver()
-    {
         //基本押し合い判定
         PushCollider[0].SetActive(true);
+        SetBoxState(PushBox[0],
+            new Vector3(0, 0.88f, 0f),
+            new Vector3(CSizeZ, 1.35f, 0.4f));
     }
 
     //--------------------------------
@@ -648,8 +590,14 @@ public class OverlapScript : MonoBehaviour {
     //--------------------------------
     void HJumpKickOver()
     {
+        //押し合い判定初期化
+        PushColliderActive();
+
         //基本押し合い判定
         PushCollider[0].SetActive(true);
+        SetBoxState(PushBox[0],
+            new Vector3(0, 0.8f, 0f),
+            new Vector3(CSizeZ, 1.6f, 0.4f));
     }
 
     //--------------------------------
@@ -657,32 +605,64 @@ public class OverlapScript : MonoBehaviour {
     //
     //使用モーション:ジャンプパンチ
     //--------------------------------
-    void HJumpPunchOver()
+    void HJumpPunchOver_1()
     {
+        //押し合い判定初期化
+        PushColliderActive();
+
         //基本押し合い判定
         PushCollider[0].SetActive(true);
+        SetBoxState(PushBox[0],
+            new Vector3(0, 0.8f, 0f),
+            new Vector3(CSizeZ, 1.6f, 0.4f));
     }
- 
-    //--------------------------------------
-    //しゃがみ中押し合い判定
-    //
-    //使用モーション:しゃがみ中
-    //--------------------------------------
-    void HSitingOver()
+    void HJumpPunchOver_2()
     {
-        //基本押し合い判定
-        PushCollider[0].SetActive(true);
+        SetBoxState(PushBox[0],
+            new Vector3(0, 0.9f, 0f),
+            new Vector3(CSizeZ, 1.3f, 0.4f));
     }
+
 
     //--------------------------------
     //しゃがみキック押し合い判定
     //
     //使用モーション:しゃがみキック
     //--------------------------------
-    void HSitKickOver()
+    void HSitKickOver_1()
     {
+        //押し合い判定初期化
+        PushColliderActive();
         //基本押し合い判定
         PushCollider[0].SetActive(true);
+
+        SetBoxState(PushBox[0],
+            new Vector3(0, 1f, 0),
+            new Vector3(CSizeZ, 1.1f, 0.4f));
+    }
+    void HSitKickOver_2()
+    {
+        SetBoxState(PushBox[0],
+            new Vector3(0, 1f, -0.15f),
+            new Vector3(CSizeZ, 1f, 0.6f));
+    }
+    void HSitKickOver_3()
+    {
+        SetBoxState(PushBox[0],
+            new Vector3(0, 0.95f, -0.2f),
+            new Vector3(CSizeZ, 0.85f, 0.65f));
+    }
+    void HSitKickOver_4()
+    {
+        SetBoxState(PushBox[0],
+            new Vector3(0, 0.95f, -0.15f),
+            new Vector3(CSizeZ, 0.9f, 0.55f));
+    }
+    void HSitKickOver_5()
+    {
+        SetBoxState(PushBox[0],
+            new Vector3(0, 0.95f, 0.1f),
+            new Vector3(CSizeZ, 0.9f, 0.45f));
     }
 
     //--------------------------------
@@ -692,8 +672,14 @@ public class OverlapScript : MonoBehaviour {
     //--------------------------------
     void HSitPunchOver()
     {
+        //押し合い判定初期化
+        PushColliderActive();
         //基本押し合い判定
         PushCollider[0].SetActive(true);
+
+        SetBoxState(PushBox[0],
+            new Vector3(0, 1f, 0),
+            new Vector3(CSizeZ, 1.1f, 0.45f));
     }
 
     //-----------------------------------------
@@ -701,21 +687,89 @@ public class OverlapScript : MonoBehaviour {
     //
     //使用モーション:立ち上がり
     //-----------------------------------------
-    void HStandUpOver()
+    void HStandUpOver_1()
     {
+        //押し合い判定初期化
+        PushColliderActive();
         //基本押し合い判定
         PushCollider[0].SetActive(true);
+
+        SetBoxState(PushBox[0],
+            new Vector3(0, 1.15f, 0),
+            new Vector3(CSizeZ, 1.1f, 0.4f));
     }
+    void HStandUpOver_2()
+    {
+        //押し合い判定初期化
+        PushColliderActive();
+        //基本押し合い判定
+        PushCollider[0].SetActive(true);
+
+        SetBoxState(PushBox[0],
+            new Vector3(0, 1.1f, 0),
+            new Vector3(CSizeZ, 1.3f, 0.4f));
+    }
+    void HStandUpOver_3()
+    {
+        //押し合い判定初期化
+        PushColliderActive();
+        //基本押し合い判定
+        PushCollider[0].SetActive(true);
+
+        SetBoxState(PushBox[0],
+            new Vector3(0, 0.9f, 0),
+            new Vector3(CSizeZ, 1.6f, 0.4f));
+    }
+
 
     //------------------------
     //強攻撃押し合い判定
     //
     //使用モーション:強攻撃
     //------------------------
-    void HBaseKickOver()
+    void HBaseKickOver_1()
     {
+        //押し合い判定初期化
+        PushColliderActive();
         //基本押し合い判定
         PushCollider[0].SetActive(true);
+
+        SetBoxState(PushBox[0],
+            new Vector3(0, 0.88f, 0),
+            new Vector3(CSizeZ, 1.4f, 0.4f));
+    }
+    void HBaseKickOver_2()
+    {
+        SetBoxState(PushBox[0],
+            new Vector3(0, 1.2f, 0.2f),
+            new Vector3(CSizeZ, 0.5f, 0.4f));
+
+        //基本押し合い判定
+        PushCollider[1].SetActive(true);
+        SetBoxState(PushBox[1],
+            new Vector3(0, 0.6f, 0.05f),
+            new Vector3(CSizeZ, 0.9f, 0.4f));
+
+    }
+    void HBaseKickOver_3()
+    {
+        SetBoxState(PushBox[0],
+            new Vector3(0, 1.2f, 0.3f),
+            new Vector3(CSizeZ, 0.5f, 0.4f));
+
+        SetBoxState(PushBox[1],
+            new Vector3(0, 0.6f, 0.05f),
+            new Vector3(CSizeZ, 0.9f, 0.4f));
+    }
+    void HBaseKickOver_4()
+    {
+        SetBoxState(PushBox[0],
+            new Vector3(0, 1.2f, 0.3f),
+            new Vector3(CSizeZ, 0.5f, 0.4f));
+
+        SetBoxState(PushBox[1],
+            new Vector3(0, 0.6f, 0.05f),
+            new Vector3(CSizeZ, 0.9f, 0.4f));
     }
 
     //--------------------------------
@@ -723,10 +777,40 @@ public class OverlapScript : MonoBehaviour {
     //
     //使用モーション:ダウン
     //--------------------------------
-    void HDownOver()
+    void HDownOver_1()
     {
+        //押し合い判定初期化
+        PushColliderActive();
         //基本押し合い判定
         PushCollider[0].SetActive(true);
+
+        SetBoxState(PushBox[0],
+            new Vector3(0, 0.78f, 0.05f),
+            new Vector3(CSizeZ, 1.5f, 0.4f));
+    }
+    void HDownOver_2()
+    {
+        SetBoxState(PushBox[0],
+            new Vector3(0, 0.65f, 0f),
+            new Vector3(CSizeZ, 1.3f, 0.4f));
+    }
+    void HDownOver_3()
+    {
+        SetBoxState(PushBox[0],
+            new Vector3(0, 0.7f, 0f),
+            new Vector3(CSizeZ, 0.4f, 1.3f));
+    }
+    void HDownOver_4()
+    {
+        SetBoxState(PushBox[0],
+            new Vector3(0, 0.65f, 0),
+            new Vector3(CSizeZ, 0.4f, 1.3f));
+    }
+    void HDownOver_5()
+    {
+        SetBoxState(PushBox[0],
+            new Vector3(0, -0.6f, 0.05f),
+            new Vector3(CSizeZ, 0.4f, 1.45f));
     }
 
     //--------------------------------
@@ -734,10 +818,43 @@ public class OverlapScript : MonoBehaviour {
     //
     //使用モーション:昇竜
     //--------------------------------
-    void HShoruOver()
+    void HShoruOver_1()
     {
+        //押し合い判定初期化
+        PushColliderActive();
         //基本押し合い判定
         PushCollider[0].SetActive(true);
+
+        SetBoxState(PushBox[0],
+            new Vector3(0, 0.9f, 0.05f),
+            new Vector3(CSizeZ, 1.2f, 0.4f));
+    }
+    void HShoruOver_2()
+    {
+        SetBoxState(PushBox[0],
+            new Vector3(0, 0.95f, 0f),
+            new Vector3(CSizeZ, 1.35f, 0.4f));
+    }
+    void HShoruOver_3()
+    {
+        SetBoxState(PushBox[0],
+            new Vector3(0, 1.3f, 0.1f),
+            new Vector3(CSizeZ, 0.6f, 0.45f));
+
+        //基本押し合い判定
+        PushCollider[1].SetActive(true);
+        SetBoxState(PushBox[1],
+            new Vector3(0, 0.78f, 0.05f),
+            new Vector3(CSizeZ, 1.5f, 0.4f));
+
+    }
+    void HShoruOver_4()
+    {
+        SetBoxState(PushBox[0],
+            new Vector3(0, 0.75f, 0.05f),
+            new Vector3(CSizeZ, 1.5f, 0.4f));
+        //基本押し合い判定
+        PushCollider[1].SetActive(false);
     }
 
     //------------------
@@ -747,8 +864,14 @@ public class OverlapScript : MonoBehaviour {
     //------------------
     void HPunchOver()
     {
+        //押し合い判定初期化
+        PushColliderActive();
         //基本押し合い判定
         PushCollider[0].SetActive(true);
+
+        SetBoxState(PushBox[0],
+            new Vector3(0, 0.9f, 0.05f),
+            new Vector3(CSizeZ, 1.2f, 0.4f));
     }
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     //-------------------------------------------------------------------------------------------------------------------
