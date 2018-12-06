@@ -475,6 +475,7 @@
     <Compile Include="Assets\Script\Collider\Player\HadouController.cs" />
     <Compile Include="Assets\Script\Collider\Player\PlayerController.cs" />
     <Compile Include="Assets\Script\Collider\Player\PlayerControllerTest.cs" />
+    <Compile Include="Assets\Script\Collider\Player\PlayerParentController.cs" />
     <Compile Include="Assets\Script\Collider\TestChar.cs" />
     <Compile Include="Assets\Script\EffectManager.cs" />
     <Compile Include="Assets\Script\NumberImageRenderer.cs" />
